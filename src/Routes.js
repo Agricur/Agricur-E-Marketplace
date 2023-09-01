@@ -1,2 +1,3 @@
 import LoginPage from "./Screens/UserLogin.jsx";
-export {LoginPage};
+import HomePage from "./Screens/HomePage.jsx";
+export { LoginPage, HomePage };
