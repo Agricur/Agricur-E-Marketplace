@@ -1,3 +1,9 @@
 import LoginPage from "./Screens/UserLogin.jsx";
 import HomePage from "./Screens/HomePage.jsx";
-export { LoginPage, HomePage };
+import SellerRegisterPage from "./Screens/buyerReg.jsx"; 
+
+export {LoginPage, 
+        HomePage,
+        SellerRegisterPage
+    
+    };
