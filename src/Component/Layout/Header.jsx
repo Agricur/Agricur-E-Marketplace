@@ -53,7 +53,7 @@ export default function Header() {
             <input
               type="search"
               id="default-search"
-              class="block w-full p-3 pl-10 text-sm text-gray-900 border border-[#348d43] rounded-full bg-gray-50 focus:ring-[#348d43] focus:border-[#348d43] dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#348d43] dark:focus:border-[#348d43]"
+              class="block w-full p-3 pl-10 text-sm text-gray-900 border border-[#348d43] rounded-full bg-gray-50 focus:ring-[#348d43] focus:border-[#348d43] dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text dark:focus:ring-[#348d43] dark:focus:border-[#348d43]"
               placeholder="Search..."
               required
             />
@@ -242,7 +242,7 @@ export default function Header() {
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          
+
         </Dialog.Panel>
       </Dialog>
     </header>
