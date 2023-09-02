@@ -1,7 +1,8 @@
 import { Fragment, useState } from "react";
-import { Dialog, Menu, Transition } from "@headlessui/react";
+import { Disclosure, Dialog, Menu, Transition } from "@headlessui/react";
 import Logo from "../../Images/Logo.png";
 import {
+  ChevronDownIcon,
   BellIcon,
   ShoppingCartIcon,
   Bars3Icon,
@@ -215,11 +216,11 @@ export default function Header() {
             </Menu.Items>
           </Transition>
         </Menu>
-
       </div>
 
       {/* </nav> */}
 
+      {/* mobile menu */}
       <Dialog
         as="div"
         className="lg:hidden"
@@ -228,11 +229,13 @@ export default function Header() {
       >
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          {/* logo */}
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Agrucur</span>
               <img className="h-8 w-auto" src={`${Logo}`} alt="" />
             </a>
+            {/* 3-bar button */}
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -242,7 +245,102 @@ export default function Header() {
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-
+          <div className="mt-6 flow-root">
+            <div className="-my-6 divide-y divide-gray-500/10">
+              <div className="space-y-2 py-6">
+              {/* profile section */}
+              <Disclosure as="div" className="-mx-3">
+                  {({ open }) => (
+                    <>
+                      <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]">
+                        Account
+                        <ChevronDownIcon
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-5 w-5 flex-none"
+                          )}
+                          aria-hidden="true"
+                        />
+                      </Disclosure.Button>
+                      <Disclosure.Panel className="mt-2 space-y-2">
+                        <Disclosure.Button
+                          key="seller"
+                          as="a"
+                          href="#"
+                          className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                        >
+                          Your Profile
+                        </Disclosure.Button>
+                        <Disclosure.Button
+                          key="buyer"
+                          as="a"
+                          href="#"
+                          className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                        >
+                          Setting
+                        </Disclosure.Button>
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+                <a
+                  href="./"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                >
+                  Notification
+                </a>
+                <a
+                  href="#"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                >
+                  Cart
+                </a>
+                {/* register */}
+                <Disclosure as="div" className="-mx-3">
+                  {({ open }) => (
+                    <>
+                      <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]">
+                        Register
+                        <ChevronDownIcon
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-5 w-5 flex-none"
+                          )}
+                          aria-hidden="true"
+                        />
+                      </Disclosure.Button>
+                      <Disclosure.Panel className="mt-2 space-y-2">
+                        <Disclosure.Button
+                          key="seller"
+                          as="a"
+                          href="#"
+                          className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                        >
+                          Seller
+                        </Disclosure.Button>
+                        <Disclosure.Button
+                          key="buyer"
+                          as="a"
+                          href="#"
+                          className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                        >
+                          Buyer
+                        </Disclosure.Button>
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+              </div>
+              <div className="py-6">
+                <a
+                  href="#"
+                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                >
+                  Log Out
+                </a>
+              </div>
+            </div>
+          </div>
         </Dialog.Panel>
       </Dialog>
     </header>
