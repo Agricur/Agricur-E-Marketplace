@@ -1,11 +1,11 @@
 import React from 'react'
-import Register from "../Component/Register/buyerRegisterCom.jsx"
-const RegisterPage = () => {
+import BuyerRegister from "../Component/Register/buyerRegisterCom.jsx"
+const BuyerRegisterPage = () => {
   return (
     <div>
-        <Register/>
+        <BuyerRegister/>
     </div>
     
   )
 }
-export default RegisterPage;
+export default BuyerRegisterPage;

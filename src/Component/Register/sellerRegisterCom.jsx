@@ -3,15 +3,16 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Design from "../../Images/Design.png";
 import Background from "../../Images/regBackground.png";
 
-const BuyerRegister = () => {
+const SellerRegister = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: '',
-    houseNo: '',
+    shopName: '',
+    shopNo: '',
     street: '',
     addressCity: '',
     district: '',
+    email: '',
     phoneNumber: '',
     password: '',
     rePassword: '',
@@ -71,14 +72,14 @@ const BuyerRegister = () => {
       <div className="bg-white bg-opacity-80 p-4 sm:p-1 rounded-lg shadow-lg w-3/5 max-w-screen-lg">
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-3xl font-bold mb-8"></h1>
-        <h1 className="text-3xl font-bold mb-4">Sign up to Agricur</h1>
+        <h1 className="text-3xl font-bold mb-4">Become a seller at Agricur</h1>
         <img src={Design} alt="" height="100" width="100" className="mx-auto" />
         <h5 className="text-lg font-normal mb-2">Please enter your details below</h5>
       
         <div className="flex flex-col md:flex-row md:justify-between gap-4">
           <div className="md:w-1/2">
             <div className="mb-4">
-              <label className="block mb-1">First Name</label>
+              <label className="block mb-1">Owner’s First Name</label>
               <input
                 type="text"
                 name="firstName"
@@ -89,7 +90,7 @@ const BuyerRegister = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block mb-1">Second Name</label>
+              <label className="block mb-1">Owner’s Second Name</label>
               <input
                 type="text"
                 name="lastName"
@@ -100,24 +101,24 @@ const BuyerRegister = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block mb-1">Email</label>
+              <label className="block mb-1">Shop Name</label>
               <input
-                type="email"
-                name="email"
-                value={formData.email}
+                type="text"
+                name="shopName"
+                value={formData.shopName}
                 onChange={handleChange}
                 className="w-full border border-black rounded-md py-2 px-3"
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block mb-1">Address</label>
+              <label className="block mb-1">Shop Address</label>
               <input
                 type="text"
-                name="houseNo"
+                name="shopNo"
                 value={formData.shopNo}
                 onChange={handleChange}
-                placeholder="House Number"
+                placeholder="Shop Number"
                 className="w-full border border-black rounded-md py-2 px-3 mb-2"
                 required
               />
@@ -158,6 +159,17 @@ const BuyerRegister = () => {
             </div>
           </div>
           <div className="md:w-1/2">
+            <div className="mb-4">
+              <label className="block mb-1">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full border border-black rounded-md py-2 px-3"
+                required
+              />
+            </div>
             <div className="mb-4">
               <label className="block mb-1">Phone Number</label>
               <input
@@ -246,4 +258,4 @@ const BuyerRegister = () => {
   );
 };
 
-export default BuyerRegister;
+export default SellerRegister;
