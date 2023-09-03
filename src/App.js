@@ -1,6 +1,6 @@
 import "./App.css";
 import {BrowserRouter,Routes, Route} from 'react-router-dom';
-import {LoginPage,HomePage,SellerRegisterPage,BuyerRegisterPage, OneItemPage} from './Routes.js';
+import {LoginPage,HomePage,SellerRegisterPage,BuyerRegisterPage,OneItemPage} from './Routes.js';
 function App() {
   return (
     <BrowserRouter>
