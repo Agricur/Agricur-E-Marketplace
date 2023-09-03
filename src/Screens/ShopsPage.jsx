@@ -4,6 +4,7 @@ import Navbar from "../Component/Layout/Navbar";
 import Shopsview from "../Component/ShopView/ShopsView";
 import Footer from "../Component/Layout/Footer";
 import Pagination from "../Component/Pagination/Pagination";
+import Img from '../Images/herow.jpg'
 
 const ShopsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,7 +15,7 @@ const ShopsPage = () => {
   };
 
   return (
-    <div className="bg-slate-300">
+    <div className="bg-cover" style={{backgroundImage:`url(${Img})`}}>
       <Header />
       <Navbar />
       <Shopsview />
