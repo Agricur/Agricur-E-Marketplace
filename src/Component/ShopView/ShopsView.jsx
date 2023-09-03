@@ -2,6 +2,7 @@ import React from "react";
 import ShopCard from "./ShopCard";
 import Shop from "../../Images/shop.jpg";
 
+
 // Shops content
 const shopData = [
   {
@@ -70,13 +71,13 @@ const Shopsview = () => {
   return (
     <div>
         
-      <div className="ml-4 md:mx-15 sm:mx-10 my-8">
+      <div className="ml-16 md:mx-30 sm:mx-20 my-8">
         <h1 className="text-4xl font-bold text-gray-900">Shops</h1>
       </div>
 
-      <div className="bg-lime-300 my-8 mx-4 md:mx-15 sm:mx-10 justify-center p-8 rounded-lg sm:px-10 border border-gray-700
-        shadow dark:border-green-700 ">
-        <div className="grid grid-cols-1 gap-[15px] md:grid-cols-2 md:gap-[15px] lg:grid-cols-4 lg:gap-[20px] xl:grid-cols-5 xl:gap-[30px]">
+      {/* <div className="bg-[#3da749] my-8 mx-4 md:mx-15 sm:mx-10 justify-center p-8 rounded-lg sm:px-10 border border-gray-700
+        shadow dark:border-green-700 "> */}
+        <div className="grid grid-cols-1 gap-[15px] mx-16 md:mx-30 sm:mx-20 md:grid-cols-2 md:gap-[15px] lg:grid-cols-4 lg:gap-[20px] xl:grid-cols-5 xl:gap-[30px]">
           {shopData.map((shop) => (
             <ShopCard
               key={shop.id}
@@ -87,7 +88,7 @@ const Shopsview = () => {
           ))}
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 
