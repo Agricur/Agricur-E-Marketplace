@@ -1,20 +1,19 @@
-import React from "react";
+import React from 'react'
 import Header from "../Component/Layout/Header";
 import Navbar from "../Component/Layout/Navbar";
-import Shopsview from "../Component/ShopView/ShopsView";
 import Footer from "../Component/Layout/Footer";
 import Img from '../Images/herow.jpg'
+import ShopHome from '../Component/ShopView/ShopHome';
 
-const ShopsPage = () => {
-
+const ShopHomePage = () => {
   return (
     <div className="bg-cover" style={{backgroundImage:`url(${Img})`}}>
-      <Header />
-      <Navbar />
-      <Shopsview />
-      <Footer />
-    </div>
-  );
-};
+    <Header />
+    <Navbar />
+    <ShopHome />
+    <Footer />
+  </div>
+  )
+}
 
-export default ShopsPage;
+export default ShopHomePage
