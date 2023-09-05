@@ -77,7 +77,7 @@ const BuyerRegister = () => {
       return; // Prevent form submission
     }
     if(password.length < 8){
-      setPasswordError("Password must be at least 8 characters long.");
+      setPasswordError("Password must be at least 8 characters long and must contain at least one uppercase letter, one lowercase letter, one number and one special character.");
       return; // Prevent form submission
     }
 
@@ -99,7 +99,7 @@ const BuyerRegister = () => {
         // Handle success
         alert("Registration successful!");
         navigate('/login');
-      } 
+      }  
       else {
         // Handle server errors
         toast.error("Registration failed. Please try again later.");
