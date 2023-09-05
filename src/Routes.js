@@ -5,6 +5,9 @@ import SellerRegisterPage from "./Screens/sellerReg.jsx";
 import BuyerRegisterPage from "./Screens/buyerReg.jsx"; 
 import OneItemPage from "./Screens/oneItem.jsx";
 import ShopHomePage from "./Screens/ShopHomePage.jsx";   
+import BuyerAccountPage from "./Screens/buyerAccount.jsx"; 
+import AdminAccountPage from "./Screens/adminAccount.jsx";
+
 
 export {LoginPage, 
         HomePage,
@@ -12,5 +15,8 @@ export {LoginPage,
         BuyerRegisterPage,
         OneItemPage,
         ShopsPage,
-        ShopHomePage 
+        ShopHomePage, 
+        BuyerAccountPage,
+        AdminAccountPage,
+   
     };

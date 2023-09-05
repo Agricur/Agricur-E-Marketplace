@@ -280,6 +280,7 @@ const BuyerRegister = () => {
                         Register
                       </button>
 
+
                       <div className={`${styles.noramlFlex} w-full mt-5`}>
                         <h6 className="font-medium">
                           Already have a buyer account?
@@ -288,6 +289,7 @@ const BuyerRegister = () => {
                           to="/login"
                           className="text-[#3CB44A] pl-2 font-medium hover:text-[#24692d]"
                         >
+
                           Login Now
                         </Link>
                       </div>
