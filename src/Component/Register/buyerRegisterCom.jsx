@@ -91,7 +91,7 @@ const BuyerRegister = () => {
 
     try {
       // Send the form data to the server using axios or a similar library
-      const response = await axios.post(`${server}/api/user`, formData);
+      const response = await axios.post(`${server}/api/buyer`, formData);
       // console.log(response.status);
       
       // Check the response from the server and handle success or errors accordingly
