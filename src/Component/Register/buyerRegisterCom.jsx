@@ -13,7 +13,7 @@ const BuyerRegister = () => {
   const navigate = useNavigate();
 
   const districts = [
-    "Colombo",
+    "Colombo", 
     "Gampaha",
     "Kalutara",
     "Kandy",
@@ -50,6 +50,7 @@ const BuyerRegister = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleSubmit = async (e) => {
 
@@ -69,6 +70,25 @@ const BuyerRegister = () => {
       district:district
     }; 
 
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z\d]).{8,}$/;
+
+    if (password !== rePassword) {
+      setPasswordError("Passwords do not match.");
+      return; // Prevent form submission
+    }
+    if(password.length < 8){
+      setPasswordError("Password must be at least 8 characters long.");
+      return; // Prevent form submission
+    }
+
+    if(!password.match(passwordRegex)){
+      setPasswordError("Password must contain at least one uppercase letter, one lowercase letter, one number and one special character.");
+      return; // Prevent form submission
+    }
+    else{
+      setPasswordError("");
+    }
+
     try {
       // Send the form data to the server using axios or a similar library
       const response = await axios.post(`${server}/api/user`, formData);
@@ -76,17 +96,24 @@ const BuyerRegister = () => {
       
       // Check the response from the server and handle success or errors accordingly
       if (response.status === 201) {
-        // Handle success, maybe redirect to a success page or show a success message
+        // Handle success
         alert("Registration successful!");
         navigate('/login');
-      } else {
-        // Handle server errors, display an error message, or take appropriate action
+      } 
+      else {
+        // Handle server errors
         toast.error("Registration failed. Please try again later.");
       }
     } catch (error) {
       // Handle network errors or other unexpected errors
-      console.error("An error occurred:", error);
-      toast.error("An error occurred. Please try again later.");
+      if(error.response.status === 400){
+        alert("Email already exists!")
+      }
+      else{
+        console.error("An error occurred:", error);
+        alert("An error occurred. Please try again later.");
+      }
+      
     }
     // console.log(firstName, lastName, email, houseNo, street, addressCity, district, phoneNumber, password, rePassword);
   };
@@ -103,7 +130,7 @@ const BuyerRegister = () => {
         }}
       >
         <div className="flex justify-center items-center min-h-screen">
-          <div className="bg-white bg-opacity-80 p-4 sm:p-4 rounded-lg shadow-lg w-full max-w-screen-lg">
+          <div className="bg-white bg-opacity-80 p-4 sm:p-[44px] rounded-lg shadow-lg w-full max-w-screen-cs3">
             <div className="flex flex-col justify-center items-center">
               <h1 className="text-3xl font-bold mb-4">Sign up to Agricur</h1>
               <img
@@ -270,6 +297,9 @@ const BuyerRegister = () => {
                             />
                           )}
                         </div>
+                      </div>
+                      <div className="md:w-full" style={{ display: "flex", flexDirection: "column" }}>
+                        {passwordError && <p className="text-red-500 mb-2 font-normal" style={{ fontSize: "14px"}}>{passwordError}</p>}
                       </div>
                     </div>
                     <div className="text-center">
