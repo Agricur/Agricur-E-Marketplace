@@ -231,7 +231,7 @@ const BuyerRegister = () => {
                         Register
                       </button>
                       <p className="mt-4 text-gray-600 text-sm">
-                        Already have a seller account? 
+                        Already have an account? 
                         <button type="button" class=" text-black font-bold py-2 px-4 rounded">  
                           Login Now
                         </button>
