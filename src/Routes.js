@@ -4,7 +4,8 @@ import ShopsPage from "./Screens/ShopsPage.jsx";
 import SellerRegisterPage from "./Screens/sellerReg.jsx"; 
 import BuyerRegisterPage from "./Screens/buyerReg.jsx"; 
 import OneItemPage from "./Screens/oneItem.jsx";
-import ShopHomePage from "./Screens/ShopHomePage.jsx";   
+import ShopHomePage from "./Screens/ShopHomePage.jsx";
+import CartPage from "./Screens/CartPage.jsx";   
 
 export {LoginPage, 
         HomePage,
@@ -12,5 +13,6 @@ export {LoginPage,
         BuyerRegisterPage,
         OneItemPage,
         ShopsPage,
-        ShopHomePage 
+        ShopHomePage,
+        CartPage
     };
