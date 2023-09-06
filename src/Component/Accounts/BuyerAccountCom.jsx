@@ -1,5 +1,5 @@
 import React from 'react';
-import profilePhoto from '../../Images/Logo.png';
+import profilePhoto from '../../Images/userImage.png';
 
 const BuyerAccountPage = () => {
   return (
@@ -26,7 +26,7 @@ const BuyerAccountPage = () => {
           {/* Navigation Bar */}
           <div className="rounded-lg shadow-md ml-4 mt-4">
             <ul className="space-y-2">
-              <li className="p-4 bg-[#badfa2] font-bold py-2 px-4 rounded hover:bg-[#c4e660] text-blue-600">
+              <li className="p-4 bg-[#badfa2] font-bold py-2 px-4 rounded hover:bg-[#c4e660]">
                 <a href="#" className="block">Edit Profile</a>
               </li>
               <li className="p-4 bg-[#badfa2] font-bold py-2 px-4 rounded hover:bg-[#c4e660]">

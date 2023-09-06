@@ -1,7 +1,7 @@
 import "./App.css";
 import {BrowserRouter,Routes, Route} from 'react-router-dom';
 
-import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage,BuyerAccountPage,AdminAccountPage,} from './Routes.js';
+import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage,BuyerAccountPage,AdminAccountPage} from './Routes.js';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <Route path="/item" element={<OneItemPage />}/>
       <Route path="/shophome" element={<ShopHomePage />}/>
       <Route path="/buyerAccount" element={<BuyerAccountPage />}/>
-      <Route path="/adminAccount" element={<BuyerAccountPage />}/>
+      <Route path="/adminAccount" element={<AdminAccountPage />}/>
 
     </Routes>
    
@@ -25,3 +25,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
