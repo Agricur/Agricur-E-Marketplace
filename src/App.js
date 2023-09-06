@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
 
-import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage, BuyerAccountPage, AdminAccountPage, CartPage, CheckoutPage} from './Routes.js';
+import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage, BuyerAccountPage, AdminAccountPage, CartPage, CheckoutPage,ShopAccountPage} from './Routes.js';
 
 
 function App() {
@@ -19,8 +19,11 @@ function App() {
       <Route path="/registerBuyer" element={<BuyerRegisterPage />}/>
       <Route path="/item" element={<OneItemPage />}/>
       <Route path="/shophome" element={<ShopHomePage />}/>
+      <Route path="/cart" element={<CartPage />}/>
+      <Route path="/checkout" element={<CheckoutPage />}/>
       <Route path="/buyerAccount" element={<BuyerAccountPage />}/>
       <Route path="/adminAccount" element={<AdminAccountPage />}/>
+      <Route path="/shopAccount" element={<ShopAccountPage />}/>
 
       </Routes>
 
