@@ -12,7 +12,7 @@ const Login = () => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center">
     <div
       className="bg-cover bg-center min-h-screen w-full"
       style={{
@@ -23,14 +23,14 @@ const Login = () => {
   
       {/* <div className="min-h-screen bg-white flex flex-col  justify-center py-12 sm:px-6 lg:px-8"> */}
         <div className="mt-20 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 justify-self-start">
+          <div className="bg-white bg-opacity-80 py-8 px-4 shadow sm:rounded-lg sm:px-10 justify-self-start">
             <div className="sm:mx-auto sm:w-full sm:max-w-md align-top">
               <h2 className="mt-6 mb-6 text-center text-3xl font-bold text-gray-900 ">
                 Login to Agricur
               </h2>
             </div>
             <div className="mb-6">
-              <img src={Design} alt="" height="70" width="70" class="mx-auto" />
+              <img src={Design} alt="" height="70" width="70" className="mx-auto" />
             </div>
             <form className="space-y-6">
               <div>
@@ -118,7 +118,7 @@ const Login = () => {
               </div>
               <div className={`${styles.noramlFlex} w-full`}>
                 <h6 className="font-medium">Don’t have an account? </h6>
-                <Link to="/sign-up" className="text-[#3CB44A] pl-2 font-medium">
+                <Link to="/sign-up" className="text-[#3CB44A] hover:text-[#24692d] pl-2 font-medium">
                   Register Now
                 </Link>
               </div>

@@ -1,11 +1,16 @@
 import "./App.css";
-import {BrowserRouter,Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
-import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage,BuyerAccountPage,AdminAccountPage} from './Routes.js';
+
+import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage, BuyerAccountPage, AdminAccountPage, CartPage, CheckoutPage} from './Routes.js';
+
 
 function App() {
   return (
     <BrowserRouter>
+
     <Routes>
       <Route path="/" element={<HomePage />}/>
       <Route path="/login" element={<LoginPage />}/>
@@ -17,10 +22,34 @@ function App() {
       <Route path="/buyerAccount" element={<BuyerAccountPage />}/>
       <Route path="/adminAccount" element={<AdminAccountPage />}/>
 
-    </Routes>
-   
+      </Routes>
+
+      {/* <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      /> */}
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </BrowserRouter>
-    
   );
 }
 
