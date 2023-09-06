@@ -1,4 +1,3 @@
-// ShopItemCard.js
 import React from "react";
 import StarRating from "../Rating/StarRating"; // Reusable star rating component
 
@@ -20,7 +19,7 @@ const ItemCard = ({ itemName, itemImage, soldItems, itemRating, price, onItemCli
           <p className="text-gray-600 ml-2">{itemRating.toFixed(1)}</p>
         </div>
         <p className="text-gray-600 text-center mt-2">Sold: {soldItems}</p>
-        <p className="text-green-500 font-semibold text-center text-xl mt-2">Rs.{price.toFixed(2)}</p>
+        <p className="text-green-500 font-semibold text-center text-xl mt-2">Rs.{price.toFixed(2)} /KG</p>
       </a>
     );
   };
