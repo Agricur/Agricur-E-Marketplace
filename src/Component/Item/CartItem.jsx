@@ -7,9 +7,9 @@ const CartItem = ({
   onRemoveItem,
 }) => {
   return (
-    <tr>
-      <td className="px-4 py-4 whitespace-nowrap">
-        <div className="flex flex-col gap-2 justify-start">
+    <tr className>
+      <td className="py-4 whitespace-nowrap">
+        <div className="flex flex-col gap-2 items-center">
           <div className="flex">
             <img className="h-21 w-28 rounded-lg border border-green-700" src={item.image} alt={item.name} />
           </div>
@@ -22,14 +22,14 @@ const CartItem = ({
           </div>
         </div>
       </td>
-      <td className="px-4 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-900 flex">
+      <td className="py-4 whitespace-nowrap">
+        <div className="text-sm text-gray-900 flex justify-center">
           <button onClick={() => onDecreaseQuantity(item)} className="bg-gray-300 text-gray-600 hover:text-gray-700 h-full w-5 rounded-l cursor-pointer outline-none">-</button>
           <input type="number" className="outline-none focus:outline-none text-center w-5 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700" name="custom-input-number" value={item.quantity}></input>
           <button onClick={() => onIncreaseQuantity(item)} className="bg-gray-300 text-gray-600 hover:text-gray-700  h-full w-5 rounded-r cursor-pointer">+</button>
         </div>
       </td>
-      <td className="px-4 py-4 whitespace-nowrap">
+      <td className="py-4 whitespace-nowrap text-center">
         <div className="text-lg font-medium text-gray-900">Rs. {(item.price * item.quantity).toFixed(2)}</div>
       </td>
     </tr>

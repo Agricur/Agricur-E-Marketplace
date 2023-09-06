@@ -61,17 +61,17 @@ const Cart = () => {
   return (
     <div className="container mx-auto p-4 sm:p-8 max-w-screen-xl">
       <h1 className="text-xl sm:text-2xl md:text-4xl font-semibold mb-4">Shopping Cart</h1>
-      <div className="rounded-lg bg-white shadow-md p-4 border border-green-700">
+      <div className="rounded-lg opacity-85 bg-white shadow-lg p-4 border border-green-700">
         <table className="min-w-full rounded-lg divide-y divide-gray-200">
-          <thead className="bg-gray-100">
+          <thead className="bg-gray-100 justify-between items-center">
             <tr>
-              <th scope="col" className="px-4 py-3 text-left text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider">
                 Product
               </th>
-              <th scope="col" className="px-4 py-3 text-left text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider">
                 Quantity
               </th>
-              <th scope="col" className="px-4 py-3 text-left text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider">
                 Total Price
               </th>
             </tr>
