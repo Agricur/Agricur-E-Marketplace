@@ -118,7 +118,7 @@ const Login = () => {
               </div>
               <div className={`${styles.noramlFlex} w-full`}>
                 <h6 className="font-medium">Don’t have an account? </h6>
-                <Link to="/sign-up" className="text-[#3CB44A] pl-2 font-medium">
+                <Link to="/sign-up" className="text-[#3CB44A] hover:text-[#24692d] pl-2 font-medium">
                   Register Now
                 </Link>
               </div>

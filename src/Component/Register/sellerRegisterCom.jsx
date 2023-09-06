@@ -92,14 +92,14 @@ const SellerRegister = () => {
 
     try {
       // Send the form data to the server using axios or a similar library
-      const response = await axios.post(`${server}/api/seller`, formData);
+      const response = await axios.post(`${server}/api/seller/seller-register`, formData);
       // console.log(formData);
       // console.log(response.status);
       
       // Check the response from the server and handle success or errors accordingly
       if (response.status === 201) {
         // Handle success
-        alert("Registration successful!");
+        toast.success(response.data);
         navigate('/login');
       } 
       else {
@@ -109,11 +109,11 @@ const SellerRegister = () => {
     } catch (error) {
       // Handle network errors or other unexpected errors
       if(error.response.status === 400){
-        alert("Email already exists!")
+        toast.error("Email already exists!")
       }
       else{
         console.error("An error occurred:", error);
-        alert("An error occurred. Please try again later.");
+        toast.error("An error occurred. Please try again later.");
       }
       
     }
