@@ -12,9 +12,9 @@ const Login = () => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center">
     <div
-      className="bg-cover bg-center h-full w-full"
+      className="bg-cover bg-center min-h-screen w-full"
       style={{
         backgroundImage:
           `url(${LogImg})`,
@@ -23,14 +23,14 @@ const Login = () => {
   
       {/* <div className="min-h-screen bg-white flex flex-col  justify-center py-12 sm:px-6 lg:px-8"> */}
         <div className="mt-20 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 justify-self-start">
+          <div className="bg-white bg-opacity-80 py-8 px-4 shadow sm:rounded-lg sm:px-10 justify-self-start">
             <div className="sm:mx-auto sm:w-full sm:max-w-md align-top">
               <h2 className="mt-6 mb-6 text-center text-3xl font-bold text-gray-900 ">
                 Login to Agricur
               </h2>
             </div>
             <div className="mb-6">
-              <img src={Design} alt="" height="70" width="70" class="mx-auto" />
+              <img src={Design} alt="" height="70" width="70" className="mx-auto" />
             </div>
             <form className="space-y-6">
               <div>
@@ -48,7 +48,7 @@ const Login = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#3CB44A] focus:border-[#3CB44A] sm:text-sm"
                   />
                 </div>
               </div>
@@ -67,7 +67,7 @@ const Login = () => {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-[#3CB44A] sm:text-sm"
                   />
                   {visible ? (
                     <AiOutlineEye
@@ -90,7 +90,7 @@ const Login = () => {
                     type="checkbox"
                     name="remember-me"
                     id="remember-me"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-[#3CB44A] focus:ring-[#3CB44A] border-gray-300 rounded"
                   />
                   <label
                     htmlFor="remember-me"
@@ -117,8 +117,8 @@ const Login = () => {
                 </button>
               </div>
               <div className={`${styles.noramlFlex} w-full`}>
-                <h4>Don’t have an account? </h4>
-                <Link to="/sign-up" className="text-[#3CB44A] pl-2">
+                <h6 className="font-medium">Don’t have an account? </h6>
+                <Link to="/sign-up" className="text-[#3CB44A] pl-2 font-medium">
                   Register Now
                 </Link>
               </div>
