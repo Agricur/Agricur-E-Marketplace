@@ -9,6 +9,7 @@ import CartPage from "./Screens/CartPage.jsx";
 import CheckoutPage from "./Screens/CheckoutPage.jsx";     
 import BuyerAccountPage from "./Screens/buyerAccount.jsx"; 
 import AdminAccountPage from "./Screens/adminAccount.jsx";
+import ShopSettingsPage from "./Screens/ShopSettingsPage.jsx";
 import ShopAccountPage from "./Screens/shopAccount.jsx";
 
 
@@ -23,5 +24,6 @@ export {LoginPage,
         CheckoutPage, 
         BuyerAccountPage,
         AdminAccountPage,
+        ShopSettingsPage,
         ShopAccountPage
     };
