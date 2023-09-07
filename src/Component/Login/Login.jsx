@@ -1,15 +1,40 @@
-import { React, useState } from "react";
+import React, {useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../../Styles/style";
 import { Link, useNavigate } from "react-router-dom";
 import Design from "../../Images/Design.png";
 import LogImg from "../../Images/LogImg.jpg";
+import axios, { AxiosError } from "axios";
+import { server } from "../../server";
+import { toast } from "react-toastify";
 
 const Login = () => {
+
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    const formData = {
+      email:email,
+      password:password,
+    }; 
+
+      // Send the form data to the server using axios or a similar library
+      await axios.post(`${server}/api/user/user-login`, formData).then((res) =>{
+        toast.success("Successfully logged in.");
+        navigate('/')
+      }).catch((error)=>{
+        toast.error(error.response.data.message)
+      })
+    
+  
+  };
 
   return (
     <div className="flex justify-center items-center">
@@ -32,7 +57,7 @@ const Login = () => {
             <div className="mb-6">
               <img src={Design} alt="" height="70" width="70" className="mx-auto" />
             </div>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
@@ -118,7 +143,7 @@ const Login = () => {
               </div>
               <div className={`${styles.noramlFlex} w-full`}>
                 <h6 className="font-medium">Don’t have an account? </h6>
-                <Link to="/sign-up" className="text-[#3CB44A] pl-2 font-medium">
+                <Link to="/sign-up" className="text-[#3CB44A] hover:text-[#24692d] pl-2 font-medium">
                   Register Now
                 </Link>
               </div>

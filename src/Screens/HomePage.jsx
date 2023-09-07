@@ -8,8 +8,13 @@ import Hero from '../Component/Layout/Hero'
 const HomePage = () => {
   return (
     <div>
-        <Header />
-        <Navbar />
+        
+        <div className='fixed z-10 w-full'>
+          <Header />
+          <Navbar />
+        </div>
+        
+        
         <Hero/>
         <Footer />
     </div>
