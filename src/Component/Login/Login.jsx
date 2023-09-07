@@ -4,12 +4,13 @@ import styles from "../../Styles/style";
 import { Link, useNavigate } from "react-router-dom";
 import Design from "../../Images/Design.png";
 import LogImg from "../../Images/LogImg.jpg";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { server } from "../../server";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const Login = () => {
-
+ 
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -27,7 +28,11 @@ const Login = () => {
 
       // Send the form data to the server using axios or a similar library
       await axios.post(`${server}/api/user/user-login`, formData).then((res) =>{
-        toast.success("Successfully logged in.");
+
+        const token = res.data.token;
+        
+        Cookies.set("jwtToken", token, { expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000)});
+        toast.success(res.data.message);
         navigate('/')
       }).catch((error)=>{
         toast.error(error.response.data.message)
@@ -64,7 +69,7 @@ const Login = () => {
                   className="block text-sm font-medium text-gray-700"
                 >
                   Email address
-                </label>
+                </label> 
                 <div className="mt-1">
                   <input
                     type="email"
