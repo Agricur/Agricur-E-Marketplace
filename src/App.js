@@ -1,7 +1,7 @@
 import "./App.css";
 import {BrowserRouter,Routes, Route} from 'react-router-dom';
 
-import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage, BuyerAccountPage, AdminAccountPage, CartPage, CheckoutPage} from './Routes.js';
+import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage, BuyerAccountPage, AdminAccountPage, CartPage, CheckoutPage, ShopSettingsPage} from './Routes.js';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
       <Route path="/checkout" element={<CheckoutPage />}/>
       <Route path="/buyerAccount" element={<BuyerAccountPage />}/>
       <Route path="/adminAccount" element={<BuyerAccountPage />}/>
+      <Route path="/shopsettings" element={<ShopSettingsPage />}/>
 
     </Routes>
    
