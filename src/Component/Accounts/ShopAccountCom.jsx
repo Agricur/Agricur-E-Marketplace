@@ -1,7 +1,7 @@
 import React from 'react';
-import profilePhoto from '../../Images/userImage.png';
+import SellerProfilePhoto from '../../Images/SellerProfilePhoto.jpg';
 
-const BuyerAccountPage = () => {
+const ShopAccountPage = () => {
   return (
     <div className="bg-gray-100 min-h-screen py-8">
       {/* Header */}
@@ -14,14 +14,14 @@ const BuyerAccountPage = () => {
         <div className="md:w-1/4 bg-white rounded-lg p-4 mx-8 shadow-md mb-4 md:mb-0">
           {/* Profile Photo */}
           <div className="rounded-full h-36 w-36 mx-auto">
-            <img src={profilePhoto} alt="Profile Photo" />
+            <img src={SellerProfilePhoto} alt="Profile Photo" />
           </div>
 
           {/* Buyer Name */}
-          <h2 className="text-xl text-center font-semibold mt-4">Buyer Name</h2>
+          <h2 className="text-xl text-center font-semibold mt-4">Seller Name</h2>
 
           {/* Email Address */}
-          <p className="text-gray-600 text-center text-sm mt-2">buyer@example.com</p>
+          <p className="text-gray-600 text-center text-sm mt-2">seller@example.com</p>
 
           {/* Navigation Bar */}
           <div className="rounded-lg shadow-md ml-4 mt-4">
@@ -186,4 +186,4 @@ const BuyerAccountPage = () => {
   );
 };
 
-export default BuyerAccountPage;
+export default ShopAccountPage;
