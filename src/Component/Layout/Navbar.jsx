@@ -15,9 +15,9 @@ import {
 
 // navigation content
 const navigation = [
-  { name: "HOME", href: "#", current: true },
-  { name: "CATEGORIES", href: "#", current: false },
-  { name: "SHOPS", href: "#", current: false },
+  { name: "HOME", href: "/", current: true },
+  { name: "CATEGORIES", href: "/", current: false },
+  { name: "SHOPS", href: "/shops", current: false },
   { name: "TIPS", href: "#", current: false },
   { name: "CONTACTS", href: "#", current: false },
   { name: "HELP", href: "#", current: false },
