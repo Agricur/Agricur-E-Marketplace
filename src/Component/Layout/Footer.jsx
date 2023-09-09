@@ -10,7 +10,7 @@ export default function Footer() {
         <div class="cs1:flex md:justify-between">
           {/* Logo */}
           <div class="mb-6 md:mb-0">
-            <a href="#" class="flex items-center">
+            <a href="/" class="flex items-center">
               <img src={`${Logo}`} class="h-8 mr-3" alt="Agricur Logo" />
               <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 Agricur
@@ -26,32 +26,32 @@ export default function Footer() {
               </h2>
               <ul class="text-gray-500 dark:text-[#c9d4c9] font-medium">
                 <li class="mb-0.5">
-                  <a href="https://flowbite.com/" class="hover:underline">
+                  <a href="/" class="hover:underline">
                     Home
                   </a>
                 </li>
                 <li class="mb-0.5">
-                  <a href="https://tailwindcss.com/" class="hover:underline">
+                  <a href="/" class="hover:underline">
                     Categories
                   </a>
                 </li>
                 <li class="mb-0.5">
-                  <a href="https://tailwindcss.com/" class="hover:underline">
+                  <a href="/shops" class="hover:underline">
                     Shops
                   </a>
                 </li>
                 <li class="mb-0.5">
-                  <a href="https://tailwindcss.com/" class="hover:underline">
+                  <a href="#" class="hover:underline">
                     Tips
                   </a>
                 </li>
                 <li class="mb-0.5">
-                  <a href="https://tailwindcss.com/" class="hover:underline">
+                  <a href="#" class="hover:underline">
                     Contacts
                   </a>
                 </li>
                 <li class="mb-0.5">
-                  <a href="https://tailwindcss.com/" class="hover:underline">
+                  <a href="#" class="hover:underline">
                     Help
                   </a>
                 </li>
@@ -64,17 +64,17 @@ export default function Footer() {
               </h2>
               <ul class="text-gray-500 dark:text-[#c9d4c9] font-medium">
                 <li class="mb-0.5">
-                  <a href="https://flowbite.com/" class="hover:underline">
+                  <a href="#" class="hover:underline">
                     Our Company
                   </a>
                 </li>
                 <li class="mb-0.5">
-                  <a href="https://tailwindcss.com/" class="hover:underline">
+                  <a href="#" class="hover:underline">
                     Our People
                   </a>
                 </li>
                 <li class="mb-0.5">
-                  <a href="https://tailwindcss.com/" class="hover:underline">
+                  <a href="#" class="hover:underline">
                     FAQ's
                   </a>
                 </li>

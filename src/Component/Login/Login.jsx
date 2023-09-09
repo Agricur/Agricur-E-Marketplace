@@ -30,10 +30,16 @@ const Login = () => {
       await axios.post(`${server}/api/user/user-login`, formData).then((res) =>{
 
         const token = res.data.token;
-        
+        const user_id = res.data.user_id;
+        const is_seller = res.data.is_seller;
         Cookies.set("jwtToken", token, { expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000)});
         toast.success(res.data.message);
-        navigate('/')
+        if(is_seller){
+          navigate('/shopAccount')
+        }else{
+          navigate('/')
+        }
+        
       }).catch((error)=>{
         toast.error(error.response.data.message)
       })
