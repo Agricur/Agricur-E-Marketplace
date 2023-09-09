@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline"; // Import the back arrow icon
+import axios from "axios";
+import { server } from "../../server";
+import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
 
-const AddProductForm = ({ onBack }) => {
+const AddProductForm = ({ onBack, user_id }) => {
+
   const [productData, setProductData] = useState({
     name: "",
-    category: "-- Select --", // Default category is Fruits
+    category: "-- Select --",
     price: "", // Price input
-    priceUnit: "-- Unit --", // Default price unit is /kg
+    priceUnit: "-- Unit --",
     image: null, // For image upload
     quantity: "", // Quantity input
-    quantityUnit: "-- Unit --", // Default quantity unit is kg
+    quantityUnit: "-- Unit --",
   });
 
   const handleChange = (e) => {
@@ -29,20 +34,58 @@ const AddProductForm = ({ onBack }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("name", productData.name);
+    formData.append("category", productData.category);
+    formData.append("price", productData.price);
+    formData.append("priceUnit", productData.priceUnit);
+    formData.append("image", productData.image);
+    formData.append("quantity", productData.quantity);
+    formData.append("quantityUnit", productData.quantityUnit);
+    formData.append("user_id", user_id);
+
+
+    // console.log(formData.file);
+
+    try {
+      // Send the form data to the server using axios or a similar library
+      const response = await axios.post(`${server}/api/shop/addProduct`,formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data", 
+        },
+      });
+
+      // Check the response from the server and handle success or errors accordingly
+      if (response.status === 201) {
+        // Handle success
+        toast.success(response.data.message);
+      } else {
+        // Handle server errors
+        toast.error("Product can't be added. Please try again later.");
+      }
+    } catch (error) {
+      // Handle network errors or other unexpected errors
+
+      console.error("An error occurred:", error);
+      toast.error("An error occurred. Please try again later.");
+    }
+
     // Handle submitting the product data (e.g., send it to an API)
     // You can add your logic here
 
     // After submitting, you can clear the form and navigate back
     setProductData({
       name: "",
-      category: "Fruits",
+      category: "",
       price: "",
-      priceUnit: "/kg",
+      priceUnit: "",
       image: null,
       quantity: "",
-      quantityUnit: "kg",
+      quantityUnit: "",
     });
 
     // Trigger the callback to navigate back to the product list
@@ -52,14 +95,20 @@ const AddProductForm = ({ onBack }) => {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <button onClick={onBack} className="text-[#3da749] hover:text-[#296b33]">
+        <button
+          onClick={onBack}
+          className="text-[#3da749] hover:text-[#296b33]"
+        >
           <ArrowLeftIcon className="w-6 h-6" />
         </button>
         <h2 className="text-xl font-semibold">Add a New Product</h2>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700"
+          >
             Product Name
           </label>
           <input
@@ -73,7 +122,10 @@ const AddProductForm = ({ onBack }) => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="category"
+            className="block text-sm font-medium text-gray-700"
+          >
             Product Category
           </label>
           <select
@@ -93,7 +145,10 @@ const AddProductForm = ({ onBack }) => {
           </select>
         </div>
         <div className="mb-4">
-          <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="price"
+            className="block text-sm font-medium text-gray-700"
+          >
             Price
           </label>
           <div className="relative mt-1 rounded-md shadow-sm">
@@ -123,7 +178,10 @@ const AddProductForm = ({ onBack }) => {
           </div>
         </div>
         <div className="mb-4">
-          <label htmlFor="quantity" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="quantity"
+            className="block text-sm font-medium text-gray-700"
+          >
             Quantity
           </label>
           <div className="relative mt-1 rounded-md shadow-sm">

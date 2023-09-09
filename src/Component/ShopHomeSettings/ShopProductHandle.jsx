@@ -4,7 +4,7 @@ import Pagination from "../Pagination/Pagination";
 import ShopItemEdit from "./ShopItemEdit";
 import AddProductForm from "./AddProduct";
 
-const ProductHandle = () => {
+const ProductHandle = ({user_id}) => {
   const [shopItems, setShopItems] = useState([
     {
       id: 1,
@@ -158,7 +158,7 @@ const ProductHandle = () => {
     <div className="md:w-3/4 pl-4 mr-8 container mx-auto items-center bg-white rounded-lg mt-2 p-4 shadow-md">
       {showAddProductForm ? (
         // Display the AddProductForm when showAddProductForm is true
-        <AddProductForm onBack={toggleAddProductForm} />
+        <AddProductForm onBack={toggleAddProductForm} user_id={user_id} />
       ) : (
         // Display My Products section when showAddProductForm is false
         <div>

@@ -3,7 +3,7 @@ import ShopNav from './ShopNavBar';
 import ShopDashborad from './ShopDashborad';
 import ShopProducts from './ShopProductHandle';
 
-const ShopSettings = () => {
+const ShopSettings = ({user_id}) => {
 
   return (
     <div className="bg-gray-100 min-h-screen pb-8 pt-28">
@@ -15,7 +15,7 @@ const ShopSettings = () => {
         {/* Left Rectangle */}
         <ShopNav />
         {/* <ShopDashborad /> */}
-        <ShopProducts />
+        <ShopProducts user_id = {user_id} />
 
         
       </div>
