@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import image from "../../Images/hero.jpg";
 import Pagination from "../Pagination/Pagination";
 import ShopItemEdit from "./ShopItemEdit";
 import AddProductForm from "./AddProduct";
+import { server } from "../../server";
+import axios from "axios";
 
 const ProductHandle = ({user_id}) => {
   const [shopItems, setShopItems] = useState([
@@ -135,6 +137,20 @@ const ProductHandle = ({user_id}) => {
     // Add more items here
   ]);
 
+  console.log(user_id);
+  useEffect(() => {
+    // console.log(user_id);
+    fetch(`${server}/api/shop/getProducts/${user_id}`, {
+      method: "GET", 
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      // console.log(data.products); 
+      setShopItems(data.products);
+    })
+
+  }, [user_id]);
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const cardsPerPage = 8;
@@ -175,13 +191,13 @@ const ProductHandle = ({user_id}) => {
           <div className="grid grid-cols-2 gap-[10px] mx-4 md:mx-8 sm:mx-6 md:grid-cols-2 md:gap-[12px] lg:grid-cols-4 lg:gap-[14px]">
             {displayedItems.map((item) => (
               <ShopItemEdit
-                key={item.id}
-                item={item}
+                key={item.product_id}
+                // item={item}
                 itemName={item.name}
-                itemImage={item.image}
-                soldItems={item.sold}
-                availableItems={item.available}
-                itemRating={item.rating}
+                itemImage={`${server}/${item.image}`}
+                soldItems={7}
+                availableItems={10}
+                itemRating={4}
                 price={item.price}
               />
             ))}
