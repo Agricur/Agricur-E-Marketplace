@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 
 const AddProductForm = ({ onBack, user_id }) => {
-
+  console.log(user_id);
   const [productData, setProductData] = useState({
     name: "",
     category: "-- Select --",
@@ -33,7 +33,7 @@ const AddProductForm = ({ onBack, user_id }) => {
       });
     }
   };
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,6 +47,7 @@ const AddProductForm = ({ onBack, user_id }) => {
     formData.append("quantityUnit", productData.quantityUnit);
     formData.append("user_id", user_id);
 
+    
 
     // console.log(formData.file);
 
@@ -63,6 +64,7 @@ const AddProductForm = ({ onBack, user_id }) => {
       if (response.status === 201) {
         // Handle success
         toast.success(response.data.message);
+        window.location.reload();
       } else {
         // Handle server errors
         toast.error("Product can't be added. Please try again later.");

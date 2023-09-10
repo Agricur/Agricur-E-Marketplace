@@ -4,6 +4,7 @@ import ShopDashborad from './ShopDashborad';
 import ShopProducts from './ShopProductHandle';
 
 const ShopSettings = ({user_id}) => {
+  // console.log(user_id);
 
   return (
     <div className="bg-gray-100 min-h-screen pb-8 pt-28">
