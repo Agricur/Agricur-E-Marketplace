@@ -2,6 +2,8 @@ import React from 'react';
 import ShopNav from './ShopNavBar';
 import ShopDashborad from './ShopDashborad';
 import ShopProducts from './ShopProductHandle';
+import EditShop from './EditShop';
+import ShopCourierSection from './ShopCouriers';
 
 const ShopSettings = ({user_id}) => {
   // console.log(user_id);
@@ -16,8 +18,9 @@ const ShopSettings = ({user_id}) => {
         {/* Left Rectangle */}
         <ShopNav />
         {/* <ShopDashborad /> */}
-        <ShopProducts user_id = {user_id} />
-
+        {/* <ShopProducts user_id = {user_id} /> */}
+        {/* <EditShop user_id = {user_id} /> */}
+        <ShopCourierSection />
         
       </div>
     </div>
