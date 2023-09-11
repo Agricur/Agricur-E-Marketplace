@@ -2,22 +2,17 @@ import { React, useState, useEffect } from "react";
 import Pagination from "../Pagination/Pagination";
 import StarRating from "../Rating/StarRating";
 import { server } from "../../server";
-import axios from "axios";
 
-
-
-export default function AllProducts(user_id) {
+export default function AllCategories(user_id) {
 
   const [products,setProducts] = useState([]);
 
   useEffect(() => {
-    // console.log(user_id);
-    fetch(`${server}/api/product/getAllProducts`, {
+    fetch(`${server}/api/product/getEquipments`, {
       method: "GET", 
     })
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data.products); 
       setProducts(data.products);
     })
 
@@ -37,10 +32,10 @@ export default function AllProducts(user_id) {
     };
   
     return (
-      <div className="bg-[#d9eada]">
+      <div className="bg-[#d9eada] p-20">
         <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-            All Products
+            Equipments
           </h2>
   
           <div className="mt-6 grid grid-cols-2 gap-x-2 gap-y-10 sm:grid-cols-4 lg:grid-cols-5 xl:gap-x-8">

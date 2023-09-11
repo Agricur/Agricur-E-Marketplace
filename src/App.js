@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
-import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage, BuyerAccountPage, AdminAccountPage, CartPage, CheckoutPage, SellerAccountPage, ShopSettingsPage} from './Routes.js';
+import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage, BuyerAccountPage, AdminAccountPage, CartPage, CheckoutPage, SellerAccountPage, ShopSettingsPage, Fertilizers,Fruits,Vegetables,Grains,Equipments} from './Routes.js';
 
 function App() {
   return (
@@ -23,6 +23,12 @@ function App() {
       <Route path="/sellerAccount" element={<SellerAccountPage />}/>
       <Route path="/adminAccount" element={<AdminAccountPage />}/>
       <Route path="/shopAccount" element={<ShopSettingsPage />}/>
+      <Route path="/fertilizers" element={<Fertilizers />}/>
+      <Route path="/fruits" element={<Fruits />}/>
+      <Route path="/grains" element={<Grains />}/>
+      <Route path="/vegetables" element={<Vegetables />}/>
+      <Route path="/equipments" element={<Equipments />}/>
+      
 
       </Routes>
 
