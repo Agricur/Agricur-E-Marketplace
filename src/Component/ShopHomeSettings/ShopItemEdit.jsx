@@ -26,13 +26,17 @@ const ShopItemEdit = ({
       href="/#"
       onClick={handleClick}
       className="rounded-lg p-4 shadow-lg border hover:opacity-80 "
+      style={{ width: "100%", height: "100%", display: "block" }}
     >
       
-      <img
-        src={itemImage}
-        alt={itemName}
-        className="w-full h-50 object-cover mb-2 rounded-lg border border-green-700"
-      />
+      <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-[12rem]">
+        <img
+          src={itemImage}
+          alt={itemName}
+          className="w-full h-full object-cover mb-2 rounded-lg border border-green-700"
+          
+        />
+      </div>
       <h3 className="sm:text-2xl text-lg font-semibold text-center mt-2">
         {itemName}
       </h3>
