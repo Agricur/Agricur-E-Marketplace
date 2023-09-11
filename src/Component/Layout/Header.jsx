@@ -46,11 +46,10 @@ export default function Header() {
       })
         .then((response) => response.json())
         .then((data) => {
-          // Use 'data' to populate the user profile section in your header
+
           const first_name = data.first_name;
           checkLoggedInStatus();
           setUserName(first_name);
-          // Update your UI with the user data
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
