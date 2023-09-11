@@ -4,6 +4,7 @@ import axios from "axios";
 import { server } from "../../server";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import ShopProductHandle from "./ShopProductHandle";
 
 const AddProductForm = ({ onBack, user_id }) => {
   console.log(user_id);
@@ -17,7 +18,7 @@ const AddProductForm = ({ onBack, user_id }) => {
     quantityUnit: "-- Unit --",
   });
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const { name, value, type } = e.target;
 
     // Special handling for file input
@@ -64,7 +65,8 @@ const AddProductForm = ({ onBack, user_id }) => {
       if (response.status === 201) {
         // Handle success
         toast.success(response.data.message);
-        window.location.reload();
+        // onBack();
+        window.location.reload(<ShopProductHandle/>);
       } else {
         // Handle server errors
         toast.error("Product can't be added. Please try again later.");
@@ -227,6 +229,7 @@ const AddProductForm = ({ onBack, user_id }) => {
         </div>
         <div className="mt-6">
           <button
+            
             type="submit"
             className="bg-[#3da749] hover:bg-[#296b33] text-white font-semibold px-4 py-2 rounded-3xl"
           >
