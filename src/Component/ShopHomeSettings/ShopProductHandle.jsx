@@ -137,7 +137,7 @@ const ProductHandle = ({user_id}) => {
     // Add more items here
   ]);
 
-  console.log(user_id);
+  // console.log(user_id);
   useEffect(() => {
     // console.log(user_id);
     fetch(`${server}/api/shop/getProducts/${user_id}`, {
@@ -199,6 +199,7 @@ const ProductHandle = ({user_id}) => {
                 availableItems={10}
                 itemRating={4}
                 price={item.price}
+                price_unit={item.price_unit}
               />
             ))}
           </div>

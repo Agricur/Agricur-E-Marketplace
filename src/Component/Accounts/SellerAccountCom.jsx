@@ -1,9 +1,12 @@
 import React from "react";
 import SellerProfilePhoto from "../../Images/SellerProfilePhoto.jpg";
+import Dashboard from "../SellerOptions/SellerDashboard";
 
-const SellerNavPannel = () => {
+const ShopAccountPage = () => {
   return (
-    <div className="md:w-1/4 bg-white rounded-lg p-4 mx-8 shadow-md mb-4 md:mb-0">
+    <div className="bg-gray-100 min-h-screen pb-8 pt-28">
+     <div className="container mt-8 flex flex-col  md:flex-row">
+     <div className="md:w-1/4 bg-white rounded-lg p-4 mx-8 shadow-md mb-4 md:mb-0">
       {/* Profile Photo */}
       <div className="rounded-full h-36 w-36 mx-auto">
         <img src={SellerProfilePhoto} alt="Profile Photo" />
@@ -73,7 +76,10 @@ const SellerNavPannel = () => {
         </ul>
       </div>
     </div>
+
+      </div>
+    </div>
   );
 };
 
-export default SellerNavPannel;
+export default ShopAccountPage;
