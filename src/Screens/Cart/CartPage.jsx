@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from "../Component/Layout/Header";
-import Navbar from "../Component/Layout/Navbar";
-import Cart from "../Component/Cart/Cart";
-import Footer from "../Component/Layout/Footer";
-import Img from '../Images/herow.jpg'
+import Header from "../../Component/Layout/Header";
+import Navbar from "../../Component/Layout/Navbar";
+import Cart from "../../Component/Cart/Cart";
+import Footer from "../../Component/Layout/Footer";
+import Img from '../../Images/herow.jpg'
 
 const CartPage = () => {
   return (

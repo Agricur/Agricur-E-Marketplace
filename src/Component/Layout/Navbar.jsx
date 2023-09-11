@@ -27,31 +27,31 @@ const categories = [
   {
     name: "Fruits",
     description: "Explore the freshest fruits nature has to offer",
-    href: "#",
+    href: "/fruits",
     icon: Apple,
   },
   {
     name: "Vegetables",
     description: "Discover a rainbow of nutritious vegetables",
-    href: "#",
+    href: "/vegetables",
     icon: Carrot,
   },
   {
     name: "Grains",
     description: "Nutrient-packed grains for a healthier you",
-    href: "#",
+    href: "/grains",
     icon: Wheat,
   },
   {
     name: "Fertilizers",
     description: "Boost your harvest with our premium fertilizers",
-    href: "#",
+    href: "/fertilizers",
     icon: Bag,
   },
   {
     name: "Equipments",
     description: "Efficiency starts with the right equipment",
-    href: "#",
+    href: "/equipments",
     icon: Tractor,
   },
 ];
