@@ -20,9 +20,9 @@ function App() {
       <Route path="/cart" element={<CartPage />}/>
       <Route path="/checkout" element={<CheckoutPage />}/>
       <Route path="/buyerAccount" element={<BuyerAccountPage />}/>
-      <Route path="/shopsettings" element={<ShopSettingsPage />}/>
+      <Route path="/shopsettings" element={<ShopAccountPage />}/>
       <Route path="/adminAccount" element={<AdminAccountPage />}/>
-      <Route path="/shopAccount" element={<ShopAccountPage />}/>
+      <Route path="/shopAccount" element={<ShopSettingsPage />}/>
 
       </Routes>
 

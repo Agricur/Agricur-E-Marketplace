@@ -535,7 +535,7 @@ export default function AllProducts() {
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                   </div>
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-medium text-[#3da749]">
                     {product.price}
                   </p>
                 </div>
