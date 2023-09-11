@@ -10,6 +10,7 @@ const ShopItemEdit = ({
   availableItems,
   itemRating,
   price,
+  price_unit,
   onItemClick,
   onEdit, 
   onDelete,
@@ -48,7 +49,7 @@ const ShopItemEdit = ({
       <p className="text-gray-600 text-center mt-2">Sold: {soldItems}</p>
       <p className="text-gray-600 text-center mt-2">Available: {availableItems}</p>
       <p className="text-green-500 font-semibold text-center text-xl mt-2">
-        Rs.{price.toFixed(2)} /KG
+        Rs.{price} {price_unit}
       </p>
       </div>
       
