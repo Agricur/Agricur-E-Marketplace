@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Dialog, Menu, Transition } from "@headlessui/react";
 import Logo from "../../Images/Logo.png";
+import profilePhoto from "../../Assets/profilePhoto.png";
 import {
   ChevronDownIcon,
   BellIcon,
@@ -21,6 +22,9 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("Name");
+  const [isSeller, setIsSeller] = useState(false);
+  const [profileImage, setProfilePhoto] = useState(profilePhoto);
+
   const navigate = useNavigate();
   const userCookie = Cookies.get("jwtToken");
   const checkLoggedInStatus = () => {
@@ -48,8 +52,11 @@ export default function Header() {
         .then((data) => {
 
           const first_name = data.first_name;
+          
           checkLoggedInStatus();
           setUserName(first_name);
+          setIsSeller(data.is_seller);
+          // setProfilePhoto("https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80");
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
@@ -148,11 +155,11 @@ export default function Header() {
                 <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-[#296b33] focus:ring-offset-2 focus:ring-offset-white">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
+                    <img
+                      className="h-8 w-8 rounded-full"
+                      src= {`${profileImage}`}
+                      alt=""
+                    />
                 </Menu.Button>
               </div>
               <Transition
@@ -191,7 +198,24 @@ export default function Header() {
                       </a>
                     )}
                   </Menu.Item>
+                  {isSeller ? (
+                    <Menu.Item>
+                      {({ active }) => (
+                        <a
+                          href="/shopAccount"
+                          className={classNames(
+                            active ? "bg-[#e7eae7]" : "",
+                            "block px-4 py-2 text-sm text-gray-700 justify-center"
+                          )}
 
+                        >
+                          My Shop
+                        </a>
+                      )}
+                    </Menu.Item>
+                  ):(
+                    <></>
+                  )}
                   <Menu.Item>
                     {({ active }) => (
                       <a
@@ -199,13 +223,14 @@ export default function Header() {
                         href="/"
                         className={classNames(
                           active ? "bg-[#e7eae7]" : "",
-                          "block px-4 py-2 text-sm text-gray-700 justify-center"
+                          "block px-4 py-2 text-sm text-red-700 justify-center"
                         )}
                       >
                         Log out
                       </a>
                     )}
                   </Menu.Item>
+                  
                 </Menu.Items>
               </Transition>
             </Menu>
@@ -343,13 +368,24 @@ export default function Header() {
                     >
                       Cart
                     </a>
+                    {isSeller ? (
+                      <a
+                        href="/shopAccount"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                      >
+                        My Shop
+                      </a>
+
+                    ):(
+                      <></>
+                    )}
                     <hr className="border-gray-500" />
                     {/* logout */}
                     <div className="py-6">
                       <a
                         onClick={handleLogout}
                         href="/"
-                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-red-700 hover:bg-[#e7eae7]"
                       >
                         Log Out
                       </a>
