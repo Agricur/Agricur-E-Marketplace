@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Apple from "../../Assets/apple.svg";
 import Bag from "../../Assets/bag.svg";
 import Carrot from "../../Assets/carrot.svg";
@@ -13,46 +13,45 @@ import {
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 
-// navigation content
 const navigation = [
   { name: "HOME", href: "/", current: true },
-  { name: "CATEGORIES", href: "/", current: false },
+  { name: "CATEGORIES", current: false },
   { name: "SHOPS", href: "/shops", current: false },
-  { name: "TIPS", href: "#", current: false },
-  { name: "CONTACTS", href: "#", current: false },
-  { name: "HELP", href: "#", current: false },
-];
+  { name: "TIPS", href: "/tips", current: false },
+  { name: "CONTACTS", href: "/contacts", current: false },
+  { name: "HELP", href: "/help", current: false },
+]
 
 // categories content
 const categories = [
   {
     name: "Fruits",
     description: "Explore the freshest fruits nature has to offer",
-    href: "#",
+    href: "/fruits",
     icon: Apple,
   },
   {
     name: "Vegetables",
     description: "Discover a rainbow of nutritious vegetables",
-    href: "#",
+    href: "/vegetables",
     icon: Carrot,
   },
   {
     name: "Grains",
     description: "Nutrient-packed grains for a healthier you",
-    href: "#",
+    href: "/grains",
     icon: Wheat,
   },
   {
     name: "Fertilizers",
     description: "Boost your harvest with our premium fertilizers",
-    href: "#",
+    href: "/fertilizers",
     icon: Bag,
   },
   {
     name: "Equipments",
     description: "Efficiency starts with the right equipment",
-    href: "#",
+    href: "/equipments",
     icon: Tractor,
   },
 ];
@@ -68,11 +67,34 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+
+    // Listen for changes in the URL and update currentPath accordingly
+    const handlePathChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener("popstate", handlePathChange);
+
+    return () => {
+      // Clean up the event listener when the component unmounts
+      window.removeEventListener("popstate", handlePathChange);
+    };
+  }, []);
+
+  // Update the current property of navigation items based on the currentPath
+  const updatedNavigation = navigation.map((item) => ({
+    ...item,
+    current: item.href === currentPath,
+  }));
   return (
     <Disclosure as="nav" className="bg-[#3da749]">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-4 shadow-2xl">
+            {console.log(navigation)}
             <div
               className="relative h-12 justify-between"
               style={{ display: "flex", alignItems: "center" }}
@@ -94,7 +116,7 @@ export default function Navbar() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-space-between">
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) =>
+                    {updatedNavigation.map((item) =>
                       item.name === "CATEGORIES" ? (
                         <a
                           key={item.name}
@@ -109,7 +131,7 @@ export default function Navbar() {
                         >
                           {/* drop down menu - Category */}
                           <Popover className="relative">
-                            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6">
+                            <Popover.Button className="flex focus:outline-none items-center gap-x-1 text-sm font-semibold leading-6">
                               {item.name}
                               <ChevronDownIcon
                                 className="h-5 w-5 flex-none text-white"
@@ -192,8 +214,7 @@ export default function Navbar() {
                         </a>
                       )
                     )}
-                  <div>
-                  </div>
+                    <div></div>
                   </div>
                 </div>
               </div>
@@ -203,7 +224,7 @@ export default function Navbar() {
           {/* mobile menu */}
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) =>
+              {updatedNavigation.map((item) =>
                 item.name === "CATEGORIES" ? (
                   <Disclosure as="div">
                     {({ open }) => (

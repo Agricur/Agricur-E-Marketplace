@@ -1,12 +1,14 @@
-import React,{useEffect,useState} from "react";
-import Header from "../Component/Layout/Header";
-import Navbar from "../Component/Layout/Navbar";
-import Footer from "../Component/Layout/Footer";
-import ShopSettings from "../Component/ShopHomeSettings/ShopSettings";
+import React from 'react'
+import Header from '../../Component/Layout/Header'
+import Navbar from '../../Component/Layout/Navbar'
+import Footer from '../../Component/Layout/Footer'
+import Grains from '../../Component/Categories/Grains'
 import Cookies from "js-cookie";
-import { server } from "../server";
+import { server } from "../../server";
+import { useEffect, useState } from 'react';
 
-const ShopSettingsPage = () => {
+const FertilizersPage = () => {
+
   const [userID,setUserID]=useState("");
   const userCookie = Cookies.get("jwtToken");
   useEffect(() => {
@@ -22,24 +24,24 @@ const ShopSettingsPage = () => {
           // Use 'data' to populate the user profile section in your header
           const first_name = data.first_name;
           setUserID(data.user_id);
-          // Update your UI with the user data
         })
         .catch((error) => {
           console.error("Error fetching user data:", error); 
         });
     }
   }, []);
+
   return (
     <div>
-      <div className="fixed z-10 w-full">
-        <Header />
-        <Navbar />
-      </div>
-
-      <ShopSettings user_id={userID}/>
-      <Footer />
+        
+        <div className='fixed z-10 w-full'>
+          <Header />
+          <Navbar />
+        </div>
+        <Grains/>
+        <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default ShopSettingsPage;
+export default FertilizersPage
