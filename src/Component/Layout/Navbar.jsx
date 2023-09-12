@@ -6,8 +6,6 @@ import Tractor from "../../Assets/tractor.svg";
 import Wheat from "../../Assets/wheat.svg";
 import { Disclosure, Popover, Transition} from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import Cookies from "js-cookie";
-import { server } from "../../server";
 
 import {
   ChevronDownIcon,
@@ -15,36 +13,45 @@ import {
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 
+const navigation = [
+  { name: "HOME", href: "/", current: true },
+  { name: "CATEGORIES", current: false },
+  { name: "SHOPS", href: "/shops", current: false },
+  { name: "TIPS", href: "/tips", current: false },
+  { name: "CONTACTS", href: "/contacts", current: false },
+  { name: "HELP", href: "/help", current: false },
+]
+
 // categories content
 const categories = [
   {
     name: "Fruits",
     description: "Explore the freshest fruits nature has to offer",
-    href: "#",
+    href: "/fruits",
     icon: Apple,
   },
   {
     name: "Vegetables",
     description: "Discover a rainbow of nutritious vegetables",
-    href: "#",
+    href: "/vegetables",
     icon: Carrot,
   },
   {
     name: "Grains",
     description: "Nutrient-packed grains for a healthier you",
-    href: "#",
+    href: "/grains",
     icon: Wheat,
   },
   {
     name: "Fertilizers",
     description: "Boost your harvest with our premium fertilizers",
-    href: "#",
+    href: "/fertilizers",
     icon: Bag,
   },
   {
     name: "Equipments",
     description: "Efficiency starts with the right equipment",
-    href: "#",
+    href: "/equipments",
     icon: Tractor,
   },
 ];
@@ -61,49 +68,8 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
-  const [isSeller, setIsSeller] = useState(false);
-  const userCookie = Cookies.get("jwtToken");
-
-  // navigation content
-  const [navigation,setNavigation] =useState([])
-  
 
   useEffect(() => {
-
-    if (userCookie) {
-      fetch(`${server}/api/user/data`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${userCookie}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-        setIsSeller(data.is_seller);
-        const defaultNavigation = [
-          { name: "HOME", href: "/", current: true },
-          { name: "CATEGORIES", current: false },
-          { name: "SHOPS", href: "/shops", current: false },
-          { name: "TIPS", href: "/tips", current: false },
-          { name: "CONTACTS", href: "/contacts", current: false },
-          { name: "HELP", href: "/help", current: false },
-        ];
-
-        if (isSeller) {
-          // If the user is a seller, add "My Shop" to the navigation
-          setNavigation([
-            ...defaultNavigation,
-            { name: "My Shop", href: "/shopAccount", current: false },
-          ]);
-        } else {
-          setNavigation(defaultNavigation);
-        }
-       
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-        });
-    }
 
     // Listen for changes in the URL and update currentPath accordingly
     const handlePathChange = () => {

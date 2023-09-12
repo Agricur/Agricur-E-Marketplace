@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from '../Component/Layout/Header.jsx'
-import Navbar from '../Component/Layout/Navbar'
-import Footer from '../Component/Layout/Footer'
-import BuyerAccount from '../Component/Accounts/BuyerAccountCom'
+import Header from '../../Component/Layout/Header.jsx'
+import Navbar from '../../Component/Layout/Navbar.jsx'
+import Footer from '../../Component/Layout/Footer.jsx'
+import BuyerAccount from '../../Component/Accounts/BuyerAccountCom.jsx'
 
 
 const BuyerAccountPage = () => {
