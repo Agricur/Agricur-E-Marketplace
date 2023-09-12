@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CartItem from '../Item/CartItem';
-import Img from '../../Images/product_1.jpg'
+import Img from '../../Images/product_1.jpg';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([
@@ -16,14 +16,21 @@ const Cart = () => {
       name: "Product 2",
       price: 24.99,
       quantity: 1,
-      image: Img, 
+      image: Img,
     },
     {
       id: 3,
       name: "Product 3",
       price: 14.99,
       quantity: 3,
-      image: Img, 
+      image: Img,
+    },
+    {
+      id: 4,
+      name: "Product 4",
+      price: 664.99,
+      quantity: 3,
+      image: Img,
     },
   ]);
 
@@ -59,35 +66,42 @@ const Cart = () => {
   const handleCheckout = () => {};
 
   return (
-    <div className="container mx-auto p-4 sm:p-8 max-w-screen-xl">
+    <div className="container mx-auto p-4  sm:p-8 max-w-screen-xl">
       <h1 className="text-xl sm:text-2xl md:text-4xl font-semibold mb-4">Shopping Cart</h1>
-      <div className="rounded-lg opacity-85 bg-white shadow-lg p-4 border border-green-700">
-        <table className="min-w-full rounded-lg divide-y divide-gray-200">
-          <thead className="bg-gray-100 justify-between items-center">
-            <tr>
-              <th scope="col" className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider">
-                Product
-              </th>
-              <th scope="col" className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider">
-                Quantity
-              </th>
-              <th scope="col" className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider">
-                Total Price
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {cartItems.map((item) => (
-              <CartItem
-                key={item.id}
-                item={item}
-                onIncreaseQuantity={handleIncreaseQuantity}
-                onDecreaseQuantity={handleDecreaseQuantity}
-                onRemoveItem={handleRemoveItem}
-              />
-            ))}
-          </tbody>
-        </table>
+      <div className="rounded-lg opacity-85 bg-white shadow-lg p-4 ">
+        <div className="overflow-x-auto">
+          <div className="min-w-full">
+            <table className="w-full rounded-lg divide-y divide-gray-200">
+              <thead className="bg-gray-100">
+              {/* <tr>
+                <th  className="px-2 sm:px-4 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-500 uppercase tracking-wider ">
+                  Product
+                </th>
+                <th className="px-2 sm:px-4 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-500 uppercase tracking-wider">
+                  Quantity
+                </th>
+                <th  className="px-2 sm:px-4 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-500 uppercase tracking-wider">
+                  Total Price
+                </th>
+                <th  className="px-2 sm:px-4 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-500 uppercase tracking-wider">
+                  Remove
+                </th>
+              </tr> */}
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {cartItems.map((item) => (
+                  <CartItem
+                    key={item.id}
+                    item={item}
+                    onIncreaseQuantity={handleIncreaseQuantity}
+                    onDecreaseQuantity={handleDecreaseQuantity}
+                    onRemoveItem={handleRemoveItem}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
         <div className="mt-8 flex justify-center">
           <p className="text-xl sm:text-2xl font-semibold">Total: Rs. {calculateTotalPrice().toFixed(2)}</p>
         </div>
