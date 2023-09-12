@@ -94,7 +94,6 @@ export default function Navbar() {
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-4 shadow-2xl">
-            {console.log(navigation)}
             <div
               className="relative h-12 justify-between"
               style={{ display: "flex", alignItems: "center" }}
