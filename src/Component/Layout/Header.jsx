@@ -192,8 +192,17 @@ export default function Header() {
                   <hr className="border-gray-500" />
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        href="#"
+                      isSeller ? (<a
+                        href="/sellerAccount"
+                        className={classNames(
+                          active ? "bg-[#e7eae7]" : "",
+                          "block px-4 py-2 text-sm text-gray-700 "
+                        )}
+                      >
+                        Your Profile
+                      </a>):(
+                        <a
+                        href="/buyerAccount"
                         className={classNames(
                           active ? "bg-[#e7eae7]" : "",
                           "block px-4 py-2 text-sm text-gray-700 "
@@ -201,6 +210,8 @@ export default function Header() {
                       >
                         Your Profile
                       </a>
+                      )
+                      
                     )}
                   </Menu.Item>
                   {isSeller ? (
@@ -352,12 +363,22 @@ export default function Header() {
                     </span>
                     <hr className="border-gray-500" />
                     {/* profile */}
-                    <a
-                      href="./"
+                    {isSeller ? (
+                        <a
+                        href="/sellerAccount"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                      >
+                        Your Profile
+                      </a>
+                    ):(
+                      <a
+                      href="buyerAccount"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                     >
                       Your Profile
                     </a>
+                    )}
+                    
 
                     {/* notification */}
                     <a

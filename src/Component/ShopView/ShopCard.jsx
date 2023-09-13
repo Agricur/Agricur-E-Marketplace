@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import StarRating from '../Rating/StarRating';
 
-const ShopCard = ({ key, name, image, rating }) => {
+const ShopCard = ({ key, name, image, rating,href }) => {
 
   return (
     <>
-      <Link to={`/shop/${key}`} className="block">
+      <Link to={`${href}`} className="block">
       {/* Wrap the card with a Link */}
         <div key={key} className="rounded-lg h-full bg-slate-100 p-4 shadow-2xl border hover:bg-opacity-90
         dark:bg-slate-100 opacity-90 hover:opacity-100">

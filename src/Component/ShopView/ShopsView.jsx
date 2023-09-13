@@ -10,66 +10,77 @@ const shopData = [
     name: "Farmers Market",
     image: Shop,
     rating: 4.5,
+    href: "/shophome",
   },
   {
     id: 2,
     name: "Green Acres",
     image: Shop,
     rating: 4.0,
+    href: "/shophome",
   },
   {
     id: 3,
     name: "Purples Acres",
     image: Shop,
     rating: 4.0,
+    href: "/shophome",
   },
   {
     id: 4,
     name: "Purples Acres",
     image: Shop,
     rating: 4.0,
+    href: "/shophome",
   },
   {
     id: 5,
     name: "Purples Acres",
     image: Shop,
     rating: 4.0,
+    href: "/shophome",
   },
   {
     id: 6,
     name: "Purples Acres",
     image: Shop,
     rating: 4.0,
+    href: "/shophome",
   },
   {
     id: 7,
     name: "Purples Acres",
     image: Shop,
     rating: 4.0,
+    href: "/shophome",
   },
   {
     id: 8,
     name: "Purples Acres",
     image: Shop,
     rating: 4.0,
+    href: "/shophome",
   },
   {
     id: 9,
     name: "Purples Acres",
     image: Shop,
     rating: 4.0,
+    href: "/shophome",
   },
   {
     id: 10,
     name: "Purples Acres",
     image: Shop,
     rating: 4.0,
+    href: "/shophome",
   },
   {
     id: 11,
     name: "Purples Acres",
     image: Shop,
     rating: 4.0,
+    href: "/shophome",
   },
 ];
 
@@ -101,6 +112,7 @@ const Shopsview = () => {
             name={shop.name}
             image={shop.image}
             rating={shop.rating}
+            href = {shop.href}
           />
         ))}
       </div>
