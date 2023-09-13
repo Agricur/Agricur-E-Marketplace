@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import ShopProducts from "./ShopProductHandle";
 import EditShop from "./EditShop";
 import ShopCourierSection from "./ShopCouriers";
+import ViewMessages from "../Messenger/ViewMessages";
+import OrderHistory from "./OrderHistoryShop";
 import { server } from "../../server";
 import Image from "../../Assets/profilePhoto.png"
 
-import profilePhoto from "../../Images/Logo.png";
 
 const ShopSettings = ({ user_id }) => {
   const [selectedNavItem, setSelectedNavItem] = useState("Products");
@@ -18,9 +19,9 @@ const ShopSettings = ({ user_id }) => {
     } else if (selectedNavItem === "Couriers") {
       return <ShopCourierSection />;
     } else if (selectedNavItem === "Messages") {
-      return <h1>Messages</h1>;
+      return <ViewMessages />;
     } else if (selectedNavItem === "Order History") {
-      return <h1>Order History</h1>;
+      return <OrderHistory />;
     } else if (selectedNavItem === "Seller's Acount") {
       return <h1>Seller's Acount</h1>;
     }
