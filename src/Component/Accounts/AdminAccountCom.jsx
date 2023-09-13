@@ -95,28 +95,28 @@ const donutChartData = {
           {/* Navigation Bar */}
           <div className="rounded-lg shadow-md ml-4 mt-4">
             <ul className="space-y-2">
-              <li className="p-4 bg-[#badfa2] font-bold py-2 px-4 rounded hover:bg-[#c4e660]">
+              <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
                 <a href="#" className="block">Dashboard</a>
               </li>
-              <li className="p-4 bg-[#badfa2] font-bold py-2 px-4 rounded hover:bg-[#c4e660]">
+              <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
                 <a href="#" className="block">View Shops</a>
               </li>
-              <li className="p-4 bg-[#badfa2] font-bold py-2 px-4 rounded hover:bg-[#c4e660]">
+              <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
                 <a href="#" className="block">View Buyers</a>
               </li>
-              <li className="p-4 bg-[#badfa2] font-bold py-2 px-4 rounded hover:bg-[#c4e660]">
+              <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
                 <a href="#" className="block">View Couriers</a>
               </li>
-              <li className="p-4 bg-[#badfa2] font-bold py-2 px-4 rounded hover:bg-[#c4e660]">
+              <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
                 <a href="#" className="block">Add Courier Services</a>
               </li>
-              <li className="p-4 bg-[#badfa2] font-bold py-2 px-4 rounded hover:bg-[#c4e660]">
+              <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
                 <a href="#" className="block">Add Expert's Tips</a>
               </li>
-              <li className="p-4 bg-[#badfa2] font-bold py-2 px-4 rounded hover:bg-[#c4e660]">
+              <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
                 <a href="#" className="block">View Sales</a>
               </li>
-              <li className="p-4 bg-[#badfa2] font-bold py-2 px-4 rounded hover:bg-[#c4e660] text-red-600">
+              <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749] text-red-600">
                 <a href="#" className="block">Log out</a>
               </li>
             </ul>
@@ -260,7 +260,7 @@ const donutChartData = {
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                   <div className="overflow-hidden">
                     <table className="min-w-full text-center text-sm">
-                      <thead className="border-b font-medium dark:border-neutral-500 bg-[#badfa2]">
+                      <thead className="border-b text-white font-medium dark:border-neutral-500 bg-[#3da749]">
                         <tr>
                           <th scope="col" className="px-6 py-4">Shop Name</th>
                           <th scope="col" className="px-6 py-4">Income</th>
