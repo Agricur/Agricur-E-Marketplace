@@ -7,7 +7,7 @@ import Img from '../Images/herow.jpg'
 
 const CheckoutPage = () => {
   return (
-    <div className="bg-cover" style={{backgroundImage:`url(${Img})`}}>
+    <div className="bg-[#d9eada]">
         <Header />
         <Navbar />
         <Checkout />
