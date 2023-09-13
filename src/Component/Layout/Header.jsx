@@ -40,6 +40,10 @@ export default function Header() {
     setIsLoggedIn(false);
   };
 
+  const clickCart = () => {
+    navigate("/cart");
+  };
+
   useEffect(() => {
     if (userCookie) {
       fetch(`${server}/api/user/data`, {
@@ -141,6 +145,7 @@ export default function Header() {
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <button
                 type="button"
+                onClick={clickCart}
                 className="relative rounded-full bg-[#3da749] p-1 text-white hover:bg-[#296b33] focus:outline-none focus:ring-2 focus:ring-[#296b33] focus:ring-offset-2 focus:ring-offset-white"
               >
                 <span className="absolute -inset-1.5" />
@@ -241,6 +246,7 @@ export default function Header() {
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <button
                 type="button"
+                onClick={clickCart}
                 className="relative rounded-full bg-[#3da749] p-1 text-white hover:bg-[#296b33] focus:outline-none focus:ring-2 focus:ring-[#296b33] focus:ring-offset-2 focus:ring-offset-white"
               >
                 <span className="absolute -inset-1.5" />
@@ -363,7 +369,7 @@ export default function Header() {
 
                     {/* cart */}
                     <a
-                      href="#"
+                      href="/cart"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                     >
                       Cart
@@ -395,7 +401,7 @@ export default function Header() {
                   <>
                     {/* cart */}
                     <a
-                      href="#"
+                      href="/cart"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                     >
                       Cart

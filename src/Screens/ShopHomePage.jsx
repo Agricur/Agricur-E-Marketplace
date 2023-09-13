@@ -7,7 +7,7 @@ import ShopHome from '../Component/ShopView/ShopHome';
 
 const ShopHomePage = () => {
   return (
-    <div className="bg-cover" style={{backgroundImage:`url(${Img})`}}>
+    <div className="bg-[#d9eada]">
     <Header />
     <Navbar />
     <ShopHome />
