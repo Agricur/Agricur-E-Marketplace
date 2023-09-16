@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Component/Layout/Header";
 import Navbar from "../Component/Layout/Navbar";
 import Footer from "../Component/Layout/Footer";
@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import { server } from "../server";
 
 const ShopSettingsPage = () => {
-  const [userID,setUserID]=useState("");
+  const [userID, setUserID] = useState("");
   const userCookie = Cookies.get("jwtToken");
   useEffect(() => {
     if (userCookie) {
@@ -19,23 +19,19 @@ const ShopSettingsPage = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-
           const first_name = data.first_name;
           setUserID(data.user_id);
         })
         .catch((error) => {
-          console.error("Error fetching user data:", error); 
+          console.error("Error fetching user data:", error);
         });
     }
   }, []);
   return (
     <div>
-      <div className="fixed z-10 w-full">
-        <Header />
-        <Navbar />
-      </div>
-
-      <ShopSettings user_id={userID}/>
+      <Header />
+      <Navbar />
+      <ShopSettings user_id={userID} />
       <Footer />
     </div>
   );

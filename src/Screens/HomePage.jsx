@@ -1,16 +1,15 @@
-import React from 'react'
-import Header from '../Component/Layout/Header'
-import Navbar from '../Component/Layout/Navbar'
-import Footer from '../Component/Layout/Footer'
-import Hero from '../Component/Layout/Hero'
-import AllProducts from '../Component/Layout/AllProducts'
+import React from "react";
+import Header from "../Component/Layout/Header";
+import Navbar from "../Component/Layout/Navbar";
+import Footer from "../Component/Layout/Footer";
+import Hero from "../Component/Layout/Hero";
+import AllProducts from "../Component/Layout/AllProducts";
 import Cookies from "js-cookie";
 import { server } from "../server";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
-
-  const [userID,setUserID]=useState("");
+  const [userID, setUserID] = useState("");
   const userCookie = Cookies.get("jwtToken");
   useEffect(() => {
     if (userCookie) {
@@ -28,23 +27,20 @@ const HomePage = () => {
           // Update your UI with the user data
         })
         .catch((error) => {
-          console.error("Error fetching user data:", error); 
+          console.error("Error fetching user data:", error);
         });
     }
   }, []);
 
   return (
     <div>
-        
-        <div className='fixed z-10 w-full'>
-          <Header />
-          <Navbar />
-        </div>
-        <Hero/>
-        <AllProducts user_id={userID}/>
-        <Footer />
+      <Header />
+      <Navbar />
+      <Hero />
+      <AllProducts user_id={userID} />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
