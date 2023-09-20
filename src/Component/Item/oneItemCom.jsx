@@ -105,7 +105,9 @@ const ProductDetailPage = (item) => {
             <h2 className="text-3xl font-bold mb-2">{item.item.name}</h2>
             <div className="flex items-center mb-2">
               <div class="flex items-center">
+
                 <StarRating rating={4.95} />
+
                 <p class="ml-2 text-sm font-medium text-black-500 dark:text-black-400">
                   4.95 out of 5
                 </p>
@@ -142,6 +144,7 @@ const ProductDetailPage = (item) => {
             </div>
 
             <button className="bg-[#3da749] justify-items-center text-white py-2 px-4 h-35 w-80 rounded-full hover:bg-[#296b33]">
+
               Add to Cart
             </button>
           </div>
