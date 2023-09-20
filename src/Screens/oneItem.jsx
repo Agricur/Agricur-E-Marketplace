@@ -19,7 +19,7 @@ const OneItemPage = () =>{
       setItemData(data.product);
       })
   
-    }, []);
+    }, [productId.ProductId]);
 
   
     return (

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import CartItem from '../Item/CartItem';
-import Img from '../../Images/product_1.jpg';
+import React, { useState } from "react";
+import CartItem from "../Item/CartItem";
+import Img from "../../Images/product_1.jpg";
+import { Navigate } from "react-router-dom";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([
@@ -9,7 +10,7 @@ const Cart = () => {
       name: "Product 1",
       price: 19.99,
       quantity: 2,
-      image: Img
+      image: Img,
     },
     {
       id: 2,
@@ -55,25 +56,34 @@ const Cart = () => {
   };
 
   const handleRemoveItem = (item) => {
-    const updatedCartItems = cartItems.filter((cartItem) => cartItem.id !== item.id);
+    const updatedCartItems = cartItems.filter(
+      (cartItem) => cartItem.id !== item.id
+    );
     setCartItems(updatedCartItems);
   };
 
   const calculateTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
   };
 
-  const handleCheckout = () => {};
+  const handleCheckout = () => {
+    Navigate("/checkout");
+  };
 
   return (
     <div className="container mx-auto p-4  sm:p-8 max-w-screen-xl">
-      <h1 className="text-xl sm:text-2xl md:text-4xl font-semibold mb-4">Shopping Cart</h1>
+      <h1 className="text-xl sm:text-2xl md:text-4xl font-semibold mb-4">
+        Shopping Cart
+      </h1>
       <div className="rounded-lg opacity-85 bg-white shadow-lg p-4 ">
         <div className="overflow-x-auto">
           <div className="min-w-full">
             <table className="w-full rounded-lg divide-y divide-gray-200">
               <thead className="bg-gray-100">
-              {/* <tr>
+                {/* <tr>
                 <th  className="px-2 sm:px-4 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-500 uppercase tracking-wider ">
                   Product
                 </th>
@@ -103,14 +113,18 @@ const Cart = () => {
           </div>
         </div>
         <div className="mt-8 flex justify-center">
-          <p className="text-xl sm:text-2xl font-semibold">Total: Rs. {calculateTotalPrice().toFixed(2)}</p>
+          <p className="text-xl sm:text-2xl font-semibold">
+            Total: Rs. {calculateTotalPrice().toFixed(2)}
+          </p>
         </div>
       </div>
 
       <div className="mt-8 mr-4 flex justify-center">
-        <button className="bg-green-600 hover:bg-green-900 text-white px-4 py-2 rounded-full sm:text-base md:text-lg lg:text-xl xl:text-2xl" onClick={() => handleCheckout()}>
-          Proceed to Checkout
-        </button>
+        <a href="/checkout">
+          <button className="bg-green-600 hover:bg-green-900 text-white px-4 py-2 rounded-full sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+            Proceed to Checkout
+          </button>
+        </a>
       </div>
     </div>
   );

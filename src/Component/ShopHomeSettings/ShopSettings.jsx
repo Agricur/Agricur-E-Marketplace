@@ -137,7 +137,10 @@ const ShopSettings = ({ user_id }) => {
               }`}
               onClick={() => setSelectedNavItem("Seller's Acount")}
             >
-              Seller's Account
+              <a href="/sellerAccount">
+                Seller's Account
+              </a>
+              
             </button>
           </div>
         </div>

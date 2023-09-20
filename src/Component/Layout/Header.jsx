@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Dialog, Menu, Transition } from "@headlessui/react";
 import Logo from "../../Images/Logo.png";
 import profilePhoto from "../../Assets/profilePhoto.png";
+import SearchBar from "./SearchBar";
 import {
   ChevronDownIcon,
   BellIcon,
@@ -69,51 +70,16 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="bg-[#d9eada] shadow-2xl mx-auto flex  items-center justify-between p-2 lg:px-8">
+    <header className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8">
       {/* logo */}
       <div className="flex lg:flex-1">
-        <a href="#" className="p-1">
+        <a href="/" className="p-1">
           <img className="h-14 w-14" src={`${Logo}`} alt="" />
         </a>
       </div>
 
       {/* search bar */}
-      <div className="w-[50%]">
-        <form>
-          <div class="relative py-1.5">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3  pointer-events-none">
-              <svg
-                class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-            </div>
-            <input
-              type="search"
-              id="default-search"
-              class="block w-full p-3 pl-10 text-sm text-gray-900 border border-[#348d43] rounded-full bg-gray-50 focus:ring-[#348d43] focus:border-[#348d43] dark:bg-white dark:border-[#b0c9b3] dark:placeholder-gray-400 dark:text dark:focus:ring-[#348d43] dark:focus:border-[#348d43]"
-              placeholder="Search here ..."
-              required
-            />
-            <button
-              type="submit"
-              class="text-white absolute right-[0.3rem] bottom-[0.635rem] bg-[#3da749] hover:bg-[#296b33] focus:ring-4 focus:outline-none focus:ring-[#348d43] font-medium rounded-full text-sm px-4 py-2 dark:bg-[#3da749] dark:hover:bg-[#296b33] dark:focus:ring-[#348d43]"
-            >
-              Search
-            </button>
-          </div>
-        </form>
-      </div>
+      <SearchBar/>
 
       <div className="flex sm:hidden">
         <button
@@ -192,8 +158,17 @@ export default function Header() {
                   <hr className="border-gray-500" />
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        href="#"
+                      isSeller ? (<a
+                        href="/sellerAccount"
+                        className={classNames(
+                          active ? "bg-[#e7eae7]" : "",
+                          "block px-4 py-2 text-sm text-gray-700 "
+                        )}
+                      >
+                        Your Profile
+                      </a>):(
+                        <a
+                        href="/buyerAccount"
                         className={classNames(
                           active ? "bg-[#e7eae7]" : "",
                           "block px-4 py-2 text-sm text-gray-700 "
@@ -201,6 +176,8 @@ export default function Header() {
                       >
                         Your Profile
                       </a>
+                      )
+                      
                     )}
                   </Menu.Item>
                   {isSeller ? (
@@ -352,12 +329,22 @@ export default function Header() {
                     </span>
                     <hr className="border-gray-500" />
                     {/* profile */}
-                    <a
-                      href="./"
+                    {isSeller ? (
+                        <a
+                        href="/sellerAccount"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                      >
+                        Your Profile
+                      </a>
+                    ):(
+                      <a
+                      href="buyerAccount"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                     >
                       Your Profile
                     </a>
+                    )}
+                    
 
                     {/* notification */}
                     <a
