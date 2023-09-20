@@ -1,4 +1,5 @@
-import React, {useState } from "react";
+import { Fragment, useState } from "react";
+import { Menu, Transition } from "@headlessui/react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../../Styles/style";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,6 +9,10 @@ import axios from "axios";
 import { server } from "../../server";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 const Login = () => {
  
@@ -154,9 +159,51 @@ const Login = () => {
               </div>
               <div className={`${styles.noramlFlex} w-full`}>
                 <h6 className="font-medium">Don’t have an account? </h6>
-                <Link to="/sign-up" className="text-[#3CB44A] hover:text-[#24692d] pl-2 font-medium">
+                <Menu as="div" className="relative">
+              <div>
+                <Menu.Button className="flex items-center w-30 justify-center h-9 gap-x-0 text-sm font-semibold leading-6 p-1 text-[#3da749] hover:text-[#296b33] ">
                   Register Now
-                </Link>
+                </Menu.Button>
+              </div>
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute right-17 z-10 text-center font-semibold mt-0 w-28 origin-bottom-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="/registerSeller"
+                        className={classNames(
+                          active ? "bg-[#e7eae7]" : "",
+                          "block px-4 py-2 text-sm text-gray-700 flest justify-center "
+                        )}
+                      >
+                        As a Seller
+                      </a>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="/registerBuyer"
+                        className={classNames(
+                          active ? "bg-[#e7eae7]" : "",
+                          "block px-4 py-2 text-sm text-gray-700 justify-center"
+                        )}
+                      >
+                        As a Buyer
+                      </a>
+                    )}
+                  </Menu.Item>
+                </Menu.Items>
+              </Transition>
+            </Menu>
               </div>
             </form>
           </div>

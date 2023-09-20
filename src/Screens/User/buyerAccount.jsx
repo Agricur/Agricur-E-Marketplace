@@ -10,10 +10,14 @@ const BuyerAccountPage = () => {
     
     return (
       <div>
+        <div className='fixed z-10 w-full'>
         <Header />
         <Navbar />
+        </div>
+        <div>
         <BuyerAccount />
         <Footer />
+        </div>
       </div>
     );
   };

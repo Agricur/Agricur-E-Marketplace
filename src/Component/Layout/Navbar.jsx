@@ -90,11 +90,10 @@ export default function Navbar() {
     current: item.href === currentPath,
   }));
   return (
-    <Disclosure as="nav" className="bg-[#3da749]">
+    <Disclosure as="nav" className="bg-[#3da749] fixed z-40 w-full mt-20">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-4 shadow-2xl">
-            {console.log(navigation)}
             <div
               className="relative h-12 justify-between"
               style={{ display: "flex", alignItems: "center" }}

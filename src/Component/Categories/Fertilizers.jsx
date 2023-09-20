@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import Pagination from "../Pagination/Pagination";
 import StarRating from "../Rating/StarRating";
 import { server } from "../../server";
+import { Link } from "react-router-dom";
 
 export default function AllCategories(user_id) {
 
@@ -32,7 +33,7 @@ export default function AllCategories(user_id) {
     };
   
     return (
-      <div className="bg-[#d9eada] p-20">
+      <div className="bg-[#d9eada] pt-28">
         <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             Fertilizers
@@ -52,13 +53,13 @@ export default function AllCategories(user_id) {
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm font-bold  text-gray-700">
-                      <a href=''>
+                    <Link to={`/item/${product.product_id}`}>
                         <span
                           aria-hidden="true"
                           className="absolute inset-0"
                         />
                         {product.name}
-                      </a>
+                      </Link>
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">{product.shop_name}</p>
                   </div>

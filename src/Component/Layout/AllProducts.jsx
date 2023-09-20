@@ -2,9 +2,7 @@ import { React, useState, useEffect } from "react";
 import Pagination from "../Pagination/Pagination";
 import StarRating from "../Rating/StarRating";
 import { server } from "../../server";
-import axios from "axios";
-
-
+import { Link } from "react-router-dom";
 
 export default function AllProducts(user_id) {
 
@@ -35,7 +33,7 @@ export default function AllProducts(user_id) {
     const handlePageChange = (page) => {
       setCurrentPage(page);
     };
-  
+     
     return (
       <div className="bg-[#d9eada]">
         <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -45,7 +43,8 @@ export default function AllProducts(user_id) {
   
           <div className="mt-6 grid grid-cols-2 gap-x-2 gap-y-10 sm:grid-cols-4 lg:grid-cols-5 xl:gap-x-8">
             {displayedProducts.map((product) => (
-              <div key={product.product_id} className="group relative bg-white bg-opacity-50 p-1 rounded-xl">
+              <div key={product.product_id} className="group relative bg-white bg-opacity-50 p-1 rounded-xl"
+              >
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-[12rem]">
                   <img
                     src={`${server}/${product.image}`}
@@ -57,13 +56,13 @@ export default function AllProducts(user_id) {
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm font-bold  text-gray-700">
-                      <a href=''>
+                      <Link to={`/item/${product.product_id}`}>
                         <span
                           aria-hidden="true"
                           className="absolute inset-0"
                         />
                         {product.name}
-                      </a>
+                      </Link>
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">{product.shop_name}</p>
                   </div>
