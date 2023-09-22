@@ -3,8 +3,8 @@ import StarRating from "../Rating/StarRating"; // Reusable star rating component
 
 const ShopDetail = ({ shopName, shopImage, ratings, followers, motto }) => {
   return (
-    <div className="flex justify-center my-8 ">
-      <div className="flex flex-row gap-10 sm:gap-20 p-6 mx-6 md:mx-10 sm:mx-8 bg-white rounded-lg shadow-sm border border-green-600 opacity-95">
+    <div className="flex justify-center ">
+      <div className=" mt-36 flex flex-row gap-10 sm:gap-20 p-6 mx-6 md:mx-10 sm:mx-8 bg-white rounded-lg shadow-sm border border-green-600 opacity-95">
         <div>
           <img
             src={shopImage}
