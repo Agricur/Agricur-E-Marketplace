@@ -1,64 +1,110 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CartItem from "../Item/CartItem";
-import Img from "../../Images/product_1.jpg";
 import { Navigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { server } from "../../server";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Product 1",
-      price: 19.99,
-      quantity: 2,
-      image: Img,
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 24.99,
-      quantity: 1,
-      image: Img,
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: 14.99,
-      quantity: 3,
-      image: Img,
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      price: 664.99,
-      quantity: 3,
-      image: Img,
-    },
-  ]);
+  // Initialize the cart from localStorage or with an empty array
+  const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cart"))||[]);
 
-  const handleIncreaseQuantity = (item) => {
+  const userCookie = Cookies.get("jwtToken");
+  const storageCookie = Cookies.get("localStorage")
+
+  useEffect(() => {
+    if (userCookie) {
+      fetch(`${server}/api/cart/getCart`, {
+        method: "GET", 
+        headers: {
+          Authorization: `Bearer ${userCookie}`,
+        },
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data.error){
+          setCartItems([])
+        }
+        else{
+          setCartItems(data.cartItems);
+        }
+        
+      }).catch((error) => {
+        console.log(error)
+      })  
+    } 
+      // Update localStorage whenever the cartItems change
+      
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+      if(storageCookie){
+        localStorage.clear();
+      }
+    
+  }, [cartItems]);
+
+  
+  const [refresh,setRefresh] = useState(0);
+
+  const handleIncreaseQuantity = async (item) => {
+    
+    if(refresh<4){
+      setRefresh(refresh+1)
+    }else{
+      window.location.reload("/cart")
+      setRefresh(0)
+    }
+    
     const updatedCartItems = cartItems.map((cartItem) => {
-      if (cartItem.id === item.id) {
+      if (cartItem.product_id === item.product_id) {
         return { ...cartItem, quantity: cartItem.quantity + 1 };
       }
       return cartItem;
     });
+    if(userCookie){
+      await axios.post(`${server}/api/cart/updateCartItems`, {userCookie, cartItems: updatedCartItems}).then((res) =>{
+      toast.success(res.data.message);
+      
+    });
+    
+    }
+    
     setCartItems(updatedCartItems);
   };
 
-  const handleDecreaseQuantity = (item) => {
+  const handleDecreaseQuantity = async (item) => {
+    
+    if(refresh<4){
+      setRefresh(refresh+1)
+    }else{
+      window.location.reload("/cart")
+      setRefresh(0)
+    }
+
     const updatedCartItems = cartItems.map((cartItem) => {
-      if (cartItem.id === item.id && cartItem.quantity > 1) {
+      if (cartItem.product_id === item.product_id && cartItem.quantity > 1) {
         return { ...cartItem, quantity: cartItem.quantity - 1 };
       }
       return cartItem;
     });
+    if(userCookie){
+      await axios.post(`${server}/api/cart/updateCartItems`, {userCookie, cartItems: updatedCartItems}).then((res) =>{
+      toast.success(res.data.message);
+    });
+    }
     setCartItems(updatedCartItems);
   };
 
-  const handleRemoveItem = (item) => {
+  const handleRemoveItem = async (item) => {
+    window.location.reload("/cart")
     const updatedCartItems = cartItems.filter(
-      (cartItem) => cartItem.id !== item.id
+      (cartItem) => cartItem.product_id !== item.product_id
     );
+    if(userCookie){
+      await axios.post(`${server}/api/cart/removeItems`, {userCookie, cartItems: updatedCartItems}).then((res) =>{
+      toast.success(res.data.message);
+    });
+    }
     setCartItems(updatedCartItems);
   };
 
@@ -75,33 +121,23 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto p-4  sm:p-8 max-w-screen-xl">
-      <h1 className="text-xl sm:text-2xl md:text-4xl font-semibold mb-4">
+      <h1 className="text-sm sm:text-2xl mt-32 md:text-4xl  font-medium mb-4">
         Shopping Cart
       </h1>
       <div className="rounded-lg opacity-85 bg-white shadow-lg p-4 ">
         <div className="overflow-x-auto">
           <div className="min-w-full">
             <table className="w-full rounded-lg divide-y divide-gray-200">
-              <thead className="bg-gray-100">
-                {/* <tr>
-                <th  className="px-2 sm:px-4 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-500 uppercase tracking-wider ">
-                  Product
-                </th>
-                <th className="px-2 sm:px-4 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-500 uppercase tracking-wider">
-                  Quantity
-                </th>
-                <th  className="px-2 sm:px-4 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-500 uppercase tracking-wider">
-                  Total Price
-                </th>
-                <th  className="px-2 sm:px-4 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-500 uppercase tracking-wider">
-                  Remove
-                </th>
-              </tr> */}
-              </thead>
               <tbody className="divide-y divide-gray-200">
+                <tr className="bg-gray-100 rounded-xl font-bold">
+                  <td className="px-4 py-3">Product</td>
+                  <td className="px-4 py-3">Quantity</td>
+                  <td className="px-4 py-3">Total Price</td>
+                  <td className="px-4 py-3">Remove</td>
+                </tr>
                 {cartItems.map((item) => (
                   <CartItem
-                    key={item.id}
+                    key={item.product_id}
                     item={item}
                     onIncreaseQuantity={handleIncreaseQuantity}
                     onDecreaseQuantity={handleDecreaseQuantity}
@@ -114,7 +150,7 @@ const Cart = () => {
         </div>
         <div className="mt-8 flex justify-center">
           <p className="text-xl sm:text-2xl font-semibold">
-            Total: Rs. {calculateTotalPrice().toFixed(2)}
+            Total: Rs. {calculateTotalPrice()}
           </p>
         </div>
       </div>

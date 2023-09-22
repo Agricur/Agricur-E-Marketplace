@@ -21,6 +21,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+  const [cartItems, setCartItems] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
 
   const handleSubmit = async (e) => {
 
@@ -39,6 +42,11 @@ const Login = () => {
         const is_seller = res.data.is_seller;
         Cookies.set("jwtToken", token, { expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000)});
         toast.success(res.data.message);
+        if(cartItems.length > 0){
+        axios.post(`${server}/api/cart/createCart`, {user_id: user_id, cartItems: cartItems}).then((res) =>{
+          toast.success(res.data.message);
+        });
+        }
         if(is_seller){
           navigate('/shopAccount')
         }else{
