@@ -172,7 +172,9 @@ const ProductDetailPage = (item) => {
             <h2 className="text-3xl font-bold mb-2">{item.item.name}</h2>
             <div className="flex items-center mb-2">
               <div class="flex items-center">
+
                 <StarRating rating={4.95} />
+
                 <p class="ml-2 text-sm font-medium text-black-500 dark:text-black-400">
                   4.95 out of 5
                 </p>
@@ -207,6 +209,7 @@ const ProductDetailPage = (item) => {
               <br />
               Stock:
             </div>
+
             <div className="flex justify-between">
               <button
                 onClick={handleAddToCart}
