@@ -12,7 +12,6 @@ import {
 } from "@heroicons/react/24/outline";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { server } from "../../server";
 
 function classNames(...classes) {
@@ -25,6 +24,8 @@ export default function Header() {
   const [userName, setUserName] = useState("Name");
   const [isSeller, setIsSeller] = useState(false);
   const [profileImage, setProfilePhoto] = useState(profilePhoto);
+  const [totalItems,setTotalItems] = useState(0);
+  
 
   const navigate = useNavigate();
   const userCookie = Cookies.get("jwtToken");
@@ -38,7 +39,9 @@ export default function Header() {
 
   const handleLogout = () => {
     Cookies.remove("jwtToken");
-    setIsLoggedIn(false);
+    setIsLoggedIn(false); 
+    localStorage.clear()
+    Cookies.set("localStorage", "remove", { expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_TIME )});
   };
 
   const clickCart = () => {
@@ -55,9 +58,8 @@ export default function Header() {
       })
         .then((response) => response.json())
         .then((data) => {
-
           const first_name = data.first_name;
-          
+
           checkLoggedInStatus();
           setUserName(first_name);
           setIsSeller(data.is_seller);
@@ -66,6 +68,34 @@ export default function Header() {
         .catch((error) => {
           console.error("Error fetching user data:", error);
         });
+
+        fetch(`${server}/api/cart/getCart`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${userCookie}`,
+          },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          if(data.error){
+            setTotalItems(0)
+          }
+          else{
+            setTotalItems(data.cartItems.length);
+          }
+          
+        }
+        ).catch((error) => {
+          console.log(error)
+        }
+        )
+    } else {
+      if (localStorage.getItem("cart")) {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        setTotalItems(cart.length);
+      } else {  
+        setTotalItems(0);
+      }
     }
   }, []);
 
@@ -79,7 +109,7 @@ export default function Header() {
       </div>
 
       {/* search bar */}
-      <SearchBar/>
+      <SearchBar />
 
       <div className="flex sm:hidden">
         <button
@@ -117,7 +147,13 @@ export default function Header() {
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">View cart</span>
                 <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
+              
+                <span className="absolute top-[-9px] right-[-9px] bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                  {totalItems}
+                </span>
+           
               </button>
+              
             </div>
 
             {/* profile */}
@@ -126,11 +162,11 @@ export default function Header() {
                 <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-[#296b33] focus:ring-offset-2 focus:ring-offset-white">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
-                    <img
-                      className="h-8 w-8 rounded-full"
-                      src= {`${profileImage}`}
-                      alt=""
-                    />
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src={`${profileImage}`}
+                    alt=""
+                  />
                 </Menu.Button>
               </div>
               <Transition
@@ -157,28 +193,29 @@ export default function Header() {
                   </Menu.Item>
                   <hr className="border-gray-500" />
                   <Menu.Item>
-                    {({ active }) => (
-                      isSeller ? (<a
-                        href="/sellerAccount"
-                        className={classNames(
-                          active ? "bg-[#e7eae7]" : "",
-                          "block px-4 py-2 text-sm text-gray-700 "
-                        )}
-                      >
-                        Your Profile
-                      </a>):(
+                    {({ active }) =>
+                      isSeller ? (
                         <a
-                        href="/buyerAccount"
-                        className={classNames(
-                          active ? "bg-[#e7eae7]" : "",
-                          "block px-4 py-2 text-sm text-gray-700 "
-                        )}
-                      >
-                        Your Profile
-                      </a>
+                          href="/sellerAccount"
+                          className={classNames(
+                            active ? "bg-[#e7eae7]" : "",
+                            "block px-4 py-2 text-sm text-gray-700 "
+                          )}
+                        >
+                          Your Profile
+                        </a>
+                      ) : (
+                        <a
+                          href="/buyerAccount"
+                          className={classNames(
+                            active ? "bg-[#e7eae7]" : "",
+                            "block px-4 py-2 text-sm text-gray-700 "
+                          )}
+                        >
+                          Your Profile
+                        </a>
                       )
-                      
-                    )}
+                    }
                   </Menu.Item>
                   {isSeller ? (
                     <Menu.Item>
@@ -189,13 +226,12 @@ export default function Header() {
                             active ? "bg-[#e7eae7]" : "",
                             "block px-4 py-2 text-sm text-gray-700 justify-center"
                           )}
-
                         >
                           My Shop
                         </a>
                       )}
                     </Menu.Item>
-                  ):(
+                  ) : (
                     <></>
                   )}
                   <Menu.Item>
@@ -212,7 +248,6 @@ export default function Header() {
                       </a>
                     )}
                   </Menu.Item>
-                  
                 </Menu.Items>
               </Transition>
             </Menu>
@@ -229,6 +264,11 @@ export default function Header() {
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">View cart</span>
                 <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
+                
+                <span className="absolute top-[-9px] right-[-9px] bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                  {totalItems}
+                </span>
+             
               </button>
             </div>
 
@@ -301,8 +341,8 @@ export default function Header() {
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
       >
-        <div className="fixed inset-0 z-10" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div className="fixed inset-0 z-70" />
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           {/* logo */}
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
@@ -330,21 +370,20 @@ export default function Header() {
                     <hr className="border-gray-500" />
                     {/* profile */}
                     {isSeller ? (
-                        <a
+                      <a
                         href="/sellerAccount"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                       >
                         Your Profile
                       </a>
-                    ):(
+                    ) : (
                       <a
-                      href="buyerAccount"
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
-                    >
-                      Your Profile
-                    </a>
+                        href="buyerAccount"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                      >
+                        Your Profile
+                      </a>
                     )}
-                    
 
                     {/* notification */}
                     <a
@@ -359,7 +398,7 @@ export default function Header() {
                       href="/cart"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                     >
-                      Cart
+                      Cart <span>({totalItems})</span>
                     </a>
                     {isSeller ? (
                       <a
@@ -368,8 +407,7 @@ export default function Header() {
                       >
                         My Shop
                       </a>
-
-                    ):(
+                    ) : (
                       <></>
                     )}
                     <hr className="border-gray-500" />
@@ -391,7 +429,7 @@ export default function Header() {
                       href="/cart"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                     >
-                      Cart
+                      Cart <span>({totalItems})</span>
                     </a>
 
                     {/* login */}
