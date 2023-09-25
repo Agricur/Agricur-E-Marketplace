@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import StarRating from "../Rating/StarRating";
 import { server } from "../../server";
+import Cookies from "js-cookie";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 import {
   FaMapMarkerAlt,
@@ -14,6 +17,7 @@ import {
 const ProductDetailPage = (item) => {
   const [quantity, setQuantity] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(1);
+  const userCookie = Cookies.get("jwtToken");
 
   const slides = [item.item.image, item.item.image2, item.item.image];
 
@@ -46,9 +50,72 @@ const ProductDetailPage = (item) => {
     setCurrentIndex(newIndex);
   };
 
+  
+  const handleAddToCart = () => {
+    
+    // Retrieve the current cart from localStorage
+    var currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Create a new item for the cart
+    const newItem = {
+      product_id: item.item.product_id,
+      name: item.item.name,
+      price: item.item.price,
+      quantity: quantity,
+      image: item.item.image,
+    };
+
+    var items = 0;
+    for (let i = 0; i < currentCart.length; i++) {
+      if (currentCart[i].product_id === newItem.product_id) {
+        currentCart[i].quantity += newItem.quantity;
+        localStorage.setItem("cart", JSON.stringify(currentCart));
+        if (!userCookie) {
+          toast.success("Product added to the cart");
+        }
+      } else {
+        items += 1;
+      }
+    }
+    if (items === currentCart.length) {
+      currentCart.push(newItem);
+      localStorage.setItem("cart", JSON.stringify(currentCart));
+      if (!userCookie) {
+        toast.success("Product added to the cart");
+      };
+    }
+
+    if (userCookie) {
+      console.log(currentCart)
+      fetch(`${server}/api/cart/insertProduct`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${userCookie}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          currentCart,
+        }),
+      })
+        .then((response) => response.json())
+        .then((message) => {
+          toast.success(message.message);
+          
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    window.location.reload();
+  };
+
+  const handleBuyNow = () => {
+    console.log("Buy Now");
+  };
+
   return (
     <div className="container mx-auto p-4 bg-[#D9D9D9]">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 mt-32 md:grid-cols-3 gap-4">
         {/* Left Rectangle: Photos */}
         <div className="md:col-span-1">
           <div className="border rounded p-4 mb-4 bg-white">
@@ -143,10 +210,20 @@ const ProductDetailPage = (item) => {
               Stock:
             </div>
 
-            <button className="bg-[#3da749] justify-items-center text-white py-2 px-4 h-35 w-80 rounded-full hover:bg-[#296b33]">
-
-              Add to Cart
-            </button>
+            <div className="flex justify-between">
+              <button
+                onClick={handleAddToCart}
+                className="bg-[#3da749] justify-items-center text-white py-2 px-4 mx-1 h-35 w-80 rounded-full hover:bg-[#296b33]"
+              >
+                Buy Now
+              </button>
+              <button
+                onClick={handleAddToCart}
+                className="bg-[#57c664] justify-items-center text-white py-2 px-4 mx-1 h-35 w-80 rounded-full hover:bg-[#296b33]"
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
 

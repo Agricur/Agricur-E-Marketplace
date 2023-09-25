@@ -101,11 +101,11 @@ const Shopsview = () => {
 
   return (
     <div>
-      <div className="mx-8 md:mx-30 sm:mx-20 my-8">
-        <h1 className="sm:text-4xl text-3xl font-bold text-gray-900">Shops</h1>
-      </div>
+  
+        <h1 className="sm:text-4xl text-3xl font-bold text-gray-900 ">Shops</h1>
+      
 
-      <div className="grid grid-cols-2 gap-[15px] mx-8 md:mx-30 sm:mx-20 md:grid-cols-3 md:gap-[15px] lg:grid-cols-4 lg:gap-[20px] xl:grid-cols-5 xl:gap-[30px]">
+      <div className="mt-32 grid grid-cols-2 gap-[15px] mx-8 md:mx-30 sm:mx-20 md:grid-cols-3 md:gap-[15px] lg:grid-cols-4 lg:gap-[20px] xl:grid-cols-5 xl:gap-[30px]">
         {displayedShops.map((shop) => (
           <ShopCard
             key={shop.id}
