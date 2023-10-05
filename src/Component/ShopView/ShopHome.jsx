@@ -36,7 +36,6 @@ const ShopHome = (shopID) => {
       setshopName(data.shop.shop_name);
       setshopImage(data.shop.image);
       setShopProducts(data.shop.products);
-      console.log(data.shop);
     })
 
   }, [shop_id]);
@@ -51,7 +50,7 @@ const ShopHome = (shopID) => {
         // motto={shopData.motto}
       />
 
-      <ShopItems product={shopProduct} />
+      <ShopItems product={shopProduct}/>
         
     </div>
   );
