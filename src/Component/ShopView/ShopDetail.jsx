@@ -18,12 +18,12 @@ const ShopDetail = ({ shopName, shopImage, ratings, followers, motto }) => {
             <StarRating rating={ratings} />
             <p className="text-gray-600 ml-2">{ratings.toFixed(1)}</p>
           </div>
-          <div>
+          {/* <div>
             <p className="text-gray-600">{followers} Followers</p>
           </div>
           <button className="bg-green-500 text-white px-4 py-1 rounded-full">
             Follow
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
