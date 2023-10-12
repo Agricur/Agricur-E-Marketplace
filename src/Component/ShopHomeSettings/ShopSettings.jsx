@@ -6,10 +6,12 @@ import ViewMessages from "../Messenger/ViewMessages";
 import OrderHistory from "./OrderHistoryShop";
 import { server } from "../../server";
 import Image from "../../Assets/profilePhoto.png"
+import { useNavigate } from "react-router-dom";
 
 
 const ShopSettings = ({ user_id }) => {
   const [selectedNavItem, setSelectedNavItem] = useState("Products");
+  const navigate = useNavigate();
 
   const renderComponent = () => {
     if (selectedNavItem === "Edit Shop") {
@@ -23,7 +25,7 @@ const ShopSettings = ({ user_id }) => {
     } else if (selectedNavItem === "Order History") {
       return <OrderHistory />;
     } else if (selectedNavItem === "Seller's Acount") {
-      return <h1>Seller's Acount</h1>;
+      navigate("/userAccount");
     }
   };
 
@@ -38,6 +40,7 @@ const ShopSettings = ({ user_id }) => {
       .then((response) => response.json())
       .then((data) => {
         setShopData(data.shop);
+        console.log(shopData.image)
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
@@ -137,7 +140,7 @@ const ShopSettings = ({ user_id }) => {
               }`}
               onClick={() => setSelectedNavItem("Seller's Acount")}
             >
-              <a href="/sellerAccount">
+              <a href="/userAccount">
                 Seller's Account
               </a>
               
