@@ -4,10 +4,11 @@ import EditAccount from "../BuyerOptions/EditBuyerAccount";
 import OrderHistory from "../Item/OrderHistory";
 import BuyerDashboard from "../BuyerOptions/Dashboard";
 import Messenger from "../Messenger/ViewMessages";
+import { useNavigate } from "react-router-dom";
 
-const BuyerAccount = () => {
+const BuyerAccount = (props) => {
   const [selectedNavItem, setSelectedNavItem] = useState("Dashboard");
-  console.log(selectedNavItem);
+  const navigate = useNavigate();
   const renderComponent = () => {
     if (selectedNavItem === "Dashboard") {
       return <BuyerDashboard/>;
@@ -17,7 +18,10 @@ const BuyerAccount = () => {
       return <Messenger/>;
     } else if (selectedNavItem === "Order History") {
       return <OrderHistory />;
+    } else if (selectedNavItem === "View Shop") {
+      navigate("/shopAccount");
     }
+
   };
 
   
@@ -71,6 +75,17 @@ const BuyerAccount = () => {
             onClick={() => setSelectedNavItem("Order History")}>
               Order History
             </button>
+            {props.user_type && (
+              <button
+                className={`${
+                  selectedNavItem === "View Shop" ? "bg-[#316c39] text-white w-full p-4 block font-bold py-2 px-4 rounded border-b " : "w-full p-4 block font-bold py-2 px-4 rounded border-b bg-[#d9eada] hover:bg-[#3da749] border-gray-400"
+                }`}
+                onClick={() => setSelectedNavItem("View Shop")}
+              >
+                View Shop
+              </button>
+            )
+            }
           </div>
         </div>
 
