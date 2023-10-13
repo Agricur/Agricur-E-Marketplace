@@ -76,7 +76,7 @@ const BuyerAccount = (props) => {
             onClick={() => setSelectedNavItem("Order History")}>
               Order History
             </button>
-            {props.user_type && (
+            {props.user_type === 'true' && (
               <button
                 className={`${
                   selectedNavItem === "View Shop" ? "bg-[#316c39] text-white w-full p-4 block font-bold py-2 px-4 rounded border-b " : "w-full p-4 block font-bold py-2 px-4 rounded border-b bg-[#d9eada] hover:bg-[#3da749] border-gray-400"

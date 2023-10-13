@@ -55,7 +55,7 @@ const BuyerAccountPage = () => {
           <Footer />
         </>
       )}
-      {userCookie && userType != 'false' && userType != 'true' && (
+      {userCookie && userType !== 'false' && userType !== 'true' && (
         <>
           {navigate("/")}
         </>
