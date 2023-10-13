@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
-import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage, BuyerAccountPage, AdminAccountPage, CartPage, CheckoutPage, SellerAccountPage, ShopSettingsPage, Fertilizers,Fruits,Vegetables,Grains,Equipments} from './Routes.js';
+import {LoginPage, HomePage, SellerRegisterPage, BuyerRegisterPage, OneItemPage, ShopsPage, ShopHomePage, BuyerAccountPage, AdminAccountPage, CartPage, CheckoutPage, ShopSettingsPage, Fertilizers,Fruits,Vegetables,Grains,Equipments} from './Routes.js';
 
 function App() {
   return (
@@ -16,11 +16,10 @@ function App() {
       <Route path="/registerSeller" element={<SellerRegisterPage />}/>
       <Route path="/registerBuyer" element={<BuyerRegisterPage />}/>
       <Route path="/item/:ProductId" element={<OneItemPage />}/>
-      <Route path="/shophome" element={<ShopHomePage />}/>
+      <Route path="/shophome/:ShopId" element={<ShopHomePage />}/>
       <Route path="/cart" element={<CartPage />}/>
       <Route path="/checkout" element={<CheckoutPage />}/>
-      <Route path="/buyerAccount" element={<BuyerAccountPage />}/>
-      <Route path="/sellerAccount" element={<SellerAccountPage />}/>
+      <Route path="/userAccount" element={<BuyerAccountPage />}/>
       <Route path="/adminAccount" element={<AdminAccountPage />}/>
       <Route path="/shopAccount" element={<ShopSettingsPage />}/>
       <Route path="/fertilizers" element={<Fertilizers />}/>

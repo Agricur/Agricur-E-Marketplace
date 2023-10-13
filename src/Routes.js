@@ -10,7 +10,6 @@ import CheckoutPage from "./Screens/CheckoutPage.jsx";
 import BuyerAccountPage from "./Screens/User/buyerAccount.jsx"; 
 import AdminAccountPage from "./Screens/Admin/adminAccount.jsx";
 import ShopSettingsPage from "./Screens/ShopSettingsPage.jsx";
-import SellerAccountPage from "./Screens/User/sellerAccount.jsx"; 
 import Fertilizers from "./Screens/Categories/FertilizerPage.jsx";
 import Fruits from "./Screens/Categories/FruitsPage.jsx";
 import Vegetables from "./Screens/Categories/VegetablesPage.jsx";
@@ -30,7 +29,6 @@ export {LoginPage,
         BuyerAccountPage,
         AdminAccountPage,
         ShopSettingsPage,
-        SellerAccountPage,
         Fertilizers,
         Fruits,
         Vegetables,
