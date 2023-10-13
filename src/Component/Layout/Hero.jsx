@@ -42,7 +42,7 @@ const HeroSection = () => {
                   <div className="group w-full sm:w-1/2 md:w-1/3 lg:w-1/5 px-4 py-2 inline-block">
                     <div className="bg-white hover:bg-white bg-opacity-70 rounded-lg shadow-lg p-6">
                       <img src={`${veg}`} alt="" className="mb-4 rounded-lg" />
-                      Vegitables
+                      Vegetables
                     </div>
                   </div>
                 </a>

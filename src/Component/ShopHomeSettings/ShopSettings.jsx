@@ -31,7 +31,6 @@ const ShopSettings = ({ user_id }) => {
 
   const [shopData, setShopData] = useState("");
   const userID = { user_id }.user_id;
-  console.log("user_id", userID);
 
   useEffect(() => {
     fetch(`${server}/api/shop/data/${userID}`, {
@@ -40,13 +39,11 @@ const ShopSettings = ({ user_id }) => {
       .then((response) => response.json())
       .then((data) => {
         setShopData(data.shop);
-        console.log(shopData.image)
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
   }, [userID]);
-  console.log("shopData", shopData);
 
   return (
     <div className="bg-gray-100 min-h-screen pb-8 pt-28">
