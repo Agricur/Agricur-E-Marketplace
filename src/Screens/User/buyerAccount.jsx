@@ -31,7 +31,7 @@ const BuyerAccountPage = () => {
           console.error("Error fetching user data:", error);
         });
     }
-  }, []);
+  }, [userCookie]);
 
   return (
     <div>
