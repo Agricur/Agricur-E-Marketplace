@@ -56,7 +56,7 @@ export default function AllProducts(user_id) {
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm font-bold  text-gray-700">
-                      <Link to={`/item/${product.product_id}`}>
+                      <Link to={`/item/${product.product_id}`} key={product.id} >
                         <span
                           aria-hidden="true"
                           className="absolute inset-0"

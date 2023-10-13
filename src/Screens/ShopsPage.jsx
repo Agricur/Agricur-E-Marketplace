@@ -3,7 +3,6 @@ import Header from "../Component/Layout/Header";
 import Navbar from "../Component/Layout/Navbar";
 import Shopsview from "../Component/ShopView/ShopsView";
 import Footer from "../Component/Layout/Footer";
-import Img from '../Images/herow.jpg'
 
 const ShopsPage = () => {
 

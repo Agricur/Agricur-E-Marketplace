@@ -7,6 +7,7 @@ import Messenger from "../Messenger/ViewMessages";
 import { useNavigate } from "react-router-dom";
 
 const BuyerAccount = (props) => {
+  const userID = props.user_id
   const [selectedNavItem, setSelectedNavItem] = useState("Dashboard");
   const navigate = useNavigate();
   const renderComponent = () => {
