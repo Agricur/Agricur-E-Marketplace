@@ -1,4 +1,5 @@
 import LoginPage from "./Screens/UserLogin.jsx";
+import AdminLoginPage from "./Screens/AdminLoginPage.jsx";
 import HomePage from "./Screens/HomePage.jsx";
 import ShopsPage from "./Screens/ShopsPage.jsx";
 import SellerRegisterPage from "./Screens/Register/sellerReg.jsx"; 
@@ -18,6 +19,7 @@ import Equipments from "./Screens/Categories/EquipmentsPage.jsx";
 
 
 export {LoginPage, 
+        AdminLoginPage,
         HomePage,
         SellerRegisterPage,
         BuyerRegisterPage,
