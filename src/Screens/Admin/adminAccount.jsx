@@ -1,18 +1,51 @@
-import React from 'react'
-import Header from '../../Component/Layout/Header.jsx'
-import Navbar from '../../Component/Layout/Navbar.jsx'
+import React,{useState,useEffect} from 'react'
+import Header from '../../Component/AdminOption/AdminHeader.jsx'
 import Footer from '../../Component/Layout/Footer.jsx'
 import AdminAccount from '../../Component/Accounts/AdminAccountCom.jsx'
+import { ErrorPage } from '../../Routes.js'
+import Cookies from "js-cookie";
+import { server } from "../../server";
+import { useNavigate } from "react-router-dom";
 
 const AdminAccountPage = () => {
-    // Define your item data here or fetch it from an API
+  const [type, setType] = useState("");
+  const [AdminID,setAdminID] = useState("");
+  const adminCookie = Cookies.get("jwtToken-admin");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (adminCookie) {
+      fetch(`${server}/api/admin/data`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${adminCookie}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setType(data.type);
+          setAdminID(data.admin_id)
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
+    }
+  }, [adminCookie]);
     
     return (
       <div>
-        <Header />
-        <Navbar />
-        <AdminAccount />
-        <Footer />
+        {adminCookie? (
+          <Header />
+        ) : (
+          <ErrorPage />
+        )}
+        {adminCookie && type === 'admin' && (
+          <>
+            <AdminAccount />
+            <Footer />
+          </>
+        )}
+        
       </div>
     );
   };

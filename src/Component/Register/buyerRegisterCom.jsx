@@ -90,7 +90,7 @@ const BuyerRegister = () => {
     }
 
     try {
-      // Send the form data to the server using axios or a similar library
+
       const response = await axios.post(`${server}/api/buyer/buyer-register`, formData);
       // console.log(response.status);
       

@@ -47,7 +47,7 @@ const ShopSettingsPage = () => {
           <Footer />
         </>
       )}
-      {userCookie && userType != "true" && (
+      {userCookie && userType !== "true" && (
         <>
           {navigate("/")}
         </>

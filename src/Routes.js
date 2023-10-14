@@ -1,4 +1,5 @@
 import LoginPage from "./Screens/UserLogin.jsx";
+import AdminLoginPage from "./Screens/AdminLoginPage.jsx";
 import HomePage from "./Screens/HomePage.jsx";
 import ShopsPage from "./Screens/ShopsPage.jsx";
 import SellerRegisterPage from "./Screens/Register/sellerReg.jsx"; 
@@ -15,9 +16,11 @@ import Fruits from "./Screens/Categories/FruitsPage.jsx";
 import Vegetables from "./Screens/Categories/VegetablesPage.jsx";
 import Grains from "./Screens/Categories/GrainsPage.jsx";
 import Equipments from "./Screens/Categories/EquipmentsPage.jsx";
+import ErrorPage from "./Component/Layout/PageNotFound.jsx"
 
 
 export {LoginPage, 
+        AdminLoginPage,
         HomePage,
         SellerRegisterPage,
         BuyerRegisterPage,
@@ -34,4 +37,5 @@ export {LoginPage,
         Vegetables,
         Grains,
         Equipments,
+        ErrorPage,
     };

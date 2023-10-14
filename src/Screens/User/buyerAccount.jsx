@@ -31,7 +31,7 @@ const BuyerAccountPage = () => {
           console.error("Error fetching user data:", error);
         });
     }
-  }, []);
+  }, [userCookie]);
 
   return (
     <div>
@@ -55,7 +55,7 @@ const BuyerAccountPage = () => {
           <Footer />
         </>
       )}
-      {userCookie && userType != 'false' && userType != 'true' && (
+      {userCookie && userType !== 'false' && userType !== 'true' && (
         <>
           {navigate("/")}
         </>
