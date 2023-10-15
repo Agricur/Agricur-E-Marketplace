@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StarRating from "../Rating/StarRating";
 import { server } from "../../server";
 import Cookies from "js-cookie";
-import axios from "axios";
 import { toast } from "react-toastify";
 
 import {
@@ -14,12 +13,12 @@ import {
   FaMinus,
 } from "react-icons/fa";
 
-const ProductDetailPage = (item) => {
+const ProductDetailPage = (props) => {
   const [quantity, setQuantity] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(1);
   const userCookie = Cookies.get("jwtToken");
 
-  const slides = [item.item.image, item.item.image2, item.item.image];
+  const slides = [props.item.image, props.item.image2, props.item.image];
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -50,7 +49,6 @@ const ProductDetailPage = (item) => {
     setCurrentIndex(newIndex);
   };
 
-  
   const handleAddToCart = () => {
     
     // Retrieve the current cart from localStorage
@@ -58,11 +56,11 @@ const ProductDetailPage = (item) => {
 
     // Create a new item for the cart
     const newItem = {
-      product_id: item.item.product_id,
-      name: item.item.name,
-      price: item.item.price,
+      product_id: props.item.product_id,
+      name: props.item.name,
+      price: props.item.price,
       quantity: quantity,
-      image: item.item.image,
+      image: props.item.image,
     };
 
     var items = 0;
@@ -114,7 +112,7 @@ const ProductDetailPage = (item) => {
   };
 
   return (
-    <div className="container mx-auto p-4 bg-[#D9D9D9]">
+    <div className="container mx-auto p-4 bg-[#D9D9D9] relative">
       <div className="grid grid-cols-1 mt-32 md:grid-cols-3 gap-4">
         {/* Left Rectangle: Photos */}
         <div className="md:col-span-1">
@@ -169,7 +167,7 @@ const ProductDetailPage = (item) => {
         {/* Middle Rectangle: Product Info */}
         <div className="md:col-span-1">
           <div className="border shadow-lg  rounded p-4 mb-4 bg-[#d9eada]">
-            <h2 className="text-3xl font-bold mb-2">{item.item.name}</h2>
+            <h2 className="text-3xl font-bold mb-2">{props.item.name}</h2>
             <div className="flex items-center mb-2">
               <div class="flex items-center">
 
@@ -181,10 +179,10 @@ const ProductDetailPage = (item) => {
               </div>
             </div>
 
-            <div className="font-semibold">{item.item.category}</div>
+            <div className="font-semibold">{props.item.category}</div>
             <div className="mb-2 font-bold text-2xl">
-              {item.item.price}
-              {item.item.price_unit}
+              {props.item.price}
+              {props.item.price_unit}
             </div>
             <div className="mb-2">
               {/* Quantity buttons */}
@@ -259,7 +257,7 @@ const ProductDetailPage = (item) => {
           {/* Shop Section */}
           <div className="border rounded p-4 bg-[#FAFAFA]">
             <div>
-              <h2 className="text-xl font-bold mb-2">{item.item.shop_name}</h2>
+              <h2 className="text-xl font-bold mb-2">{props.item.shop_name}</h2>
             </div>
             <button class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-[#3da749] rounded-full focus:shadow-outline hover:bg-[#296b33]">
               <div>
