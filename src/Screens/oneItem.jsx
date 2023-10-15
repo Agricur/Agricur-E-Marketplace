@@ -27,9 +27,9 @@ const OneItemPage = () =>{
         <Header />
         <Navbar />
         
-        <div>
+        
             <OneItem item={itemData} />
-        </div> 
+         
         <Footer />
       </div>
     );

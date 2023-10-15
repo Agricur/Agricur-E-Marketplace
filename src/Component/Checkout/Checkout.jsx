@@ -1,5 +1,8 @@
-import React from "react";
+import {React,useState,useEffect} from "react";
 // import { Navigate } from "react-router-dom";
+
+import { server } from "../../server";
+import Cookies from "js-cookie";
 
 const Checkout = () => {
 
@@ -7,10 +10,42 @@ const Checkout = () => {
    console.log("Order Placed");
   }
 
+  const [userName, setUserName] = useState("");
+  const [userId, setUserId] = useState("");
+  const userCookie = Cookies.get("jwtToken");
+
+  useEffect(() => {
+    if (userCookie) {
+      fetch(`${server}/api/user/data`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${userCookie}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const first_name = data.first_name;
+          const user_id = data.user_id;
+
+         
+          setUserName(first_name);
+          console.log(userName);
+
+          setUserId(user_id);
+          console.log(userId );
+          // setProfilePhoto("https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80");
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
+      }
+      }, []);
+
+
   return (
-    <div className="m-4 sm:m-8 md:m-16 flex flex-col sm:flex-row">
+    <div className="flex flex-col sm:flex-row">
       <div className="flex-col m-4 sm:m-8 md:m-4 md:basis-1/2">
-        <div className="bg-white opacity-85 shadow-lg  rounded-lg p-6 flex flex-row justify-between items-center my-4">
+        <div className="bg-white mt-32 opacity-85 shadow-lg  rounded-lg p-6 flex flex-row justify-between items-center my-4">
           <div>
             <h1 className="text-2xl font-Roboto font-semibold mb-3">
               Shipping Address
@@ -77,7 +112,7 @@ const Checkout = () => {
         </div>
       </div>
       <div className="flex-auto m-4 sm:m-8 md:m-4 md:basis=1/2">
-        <div className="bg-white opacity-85 shadow-lg rounded-lg p-6 flex flex-col w-full my-4">
+        <div className="bg-white mt-32 opacity-85 shadow-lg rounded-lg p-6 flex flex-col w-full my-4">
           <h1 className="text-2xl font-Roboto font-semibold mb-3">
             Your Order
           </h1>
