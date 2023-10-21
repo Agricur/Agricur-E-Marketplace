@@ -120,8 +120,8 @@ const donutChartData = {
             </ul>
           </div>
         </div>
-        {/* <Dashboard /> */}
-        <AddNewAdmin />
+        <Dashboard />
+        {/* <AddNewAdmin /> */}
       </div>
     </div>
   );

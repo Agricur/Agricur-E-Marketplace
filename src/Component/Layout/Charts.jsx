@@ -20,7 +20,7 @@ function Charts() {
           }
     )
     return (
-        <div>
+        <div data-testid="charts">
             <h1>Charts</h1>
             <div className="mixed-chart">
             <Chart
