@@ -98,7 +98,6 @@ const ProductDetailPage = (props) => {
         .then((response) => response.json())
         .then((message) => {
           toast.success(message.message);
-          
         })
         .catch((error) => {
           console.log(error);
