@@ -209,15 +209,16 @@ const ProductDetailPage = (props) => {
             </div>
 
             <div className="flex justify-between">
-              <button
-                onClick={handleAddToCart}
-                className="bg-[#3da749] justify-items-center text-white py-2 px-4 mx-1 h-35 w-80 rounded-full hover:bg-[#296b33]"
+            <a href="/checkout">
+              <button 
+                className="bg-[#3da749] justify-items-center text-white md:h-16 sm:h-16 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16"
               >
                 Buy Now
               </button>
+              </a>
               <button
                 onClick={handleAddToCart}
-                className="bg-[#57c664] justify-items-center text-white py-2 px-4 mx-1 h-35 w-80 rounded-full hover:bg-[#296b33]"
+                className="bg-[#3da749] justify-items-center text-white lg:h-16 md:h-20  sm:h-16 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16"
               >
                 Add to Cart
               </button>
@@ -281,9 +282,11 @@ const ProductDetailPage = (props) => {
                 </p>
               </div>
             </div>
+            <a href="/shophome">
             <button className="bg-[#3da749] text-white py-2 px-4 rounded-full mt-2 hover:bg-[#296b33]">
               Visit Store
             </button>
+            </a>
           </div>
         </div>
       </div>

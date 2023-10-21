@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 
 const ShopHomePage = () => {
   const shop_id = useParams().ShopId;
+  
   return (
     <div className="bg-[#d9eada]">
     <Header />
