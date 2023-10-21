@@ -1,6 +1,108 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { server } from "../../server";
+import Img from "../../Images/product_1.jpg";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+  const orders = [
+    {
+      productImage: Img,
+      product: "Order_1",
+      quantity: 1,
+      deliveryDate: "2023-08-01",
+      deliveryService: "Standard",
+      amount: "LKR 543",
+      paymentMethod: "Cash on Delivery",
+    },
+    {
+      productImage: Img,
+      product: "Order_2",
+      quantity: 2,
+      deliveryDate: "2023-08-01",
+      deliveryService: "Standard",
+      amount: "LKR 543",
+      paymentMethod: "Cash on Delivery",
+    },
+    {
+      productImage: Img,
+      product: "Order_3",
+      quantity: 3,
+      deliveryDate: "2023-08-01",
+      deliveryService: "Standard",
+      amount: "LKR 543",
+      paymentMethod: "Cash on Delivery",
+    },
+    {
+      productImage: Img,
+      product: "Order_4",
+      quantity: 4,
+      deliveryDate: "2023-08-01",
+      deliveryService: "Standard",
+      amount: "LKR 543",
+      paymentMethod: "Cash on Delivery",
+    },
+    {
+      productImage: Img,
+      product: "Order_5",
+      quantity: 5,
+      deliveryDate: "2023-08-01",
+      deliveryService: "Standard",
+      amount: "LKR 543",
+      paymentMethod: "Cash on Delivery",
+    },
+  ];
+
+  const userID = props.user_id;
+  const [address, setAddress] = useState({
+    houseNo: "",
+    street: "",
+    city: "",
+    district: "",
+    phone: "",
+  });
+
+  useEffect(() => {
+    if (props.user_type) {
+      fetch(`${server}/api/seller/sellerData/${userID}`, {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setAddress({
+            ...address,
+            houseNo: data.home_no,
+            street: data.street,
+            city: data.city,
+            district: data.district,
+            phone: data.contact_no,
+          });
+        })
+
+        .catch((error) => {
+          console.error("Error fetching buyer data:", error);
+        });
+    } else {
+      console.log("ddd");
+      fetch(`${server}/api/user/userData/${userID}`, {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setAddress({
+            ...address,
+            houseNo: data.home_no,
+            street: data.street,
+            city: data.city,
+            district: data.district,
+            phone: data.contact_no,
+          });
+        })
+
+        .catch((error) => {
+          console.error("Error fetching buyer data:", error);
+        });
+    }
+  });
+
   return (
     <div className="md:w-3/4 pl-4 mr-8">
       {/* Right Upper Rectangle */}
@@ -8,15 +110,15 @@ const Dashboard = () => {
         {/* Address */}
         <h2 className="text-xl font-semibold">Address</h2>
         <p className="text-gray-600 mt-2">
-          House Number 123
+          House Number : {address.houseNo}
           <br />
-          Street
+          Street : {address.street}
           <br />
-          City
+          City : {address.city}
           <br />
-          District
+          District : {address.district}
           <br />
-          Phone: (123) 456-7890
+          Contact Number: {address.phone}
         </p>
       </div>
 
@@ -38,10 +140,10 @@ const Dashboard = () => {
                         QUANTITY
                       </th>
                       <th scope="col" className="px-6 py-4">
-                        DERIVERY DATE (EST)
+                        DELIVERY DATE (EST)
                       </th>
                       <th scope="col" className="px-6 py-4">
-                        DERIVERY SERVICE
+                        DELIVERY SERVICE
                       </th>
                       <th scope="col" className="px-6 py-4">
                         AMOUNT
@@ -52,86 +154,32 @@ const Dashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        Order_1
-                      </td>
-                      <td className="px-4 py-2">1</td>
-                      <td className="px-4 py-2">2023-09-30</td>
-                      <td className="px-4 py-2">Standard</td>
-                      <td className="px-4 py-2">LKR 543</td>
-                      <td className="px-4 py-2">Cash on Delivery</td>
-                    </tr>
-                    <tr className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        Order_2
-                      </td>
-                      <td className="px-4 py-2">3</td>
-                      <td className="px-4 py-2">2023-09-15</td>
-                      <td className="px-4 py-2">Standard</td>
-                      <td className="px-4 py-2">LKR 4563</td>
-                      <td className="px-4 py-2">PayPal</td>
-                    </tr>
-                    <tr className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        Order_3
-                      </td>
-                      <td className="px-4 py-2">10</td>
-                      <td className="px-4 py-2">2023-09-25</td>
-                      <td className="px-4 py-2">Standard</td>
-                      <td className="px-4 py-2">LKR 320</td>
-                      <td className="px-4 py-2">Cash on Delivery</td>
-                    </tr>
-                    <tr className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        Order_4
-                      </td>
-                      <td className="px-4 py-2">8</td>
-                      <td className="px-4 py-2">2023-10-15</td>
-                      <td className="px-4 py-2">Standard</td>
-                      <td className="px-4 py-2">LKR 500</td>
-                      <td className="px-4 py-2">PayPal</td>
-                    </tr>
-                    <tr className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        Order_5
-                      </td>
-                      <td className="px-4 py-2">1</td>
-                      <td className="px-4 py-2">2023-09-30</td>
-                      <td className="px-4 py-2">Standard</td>
-                      <td className="px-4 py-2">LKR 543</td>
-                      <td className="px-4 py-2">Cash on Delivery</td>
-                    </tr>
-                    <tr className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        Order_6
-                      </td>
-                      <td className="px-4 py-2">3</td>
-                      <td className="px-4 py-2">2023-09-15</td>
-                      <td className="px-4 py-2">Standard</td>
-                      <td className="px-4 py-2">LKR 4563</td>
-                      <td className="px-4 py-2">PayPal</td>
-                    </tr>
-                    <tr className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        Order_7
-                      </td>
-                      <td className="px-4 py-2">10</td>
-                      <td className="px-4 py-2">2023-09-25</td>
-                      <td className="px-4 py-2">Standard</td>
-                      <td className="px-4 py-2">LKR 320</td>
-                      <td className="px-4 py-2">Cash on Delivery</td>
-                    </tr>
-                    <tr className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        Order_8
-                      </td>
-                      <td className="px-4 py-2">8</td>
-                      <td className="px-4 py-2">2023-10-15</td>
-                      <td className="px-4 py-2">Standard</td>
-                      <td className="px-4 py-2">LKR 500</td>
-                      <td className="px-4 py-2">PayPal</td>
-                    </tr>
+                    {orders.map((order, index) => (
+                      <tr
+                        key={index}
+                        className={
+                          index % 2 === 0
+                            ? "bg-primary-100 text-neutral-800"
+                            : "bg-primary-200 text-neutral-800"
+                        }
+                      >
+                        <td className="whitespace-nowrap px-6 py-4 font-medium">
+                          <div className="flex items-center">
+                            <img
+                              src={order.productImage}
+                              alt={order.orderNumber}
+                              className="w-12 h-12 mr-2 rounded-full"
+                            />
+                            {order.product}
+                          </div>
+                        </td>
+                        <td className="px-4 py-2">{order.quantity}</td>
+                        <td className="px-4 py-2">{order.deliveryDate}</td>
+                        <td className="px-4 py-2">{order.deliveryService}</td>
+                        <td className="px-4 py-2">{order.amount}</td>
+                        <td className="px-4 py-2">{order.paymentMethod}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

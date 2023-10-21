@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import UserImg from "../../Images/userImage.png";
 
 const Messages = () => {
   // Initialize conversations state
@@ -6,18 +7,23 @@ const Messages = () => {
     {
       id: 1,
       contact: "Customer 1",
+      lastMessage: "Hi, I'm interested in your products.",
+      timestamp: "2023-07-01 11:50",
+      image: UserImg,
       messages: [
         {
           id: 1,
           sender: "Customer 1",
           message: "Hi, I'm interested in your products.",
         },
-        { id: 2, sender: "You", message: "Sure, how can I assist you?" },
       ],
     },
     {
       id: 2,
       contact: "Customer 2",
+      lastMessage: "That sounds good. Can you tell me more?",
+      timestamp: "2023-08-01 14:30",
+      image: UserImg,
       messages: [
         {
           id: 3,
@@ -38,6 +44,12 @@ const Messages = () => {
     },
     // Add more conversations here
   ]);
+
+  conversations.sort((a, b) => {
+    const timeA = new Date(a.timestamp);
+    const timeB = new Date(b.timestamp);
+    return timeB - timeA;
+  });
 
   // State to track the selected conversation and user's message
   const [selectedConversation, setSelectedConversation] = useState(null);
@@ -79,18 +91,53 @@ const Messages = () => {
     <div className="md:w-3/4 pl-4 mr-8 container mx-auto items-center bg-white rounded-lg mt-2 p-4 shadow-md">
       <div className="max-w-full flex">
         {/* Conversation list */}
-        <div className="w-auto flex-grow bg-gray-200 p-4 rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4">Conversations</h2>
+        <div className="w- bg-[#d9eada] p-4 rounded-lg">
+          <h2 className="text-2xl font-semibold mb-4 text-center">
+            Conversations
+          </h2>
           <ul>
             {conversations.map((conversation) => (
               <li
                 key={conversation.id}
                 onClick={() => handleConversationSelect(conversation)}
-                className={`cursor-pointer p-2 ${
-                  selectedConversation === conversation ? "bg-blue-200" : ""
+                className={`cursor-pointer rounded-lg p-2 ${
+                  selectedConversation === conversation
+                    ? "bg-[#3da749] text-white"
+                    : ""
                 }`}
               >
-                {conversation.contact}
+                <div className="flex items-center">
+                  <img
+                    src={conversation.image}
+                    alt="User"
+                    className="w-12 h-12 rounded-full mr-4"
+                  />
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-semibold">{conversation.contact}</h3>
+                      <p
+                        className={`text-sm text-gray-500 ${
+                          selectedConversation === conversation
+                            ? "bg-[#3da749] text-white"
+                            : ""
+                        }`}
+                      >
+                        {conversation.timestamp}
+                      </p>
+                    </div>
+                    <div>
+                      <p
+                        className={`text-sm text-gray-700 ${
+                          selectedConversation === conversation
+                            ? "bg-[#3da749] text-white"
+                            : ""
+                        }`}
+                      >
+                        {conversation.lastMessage}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
@@ -100,10 +147,10 @@ const Messages = () => {
         <div className="w-2/3 p-4">
           {selectedConversation ? (
             <div>
-              <h2 className="text-xl font-semibold">
-                Conversation with {selectedConversation.contact}
+              <h2 className="text-xl font-semibold mb-2 text-center">
+                {selectedConversation.contact}
               </h2>
-              <div className="bg-gray-100 p-4">
+              <div className="bg-[#d9eada] p-4 rounded-lg">
                 {selectedConversation.messages.map((message) => (
                   <div key={message.id} className="mb-2">
                     <strong>{message.sender}:</strong> {message.message}
@@ -120,7 +167,7 @@ const Messages = () => {
                   onChange={handleUserMessageChange}
                 ></textarea>
                 <button
-                  className="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                  className="mt-2 bg-[#3da749] text-white py-2 px-4 rounded hover:bg-[#296b33]"
                   onClick={handleSendMessage}
                 >
                   Send
