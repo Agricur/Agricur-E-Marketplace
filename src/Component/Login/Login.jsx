@@ -133,21 +133,7 @@ const Login = () => {
                   )}
                 </div>
               </div>
-              <div className={`${styles.noramlFlex} justify-between`}>
-                <div className={`${styles.noramlFlex}`}>
-                  <input
-                    type="checkbox"
-                    name="remember-me"
-                    id="remember-me"
-                    className="h-4 w-4 text-[#3CB44A] focus:ring-[#3CB44A] border-gray-300 rounded"
-                  />
-                  <label
-                    htmlFor="remember-me"
-                    className="ml-2 block text-sm text-gray-900"
-                  >
-                    Remember me
-                  </label>
-                </div>
+              <div className={`${styles.noramlFlex} justify-end`}>
                 <div className="text-sm">
                   <a
                     href=".forgot-password"
