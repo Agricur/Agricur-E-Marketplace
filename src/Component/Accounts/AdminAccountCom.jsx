@@ -261,7 +261,10 @@ const AdminAccountPage = (props) => {
             </button>
           </div>
         </div>
-        {renderComponent()}
+
+        <Dashboard />
+        {/* <AddNewAdmin /> */}
+
       </div>
     </div>
   );
