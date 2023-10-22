@@ -23,8 +23,11 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("Name");
   const [isSeller, setIsSeller] = useState(false);
-  const [profileImage, setProfilePhoto] = useState(profilePhoto);
+  const [profileImage, setProfilePhoto] = useState('');
   const [totalItems,setTotalItems] = useState(0);
+
+  
+
   
 
   const navigate = useNavigate();
@@ -59,10 +62,12 @@ export default function Header() {
         .then((response) => response.json())
         .then((data) => {
           const first_name = data.first_name;
+          const profile_photo = data.profile_photo;
 
           checkLoggedInStatus();
           setUserName(first_name);
           setIsSeller(data.is_seller);
+          setProfilePhoto(profile_photo);
           // setProfilePhoto("https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80");
         })
         .catch((error) => {
@@ -97,7 +102,7 @@ export default function Header() {
         setTotalItems(0);
       }
     }
-  }, []);
+  }, [userCookie]);
 
   return (
     <header data-testid="header" className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8">
@@ -164,7 +169,7 @@ export default function Header() {
                   <span className="sr-only">Open user menu</span>
                   <img
                     className="h-8 w-8 rounded-full"
-                    src={`${profileImage}`}
+                    src={profileImage?`${server}/${profileImage}`:`${profilePhoto}`}
                     alt=""
                   />
                 </Menu.Button>
@@ -335,7 +340,7 @@ export default function Header() {
           {/* logo */}
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Agrucur</span>
+              <span className="sr-only">Agricur</span>
               <img className="h-8 w-auto" src={`${Logo}`} alt="" />
             </a>
             {/* 3-bar button */}

@@ -1,9 +1,14 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { server } from "../../server";
+import { toast } from "react-toastify";
 
-const EditAccount = () => {
-  const { buyerID } = useParams();
+
+const EditAccount = (props) => {
+
+  const [userID,setuserID] = useState("");
+  const userCookie = Cookies.get("jwtToken");
 
   const districts = [
     "Colombo",
@@ -36,17 +41,44 @@ const EditAccount = () => {
   const [buyerData, setBuyerData] = useState({
     buyerName: "Buyer Name",
     buyerEmail: "buyer@example.com",
-    buyerDescription: "Buyer Description",
     profilePhoto: null,
+    homeNo: "",
+    street: "",
+    city: "",
+    district: "",
   });
 
+  useEffect(() => {
+    if (userCookie) {
+      fetch(`${server}/api/user/data`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${userCookie}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setuserID(data.user_id)
+          setBuyerData({
+            ...buyerData,
+            buyerName: data.first_name,
+            buyerEmail: data.email,
+            profilePhoto: data.profile_photo,
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
+    }
+  }, []);
+
   const handleInputChange = (e) => {
-    const { name, value, type, files } = e.target;
+    const { name, value, type } = e.target;
 
     if (type === "file") {
       setBuyerData({
         ...buyerData,
-        [name]: files[0],
+        [name]: e.target.files[0],
       });
     } else { 
       setBuyerData({
@@ -55,42 +87,48 @@ const EditAccount = () => {
       });
     }
   };
+  
 
   const handleSavebuyerName = async () => {
-    try {
-      await axios.put(`/api/shops/${buyerID}/name`, {
-        buyerName: buyerData.buyerName,
-      });
-      // Handle success
-    } catch (error) {
-      // Handle error
-    }
-  };
+      const buyerName = {
+        buyerName: buyerData.buyerName, 
+      };
+      await axios.put(`${server}/api/user/edit-name/${userID}`, buyerName).then((res) => {
+        toast.success(res.data.message);
+  })};
 
-  const handleSaveShopAddress = async () => {};
+
+  const handleSaveBuyerAddress = async () => {
+    const buyerAddress = {
+      homeNo: buyerData.homeNo,
+      street: buyerData.street,
+      city: buyerData.city,
+      district: buyerData.district,
+    };
+    await axios.put(`${server}/api/user/edit-address/${userID}`, buyerAddress).then((res) => {
+      toast.success(res.data.message);
+  })};
 
   const handleSaveProfilePhoto = async () => {
+
     const formData = new FormData();
     formData.append("profilePhoto", buyerData.profilePhoto);
-
     try {
-      await axios.put(`/api/shops/${buyerID}/profile-photo`, formData);
-      // Handle success
-    } catch (error) {
-      // Handle error
-    }
-  };
-
-  const handleSavebuyerDescription = async () => {
-    try {
-      await axios.put(`/api/shops/${buyerID}/description`, {
-        buyerDescription: buyerData.buyerDescription,
+      await axios.put(`${server}/api/user/edit-photo/${userID}`, formData,
+      {
+        headers: {
+        "Content-Type": "multipart/form-data", 
+      }}).then((res) => {
+        toast.success(res.data.message); 
       });
-      // Handle success
+      // // Handle success
     } catch (error) {
       // Handle error
+      console.error("An error occurred:", error);
+      toast.error("An error occurred. Please try again later.");
     }
   };
+
 
   return (
     <div className="md:w-3/4 pl-4 mr-8 container mx-auto items-center bg-white rounded-lg mt-2 p-4 shadow-md">
@@ -100,8 +138,8 @@ const EditAccount = () => {
       <hr className="my-4" />
       <div className="mb-4">
         <h3 className="text-lg font-semibold">Buyer Information</h3>
-        <p className="text-gray-600">Buyer Name: {buyerData.buyerName}</p>
-        <p className="text-gray-600">Buyer Email: {buyerData.buyerEmail}</p>
+        <p className="text-gray-600">Buyer Name : {buyerData.buyerName}</p>
+        <p className="text-gray-600">Buyer Email : {buyerData.buyerEmail}</p>
       </div>
 
       {/* Edit Buyer Name */}
@@ -113,6 +151,7 @@ const EditAccount = () => {
           name="buyerName"
           placeholder={buyerData.buyerName}
           onChange={handleInputChange}
+          required
           className="border rounded-md p-2 w-full border-gray-300 focus:border-[#3CB44A] "
         />
       </div>
@@ -130,9 +169,10 @@ const EditAccount = () => {
         <input
           type="text"
           name="homeNo"
-          value={buyerData.shopNo}
+          value={buyerData.homeNo}
           onChange={handleInputChange}
           placeholder="Home Number"
+          required
           className="w-full border font-normal border-gray-300 rounded-md py-2 px-3 mb-2 focus:border-[#3CB44A]"
         />
         <input
@@ -141,15 +181,17 @@ const EditAccount = () => {
           value={buyerData.street}
           onChange={handleInputChange}
           placeholder="Street"
+          required
           className="w-full border font-normal border-gray-300 rounded-md py-2 px-3 mb-2 focus:border-[#3CB44A]"
         />
         <div className="flex">
           <input
             type="text"
-            name="addressCity"
-            value={buyerData.addressCity}
+            name="city"
+            value={buyerData.city}
             onChange={handleInputChange}
             placeholder="City"
+            required
             className="w-full border font-normal border-gray-300 rounded-md py-2 px-3 mb-2 mr-2 focus:border-[#3CB44A]"
           />
           <select
@@ -163,6 +205,7 @@ const EditAccount = () => {
               <option
                 key={district}
                 value={district}
+                required
                 className="font-semibold hover:bg-[#24692d] hover:text-white"
               >
                 {district}
@@ -171,7 +214,7 @@ const EditAccount = () => {
           </select>
         </div>
         <button
-          onClick={handleSavebuyerName}
+          onClick={handleSaveBuyerAddress}
           className="bg-[#3da749] hover:bg-[#296b33] text-white rounded-3xl py-2 px-4 mt-2"
         >
           Save Address
@@ -188,6 +231,7 @@ const EditAccount = () => {
           accept="image/*"
           onChange={handleInputChange}
           className="mt-2"
+          required
         />
       </div>
       <button
@@ -195,25 +239,6 @@ const EditAccount = () => {
         className="bg-[#3da749] hover:bg-[#296b33] text-white rounded-3xl py-2 px-4 mt-2"
       >
         Save Profile Photo
-      </button>
-
-      {/* Edit Buyer Description */}
-      <hr className="my-4" />
-      <div className="mb-4 relative">
-        <h3 className="text-lg font-semibold">Edit Buyer Description</h3>
-        <textarea
-          name="buyerDescription"
-          placeholder={buyerData.buyerDescription}
-          onChange={handleInputChange}
-          className="border rounded-md p-2 w-full border-gray-300 focus:border-[#3CB44A] focus:outline-none"
-          rows="4"
-        />
-      </div>
-      <button
-        onClick={handleSavebuyerDescription}
-        className="bg-[#3da749] hover:bg-[#296b33] text-white rounded-3xl py-2 px-4 mt-2"
-      >
-        Save Description
       </button>
     </div>
   );
