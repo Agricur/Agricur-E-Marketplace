@@ -10,22 +10,22 @@ const Help = () => {
             <div className="bg-[#D9D9D9] pt-40 pb-12">
             <div className="max-w-3xl mx-auto">
             <div className="bg-white rounded-lg p-4 shadow-md m-4">
-            <h1 className="text-3xl font-semibold mb-6">Help Center</h1>
+            <h1 className="text-3xl font-bold mb-6 text-center">Help Center</h1>
 
             {/* About Our Website */}
             <section className="mb-4">
-                <h2 className="text-2xl font-semibold mb-4 text-blue-900">About Our Website</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-[#3CB44A]">About Our Website</h2>
                 <p>
                 Welcome to our agriculture marketplace! We are dedicated to connecting farmers, producers, and buyers in one convenient platform. Our website is designed to help you discover fresh and locally sourced agricultural products.
                 </p>
             </section>
 
-            <h1 className="text-2xl font-semibold text-blue-900 mb-4">Need Help?</h1>
+            <h1 className="text-2xl font-semibold text-[#3CB44A] mb-4">Need Help?</h1>
             <p className="mb-4">
             We're here to assist you. If you encounter any issues or have questions, please don't hesitate to contact us.
             </p>
 
-            <h2 className="text-2xl font-semibold text-blue-900 mb-4">Common Questions</h2>
+            <h2 className="text-2xl font-semibold text-[#3CB44A] mb-4">Common Questions</h2>
                 <ul className="list-disc list-inside  mb-4">
                 <li>How do I create an account?</li>
                 <li>How can I list products for sale?</li>
@@ -36,7 +36,7 @@ const Help = () => {
 
             {/* How to Buy Items */}
             <section className="mb-4">
-                <h2 className="text-2xl text-blue-900 font-semibold mb-4">How to Buy Items</h2>
+                <h2 className="text-2xl text-[#3CB44A] font-semibold mb-4">How to Buy Items</h2>
                 <p>
                 Buying items on our platform is simple and secure. Follow these steps:
                 </p>
@@ -54,7 +54,7 @@ const Help = () => {
 
             {/* About Your Cart */}
             <section className="mb-4">
-                <h2 className="text-2xl font-semibold mb-4 text-blue-900">About Your Cart</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-[#3CB44A]">About Your Cart</h2>
                 <p>
                 Your shopping cart is where you can review and manage the items you intend to purchase. You can add, remove, or update the quantity of items in your cart before proceeding to payment.
                 </p>
@@ -62,7 +62,7 @@ const Help = () => {
 
             {/* Payment Methods */}
             <section className="mb-4">
-                <h2 className="text-2xl font-semibold mb-4 text-blue-900">Payment Methods</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-[#3CB44A]">Payment Methods</h2>
                 <p>
                 We offer a variety of secure payment methods to make your purchasing experience convenient. You can pay for your orders using:
                 </p>
@@ -80,14 +80,14 @@ const Help = () => {
 
             {/* Demo Video Link */}
             <section className="mt-4">
-                <h2 className="text-2xl font-semibold mb-4 text-blue-900 ">Watch Our Demo</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-[#3CB44A] ">Watch Our Demo</h2>
                 <p>
                 If you're new to our platform, you can watch a demo video on how to use it on our{' '}
                 <a
                     href="https://youtu.be/Onr_UMxF8KQ?si=Wf2koJ4q61JFl2-x"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
+                    className="text-[#3CB44A] hover:underline"
                 >
                     YouTube channel
                 </a>.
@@ -96,10 +96,10 @@ const Help = () => {
 
             {/* Contact Information */}
             <section className="mt-4">
-                <h2 className="text-2xl font-semibold mb-4 text-blue-900">Contact Information</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-[#3CB44A]">Contact Information</h2>
                 <p>
                 If you couldn't find answers to your questions, feel free to{' '}
-                <a href="/contacts" className="text-blue-500 hover:underline">
+                <a href="/contacts" className="text-[#3CB44A] hover:underline">
                     contact us
                 </a> directly. We're here to help!
                 </p>
