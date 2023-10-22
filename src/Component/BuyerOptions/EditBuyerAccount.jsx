@@ -36,7 +36,7 @@ const EditAccount = (props) => {
     "Moneragala",
     "Ratnapura",
     "Kegalle",
-  ];
+  ]; 
 
   const [buyerData, setBuyerData] = useState({
     buyerName: "Buyer Name",
@@ -80,7 +80,7 @@ const EditAccount = (props) => {
         ...buyerData,
         [name]: e.target.files[0],
       });
-    } else {
+    } else { 
       setBuyerData({
         ...buyerData,
         [name]: value,
