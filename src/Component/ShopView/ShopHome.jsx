@@ -3,7 +3,6 @@ import { React, useState, useEffect } from "react";
 import ShopDetail from "./ShopDetail";
 import ShopItems from "./ShopItems";
 import ShopImg from '../../Images/shop.jpg'
-import ProductImg from '../../Images/product_1.jpg'
 import { server } from "../../server";
 
 const ShopHome = (shopID) => {
