@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { server } from "../../server";
@@ -71,10 +70,10 @@ const EditAccount = (props) => {
           console.error("Error fetching user data:", error);
         });
     }
-  }, [userCookie]);
+  }, []);
 
   const handleInputChange = (e) => {
-    const { name, value, type, files } = e.target;
+    const { name, value, type } = e.target;
 
     if (type === "file") {
       setBuyerData({
@@ -120,8 +119,7 @@ const EditAccount = (props) => {
         headers: {
         "Content-Type": "multipart/form-data", 
       }}).then((res) => {
-        toast.success(res.data.message);
-        
+        toast.success(res.data.message); 
       });
       // // Handle success
     } catch (error) {

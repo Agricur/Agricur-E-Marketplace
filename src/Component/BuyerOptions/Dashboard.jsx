@@ -61,7 +61,7 @@ const Dashboard = (props) => {
   });
 
   useEffect(() => {
-    if (props.user_type) {
+    if (props.user_type === "true") {
       fetch(`${server}/api/seller/sellerData/${userID}`, {
         method: "GET",
       })
@@ -81,7 +81,6 @@ const Dashboard = (props) => {
           console.error("Error fetching buyer data:", error);
         });
     } else {
-      console.log("ddd");
       fetch(`${server}/api/user/userData/${userID}`, {
         method: "GET",
       })

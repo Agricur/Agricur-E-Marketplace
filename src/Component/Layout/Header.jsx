@@ -23,7 +23,7 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("Name");
   const [isSeller, setIsSeller] = useState(false);
-  const [profileImage, setProfilePhoto] = useState(null);
+  const [profileImage, setProfilePhoto] = useState('');
   const [totalItems,setTotalItems] = useState(0);
 
   
@@ -102,7 +102,7 @@ export default function Header() {
         setTotalItems(0);
       }
     }
-  }, []);
+  }, [userCookie]);
 
   return (
     <header className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8">
@@ -167,17 +167,11 @@ export default function Header() {
                 <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-[#296b33] focus:ring-offset-2 focus:ring-offset-white">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
-                  {!profileImage ? (
-                    <img
+                  <img
                     className="h-8 w-8 rounded-full"
-                    src={profilePhoto}
+                    src={profileImage?`${server}/${profileImage}`:`${profilePhoto}`}
                     alt=""
-                  />):
-                  (<img
-                    className="h-8 w-8 rounded-full"
-                    src={`${server}/${profileImage}`}
-                    alt="" />
-                    )};
+                  />
                 </Menu.Button>
               </div>
               <Transition

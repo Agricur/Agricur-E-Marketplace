@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import EditAccount from "../BuyerOptions/EditBuyerAccount";
 import OrderHistory from "../Item/OrderHistory";
 import BuyerDashboard from "../BuyerOptions/Dashboard";
+import profileImage from "../../Assets/profilePhoto.png"
 import Messenger from "../Messenger/ViewMessages";
 import { useNavigate } from "react-router-dom";
 import { server } from "../../server";
@@ -18,7 +19,7 @@ const BuyerAccount = (props) => {
   });
 
   useEffect(() => {
-    fetch(`${server}/api/user/userData/${userID}`,{
+    fetch(`${server}/api/user/getInfo/${userID}`,{
       method: "GET"
     })
       .then((response) => response.json())
@@ -33,7 +34,7 @@ const BuyerAccount = (props) => {
       .catch((error) => {
         console.error("Error fetching buyer data:", error);
       });
-  });
+  }, []);
 
   const renderComponent = () => {
     if (selectedNavItem === "Dashboard") {
@@ -58,7 +59,8 @@ const BuyerAccount = (props) => {
         <div className="md:w-1/4 bg-white rounded-lg p-4 mx-8 shadow-md mb-4 md:mb-0">
           {/* Profile Photo */}
           <div className="h-36 w-36 mx-auto">
-            <img src={`${server}/${buyerData.profilePhoto}`} className="rounded-full" alt="Profile" />
+            <img src={buyerData.profilePhoto === null ? profileImage : `${server}/${buyerData.profilePhoto}`} className="rounded-full"
+             alt="profile photo" />
           </div>
 
           {/* Buyer Name */}
