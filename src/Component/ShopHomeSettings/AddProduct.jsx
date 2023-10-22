@@ -48,9 +48,6 @@ const AddProductForm = ({ onBack, user_id }) => {
     formData.append("quantityUnit", productData.quantityUnit);
     formData.append("user_id", user_id);
 
-    
-
-    // console.log(formData.file);
 
     try {
       // Send the form data to the server using axios or a similar library
