@@ -1,20 +1,46 @@
-import React, { useState } from "react";
-import profilePhoto from '../../Images/userImage.png';
+import React, { useEffect, useState } from "react";
 import EditAccount from "../BuyerOptions/EditBuyerAccount";
 import OrderHistory from "../Item/OrderHistory";
 import BuyerDashboard from "../BuyerOptions/Dashboard";
+import profileImage from "../../Assets/profilePhoto.png"
 import Messenger from "../Messenger/ViewMessages";
 import { useNavigate } from "react-router-dom";
+import { server } from "../../server";
 
 const BuyerAccount = (props) => {
+  const userType = props.user_type
   const userID = props.user_id
   const [selectedNavItem, setSelectedNavItem] = useState("Dashboard");
   const navigate = useNavigate();
+  const [buyerData, setBuyerData] = useState({
+    buyerName: "Buyer Name",
+    buyerEmail: "Buyer Email",
+    profilePhoto: null,
+  });
+
+  useEffect(() => {
+    fetch(`${server}/api/user/getInfo/${userID}`,{
+      method: "GET"
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setBuyerData({
+          ...buyerData,
+          buyerName: data.first_name,
+          buyerEmail: data.email,
+          profilePhoto: data.profile_photo,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching buyer data:", error);
+      });
+  }, []);
+
   const renderComponent = () => {
     if (selectedNavItem === "Dashboard") {
-      return <BuyerDashboard/>;
+      return <BuyerDashboard user_id={ userID } user_type={ userType }/>;
     } else if (selectedNavItem === "Edit Account") {
-      return <EditAccount/>;
+      return <EditAccount user_id={ userID }/>;
     } else if (selectedNavItem === "Messages") {
       return <Messenger/>;
     } else if (selectedNavItem === "Order History") {
@@ -22,7 +48,6 @@ const BuyerAccount = (props) => {
     } else if (selectedNavItem === "View Shop") {
       navigate("/shopAccount");
     }
-
   };
 
   
@@ -33,16 +58,17 @@ const BuyerAccount = (props) => {
         {/* Left Rectangle */}
         <div className="md:w-1/4 bg-white rounded-lg p-4 mx-8 shadow-md mb-4 md:mb-0">
           {/* Profile Photo */}
-          <div className="rounded-full h-36 w-36 mx-auto">
-            <img src={profilePhoto} alt="Profile" />
+          <div className="h-36 w-36 mx-auto">
+            <img src={buyerData.profilePhoto === null ? profileImage : `${server}/${buyerData.profilePhoto}`} className="rounded-full"
+             alt="profile photo" />
           </div>
 
           {/* Buyer Name */}
-          <h2 className="text-xl text-center font-semibold mt-4">Shop Name</h2>
+          <h2 className="text-xl text-center font-semibold mt-4">{buyerData.buyerName}</h2>
 
           {/* Email Address */}
           <p className="text-gray-600 text-center text-sm mt-2">
-            shopname@example.com
+            {buyerData.buyerEmail}
           </p>
 
           {/* Navigation Bar */}

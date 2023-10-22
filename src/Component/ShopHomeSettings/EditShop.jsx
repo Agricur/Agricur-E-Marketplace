@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { server } from "../../server";
+import { toast } from "react-toastify";
 
-const EditShop = () => {
-  const { shopId } = useParams();
+const EditShop = (props) => {
+  
+  const userID = props.user_id;
 
   const districts = [
     "Colombo",
@@ -34,12 +38,39 @@ const EditShop = () => {
   ];
 
   const [shopData, setShopData] = useState({
+    shopID: "",
     shopName: "Shop Name",
-    sellerName: "Seller Name",
-    sellerEmail: "seller@example.com",
-    shopDescription: "Shop Description",
-    profilePhoto: null,
+    sellerName: "Seller",
+    sellerEmail: "mail@example.com",
+    shopDescription: "",
+    shopImage: null,
+    shopNo: "",
+    street: "",
+    city: "",
+    district: "",
   });
+
+
+  useEffect(() => {
+    fetch(`${server}/api/shop/getShopInfo/${userID}`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setShopData({
+          ...shopData,
+          shopName: data.shop_name,
+          sellerName: data.seller_name,
+          sellerEmail: data.seller_email,
+          shopImage: data.shop_image,
+          shopID: data.shop_id,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, []);
+
 
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -57,39 +88,61 @@ const EditShop = () => {
     }
   };
 
-  const handleSaveShopName = async () => {
-    try {
-      await axios.put(`/api/shops/${shopId}/name`, {
-        shopName: shopData.shopName,
-      });
-      // Handle success
-    } catch (error) {
-      // Handle error
-    }
-  };
+console.log(shopData);
 
-  const handleSaveShopAddress = async () => {};
+  const handleSaveShopName = async () => {
+    const shopName = {
+      shopName: shopData.shopName, 
+    };
+    await axios.put(`${server}/api/shop/edit-name/${shopData.shopID}`, shopName).then((res) => {
+      toast.success(res.data.message);
+})};
+
+const handleSaveShopAddress = async () => {
+  const shopAddress = {
+    shopNo: shopData.shopNo,
+    street: shopData.street,
+    city: shopData.city,
+    district: shopData.district,
+  };
+  await axios.put(`${server}/api/shop/edit-address/${shopData.shopID}`, shopAddress).then((res) => {
+    toast.success(res.data.message);
+})
+};
 
   const handleSaveProfilePhoto = async () => {
     const formData = new FormData();
-    formData.append("profilePhoto", shopData.profilePhoto);
+    formData.append("shopImage", shopData.shopImage);
 
     try {
-      await axios.put(`/api/shops/${shopId}/profile-photo`, formData);
-      // Handle success
+      await axios.put(`${server}/api/shop/edit-photo/${shopData.shopID}`, formData,
+      {
+        headers: {
+        "Content-Type": "multipart/form-data", 
+      }}).then((res) => {
+        toast.success(res.data.message);
+      });
+      // // Handle success
     } catch (error) {
       // Handle error
+      console.error("An error occurred:", error);
+      toast.error("An error occurred. Please try again later.");
     }
   };
 
   const handleSaveShopDescription = async () => {
+    const shopDescription = {
+      shopDescription: shopData.shopDescription,
+    };
     try {
-      await axios.put(`/api/shops/${shopId}/description`, {
-        shopDescription: shopData.shopDescription,
+      await axios.put(`${server}/api/shop/edit-description/${shopData.shopID}`, shopDescription).then((res) => {
+        toast.success(res.data.message);
       });
       // Handle success
     } catch (error) {
       // Handle error
+      console.error("An error occurred:", error);
+      toast.error("An error occurred. Please try again later.");
     }
   };
 
@@ -147,8 +200,8 @@ const EditShop = () => {
         <div className="flex">
           <input
             type="text"
-            name="addressCity"
-            value={shopData.addressCity}
+            name="city"
+            value={shopData.city}
             onChange={handleInputChange}
             placeholder="City"
             className="w-full border font-normal border-gray-300 rounded-md py-2 px-3 mb-2 mr-2 focus:border-[#3CB44A]"
@@ -172,7 +225,7 @@ const EditShop = () => {
           </select>
         </div>
         <button
-          onClick={handleSaveShopName}
+          onClick={handleSaveShopAddress}
           className="bg-[#3da749] hover:bg-[#296b33] text-white rounded-3xl py-2 px-4 mt-2"
         >
           Save Address
@@ -185,7 +238,7 @@ const EditShop = () => {
         <h3 className="text-lg font-semibold">Edit Profile Photo</h3>
         <input
           type="file"
-          name="profilePhoto"
+          name="shopImage"
           accept="image/*"
           onChange={handleInputChange}
           className="mt-2"
@@ -204,7 +257,8 @@ const EditShop = () => {
         <h3 className="text-lg font-semibold">Edit Shop Description</h3>
         <textarea
           name="shopDescription"
-          placeholder={shopData.shopDescription}
+          value={shopData.shopDescription}
+          placeholder="Shop Description"
           onChange={handleInputChange}
           className="border rounded-md p-2 w-full border-gray-300 focus:border-[#3CB44A] focus:outline-none"
           rows="4"
