@@ -16,7 +16,10 @@ import Fruits from "./Screens/Categories/FruitsPage.jsx";
 import Vegetables from "./Screens/Categories/VegetablesPage.jsx";
 import Grains from "./Screens/Categories/GrainsPage.jsx";
 import Equipments from "./Screens/Categories/EquipmentsPage.jsx";
-import ErrorPage from "./Component/Layout/PageNotFound.jsx"
+import ErrorPage from "./Component/Layout/PageNotFound.jsx";
+import Help from "./Component/NavBarItems/Help.jsx";
+import Contacts from "./Component/NavBarItems/Contacts.jsx";
+import Tips from "./Component/NavBarItems/Tips.jsx"
 
 
 export {LoginPage, 
@@ -38,4 +41,7 @@ export {LoginPage,
         Grains,
         Equipments,
         ErrorPage,
+        Help,
+        Contacts,
+        Tips
     };
