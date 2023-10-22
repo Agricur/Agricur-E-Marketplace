@@ -68,7 +68,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="w-full md:w-[50%] relative">
+    <div data-testid="searchbar" className="w-full md:w-[50%] relative">
       <form>
         <div className="relative py-1.5">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -81,9 +81,9 @@ const SearchBar = () => {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
               />
             </svg>

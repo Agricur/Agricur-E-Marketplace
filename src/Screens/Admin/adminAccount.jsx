@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 const AdminAccountPage = () => {
   const [type, setType] = useState("");
   const [AdminID,setAdminID] = useState("");
+  const [email,setEmail] = useState("");
+  const [firstName,setFirstName] = useState("");
   const adminCookie = Cookies.get("jwtToken-admin");
   const navigate = useNavigate();
 
@@ -25,6 +27,8 @@ const AdminAccountPage = () => {
         .then((data) => {
           setType(data.type);
           setAdminID(data.admin_id)
+          setEmail(data.email);
+          setFirstName(data.first_name);
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
@@ -41,7 +45,7 @@ const AdminAccountPage = () => {
         )}
         {adminCookie && type === 'admin' && (
           <>
-            <AdminAccount />
+            <AdminAccount adminID={AdminID} adminName = {firstName} email ={email} />
             <Footer />
           </>
         )}

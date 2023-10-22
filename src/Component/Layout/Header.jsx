@@ -100,7 +100,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8">
+    <header data-testid="header" className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8">
       {/* logo */}
       <div className="flex lg:flex-1">
         <a href="/" className="p-1">

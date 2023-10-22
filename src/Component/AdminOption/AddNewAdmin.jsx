@@ -84,7 +84,7 @@ const AddNewAdmin = () => {
   };
 
   return (
-    <div className="md:w-3/4 pl-4 mr-8 container mx-auto items-center bg-white rounded-lg mt-2 p-4 shadow-md">
+    <div className="md:w-3/4 pl-4 mr-8 container mx-auto items-center bg-white rounded-lg mt-0 p-4 shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Add a New Admin</h2>
 
       <div className="mb-4 relative">
