@@ -4,6 +4,9 @@ import adminPhoto from "../../Images/adminImage.png";
 import Dashboard from "../AdminOption/AdminDashboard";
 import AddNewAdmin from "../AdminOption/AddNewAdmin";
 import EditAccount from "../AdminOption/EditAccount";
+import ViewCouriers from "../AdminOption/ViewCouriers";
+import AddNewCourier from "../AdminOption/AddNewCourier";
+import ViewShops from "../AdminOption/ViewShops";
 import Cookies from "js-cookie";
 import { server } from "../../server";
 import { useNavigate } from "react-router-dom";
@@ -33,6 +36,12 @@ const AdminAccountPage = (props) => {
             contactNo={props.contact}
           />
         );
+      case "ViewShops":
+        return <ViewShops />
+      case "ViewCouriers":
+        return <ViewCouriers />;
+      case "AddCourierServices":
+        return <AddNewCourier />;
       default:
         return <Dashboard />;
     }
@@ -193,17 +202,7 @@ const AdminAccountPage = (props) => {
             </button>
             <button
               className={`${
-                navItem === "ViewBuyers"
-                  ? "bg-[#316c39] text-white w-full p-4 block font-bold py-2 px-4 rounded border-b "
-                  : "w-full p-4 block font-bold py-2 px-4 rounded border-b bg-[#d9eada] hover:bg-[#3da749] border-gray-400"
-              }`}
-              onClick={() => setNavItem("ViewBuyers")}
-            >
-              View Buyers
-            </button>
-            <button
-              className={`${
-                navItem === "ViewCouriera"
+                navItem === "ViewCouriers"
                   ? "bg-[#316c39] text-white w-full p-4 block font-bold py-2 px-4 rounded border-b "
                   : "w-full p-4 block font-bold py-2 px-4 rounded border-b bg-[#d9eada] hover:bg-[#3da749] border-gray-400"
               }`}
@@ -262,9 +261,8 @@ const AdminAccountPage = (props) => {
           </div>
         </div>
 
-        {/* <Dashboard /> */}
-        {/* <AddNewAdmin /> */}
-        {renderComponent()}
+          {renderComponent()}
+
       </div>
     </div>
   );
