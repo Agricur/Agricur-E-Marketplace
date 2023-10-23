@@ -51,14 +51,14 @@ const Checkout = () => {
               Shipping Address
             </h1>
             <p className="inline">
-              <b>Kamal De Silva</b>
+              <b>Ravindu Sayuranga</b>
             </p>
-            <p className="inline mx-2">071 234 5678</p>
-            <p>No: 160, </p>
+            <p className="inline mx-2">0784567883</p>
+            <p>No: 22/9, </p>
             <p>Kanaththa Road, </p>
-            <p>Ja-Ela.</p>
+            <p>Weligama</p>
             <p>
-              <strong>District</strong> - Gampaha
+              <strong>District</strong> - Galle
             </p>
           </div>
           <div>
@@ -138,12 +138,12 @@ const Checkout = () => {
                     scope="row"
                     class="py-4 font-medium text-black whitespace-nowrap dark:text-black"
                   >
-                    Product_1  x1
+                    Mangos
                   </th>
-                  <td class="py-4">20.00</td>
-                  <td class="py-4">20.00</td>
+                  <td class="py-4">350.00</td>
+                  <td class="py-4">1050.00</td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-[#d9eada] dark:border-gray-700 hover:bg-[#d9eada]  dark:hover:bg-[#89a88b]">
+                {/* <tr class="bg-white border-b dark:bg-[#d9eada] dark:border-gray-700 hover:bg-[#d9eada]  dark:hover:bg-[#89a88b]">
                   <th
                     scope="row"
                     class="py-4 font-medium text-black whitespace-nowrap  "
@@ -152,8 +152,8 @@ const Checkout = () => {
                   </th>
                   <td class="py-4">30.00</td>
                   <td class="py-4">60.00</td>
-                </tr>
-                <tr class="bg-white dark:bg-[#d9eada] hover:bg-gray-50 dark:hover:bg-[#89a88b]">
+                </tr> */}
+                {/* <tr class="bg-white dark:bg-[#d9eada] hover:bg-gray-50 dark:hover:bg-[#89a88b]">
                   <th
                     scope="row"
                     class="py-4 font-medium text-black whitespace-nowrap dark:text-black"
@@ -162,7 +162,7 @@ const Checkout = () => {
                   </th>
                   <td class="py-4">40.00</td>
                   <td class="py-4">120.00</td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>
@@ -173,7 +173,7 @@ const Checkout = () => {
           </div>
           <div className="my-4 flex justify-between">
             <p className="text-xl font-medium inline">Total</p>
-            <p className="text-xl font-semibold inline">Rs. 400</p>
+            <p className="text-xl font-semibold inline">Rs. 1250</p>
           </div>
           <div className="my-4">
               <button
