@@ -33,6 +33,7 @@ export default function Header() {
     setIsLoggedIn(false);
   };
 
+
   useEffect(() => {
     if (adminCookie) {
       fetch(`${server}/api/admin/data`, {
@@ -55,6 +56,7 @@ export default function Header() {
         });
     }
   }, []);
+
 
   return (
     <header className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8">
