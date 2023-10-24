@@ -3,6 +3,8 @@ import StarRating from "../Rating/StarRating";
 import { server } from "../../server";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import StarRatings from "react-star-ratings";
+import axios from "axios";
 
 import {
   FaMapMarkerAlt,
@@ -12,13 +14,81 @@ import {
   FaPlus,
   FaMinus,
 } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 
 const ProductDetailPage = (props) => {
   const [quantity, setQuantity] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(1);
+  const [isRatingPopupVisible, setRatingPopupVisible] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [userId, setuserID] = useState("");
+  const [stars, setStars] = useState(0);
+
   const userCookie = Cookies.get("jwtToken");
 
+  const productID = useParams().ProductId;
+
   const slides = [props.item.image, props.item.image2, props.item.image];
+
+  console.log(rating)
+
+  useEffect(() => {
+    if (userCookie) {
+      fetch(`${server}/api/user/data`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${userCookie}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setuserID(data.user_id);
+        });
+    }
+  }, [userCookie]);
+  
+  useEffect(() => {
+    fetch(`${server}/api/product/getRating/${productID}`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setRating(parseFloat(data.rating.rating));
+        // setRating(1.2)
+      }); 
+  },[stars]);
+
+  const handleOpenRatingPopup = () => {
+    setRatingPopupVisible(true);
+  };
+
+  const handleCloseRatingPopup = () => {
+    setRatingPopupVisible(false);
+  };
+
+  const handleSubmitRating = async () => {
+
+    setRatingPopupVisible(false);
+
+    const data = {
+      rating: rating,
+      user_id: userId,
+    };
+
+    await axios.post(`${server}/api/product/addRating/${props.item.product_id}`,data,)
+      .then((response) =>{
+        toast.success("Rating added successfully");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleRatingChange = (newRating) => {
+    // setStars(newRating);
+    setRating(newRating);
+  };
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -50,7 +120,6 @@ const ProductDetailPage = (props) => {
   };
 
   const handleAddToCart = () => {
-    
     // Retrieve the current cart from localStorage
     var currentCart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -80,11 +149,11 @@ const ProductDetailPage = (props) => {
       localStorage.setItem("cart", JSON.stringify(currentCart));
       if (!userCookie) {
         toast.success("Product added to the cart");
-      };
+      }
     }
 
     if (userCookie) {
-      console.log(currentCart)
+      console.log(currentCart);
       fetch(`${server}/api/cart/insertProduct`, {
         method: "POST",
         headers: {
@@ -168,12 +237,13 @@ const ProductDetailPage = (props) => {
           <div className="border shadow-lg  rounded p-4 mb-4 bg-[#d9eada]">
             <h2 className="text-3xl font-bold mb-2">{props.item.name}</h2>
             <div className="flex items-center mb-2">
-              <div class="flex items-center">
-
-                <StarRating rating={4.95} />
-
-                <p class="ml-2 text-sm font-medium text-black-500 dark:text-black-400">
-                  4.95 out of 5
+              <div
+                className="flex items-center"
+                onClick={handleOpenRatingPopup}
+              >
+                <StarRating rating={rating} />
+                <p className="ml-2 text-sm font-medium text-black-500 dark:text-black-400">
+                  {rating} out of 5
                 </p>
               </div>
             </div>
@@ -208,16 +278,14 @@ const ProductDetailPage = (props) => {
             </div>
 
             <div className="flex justify-between">
-            <a href="/checkout">
-              <button 
-                className="bg-[#3da749] justify-items-center text-white md:h-16 sm:h-16 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16"
-              >
-                Buy Now
-              </button>
+              <a href="/checkout">
+                <button className="bg-[#3da749] justify-items-center text-white md:h-12 sm:h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16">
+                  Buy Now
+                </button>
               </a>
               <button
                 onClick={handleAddToCart}
-                className="bg-[#3da749] justify-items-center text-white lg:h-16 md:h-20  sm:h-16 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16"
+                className="bg-[#3da749] justify-items-center text-white lg:h-12 md:h-12  sm:h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16"
               >
                 Add to Cart
               </button>
@@ -265,30 +333,60 @@ const ProductDetailPage = (props) => {
             </button>
             <div className="mt-2">
               <div class="flex items-center">
-                <svg
-                  class="w-4 h-4 text-yellow-300 mr-1"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 22 20"
-                >
-                  {/* Star SVG */}
-                </svg>
                 {/* Add more stars here based on your shop rating */}
-                <StarRating rating={4.95} />
+                <StarRating rating={3} />
                 <p class="ml-2 text-sm font-medium text-black-500 dark:text-black-400">
-                  4.95 out of 5
+                  3 out of 5
                 </p>
               </div>
             </div>
             <a href="/shophome">
-            <button className="bg-[#3da749] text-white py-2 px-4 rounded-full mt-2 hover:bg-[#296b33]">
-              Visit Store
-            </button>
+              <button className="bg-[#3da749] text-white py-2 px-4 rounded-full mt-2 hover:bg-[#296b33]">
+                Visit Store
+              </button>
             </a>
           </div>
         </div>
       </div>
+      {isRatingPopupVisible && userCookie && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-4 rounded-lg shadow-lg">
+            <span
+              className="absolute top-0 right-0 m-4 cursor-pointer"
+              onClick={handleCloseRatingPopup}
+            >
+              &times;
+            </span>
+            <h3 className="text-xl font-semibold mb-2">Add Star Rating</h3>
+            <div className="star-rating">
+              <StarRatings
+                rating={rating}
+                starRatedColor="gold"
+                starHoverColor="gold"
+                changeRating={handleRatingChange}
+                numberOfStars={5}
+                starDimension="30px"
+                starSpacing="5px"
+              />
+            </div>
+
+            <div className="mt-4 flex justify-center space-x-4">
+              <button
+                onClick={handleCloseRatingPopup}
+                className="bg-red-500 text-white px-4 py-1 rounded-3xl hover:bg-red-600"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmitRating}
+                className="bg-[#3da749] text-white px-4 py-1 rounded-3xl hover:bg-[#296b33]"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
