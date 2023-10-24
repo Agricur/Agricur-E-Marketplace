@@ -71,8 +71,8 @@ export default function AllProducts(user_id) {
                   </p>
                 </div>
                 <div className="flex justify-start items-center mt-2">
-                  <StarRating rating={4.5} />
-                  <p className="text-gray-600 ml-2">{4.5}</p>
+                  <StarRating rating={product.rating} />
+                  <p className="text-gray-600 ml-2">{product.rating}</p>
                 </div>
               </div>
             ))}
