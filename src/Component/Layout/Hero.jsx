@@ -15,7 +15,7 @@ const HeroSection = () => {
   return (
     <hero className="pt-20" >
       <div
-        className="bg-cover bg-center h-[85vh] relative]"
+        className="bg-cover bg-center h-[100vh] relative]"
         style={{ backgroundImage: `url(${LogImg})` }}
       >
         <div className="bg-black bg-opacity-50 h-full flex flex-col justify-center text-white text-center">

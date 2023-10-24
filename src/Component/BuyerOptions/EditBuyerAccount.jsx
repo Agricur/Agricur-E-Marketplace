@@ -95,6 +95,7 @@ const EditAccount = (props) => {
       };
       await axios.put(`${server}/api/user/edit-name/${userID}`, buyerName).then((res) => {
         toast.success(res.data.message);
+        window.location.reload();
   })};
 
 
@@ -107,6 +108,7 @@ const EditAccount = (props) => {
     };
     await axios.put(`${server}/api/user/edit-address/${userID}`, buyerAddress).then((res) => {
       toast.success(res.data.message);
+      window.location.reload();
   })};
 
   const handleSaveProfilePhoto = async () => {
@@ -120,12 +122,14 @@ const EditAccount = (props) => {
         "Content-Type": "multipart/form-data", 
       }}).then((res) => {
         toast.success(res.data.message); 
+        window.location.reload();
       });
       // // Handle success
     } catch (error) {
       // Handle error
       console.error("An error occurred:", error);
       toast.error("An error occurred. Please try again later.");
+      
     }
   };
 

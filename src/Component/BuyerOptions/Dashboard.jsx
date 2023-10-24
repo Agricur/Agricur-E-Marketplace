@@ -1,54 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { server } from "../../server";
-import Img from "../../Images/product_1.jpg";
+
+const Img = `${server}/mangoes-composition-royalty-free-image-463651383-1564092088-1694332881311-666996414.png`
 
 const Dashboard = (props) => {
   const orders = [
     {
       productImage: Img,
-      product: "Order_1",
-      quantity: 1,
-      deliveryDate: "2023-08-01",
-      deliveryService: "Standard",
-      amount: "LKR 543",
-      paymentMethod: "Cash on Delivery",
-    },
-    {
-      productImage: Img,
-      product: "Order_2",
-      quantity: 2,
-      deliveryDate: "2023-08-01",
-      deliveryService: "Standard",
-      amount: "LKR 543",
-      paymentMethod: "Cash on Delivery",
-    },
-    {
-      productImage: Img,
-      product: "Order_3",
+      product: "Mangos",
       quantity: 3,
-      deliveryDate: "2023-08-01",
+      deliveryDate: "2023-11-01",
       deliveryService: "Standard",
-      amount: "LKR 543",
+      amount: "LKR 1250",
       paymentMethod: "Cash on Delivery",
     },
-    {
-      productImage: Img,
-      product: "Order_4",
-      quantity: 4,
-      deliveryDate: "2023-08-01",
-      deliveryService: "Standard",
-      amount: "LKR 543",
-      paymentMethod: "Cash on Delivery",
-    },
-    {
-      productImage: Img,
-      product: "Order_5",
-      quantity: 5,
-      deliveryDate: "2023-08-01",
-      deliveryService: "Standard",
-      amount: "LKR 543",
-      paymentMethod: "Cash on Delivery",
-    },
+    
   ];
 
   const userID = props.user_id;
