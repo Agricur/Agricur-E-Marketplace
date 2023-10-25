@@ -30,7 +30,7 @@ const ProductDetailPage = (props) => {
 
   const slides = [props.item.image, props.item.image2, props.item.image];
 
-  console.log(rating)
+  
 
   useEffect(() => {
     if (userCookie) {
@@ -46,7 +46,7 @@ const ProductDetailPage = (props) => {
         });
     }
   }, [userCookie]);
-  
+
   useEffect(() => {
     fetch(`${server}/api/product/getRating/${productID}`, {
       method: "GET",
@@ -55,8 +55,8 @@ const ProductDetailPage = (props) => {
       .then((data) => {
         setRating(parseFloat(data.rating.rating));
         // setRating(1.2)
-      }); 
-  },[stars]);
+      });
+  }, [stars]);
 
   const handleOpenRatingPopup = () => {
     setRatingPopupVisible(true);
@@ -67,7 +67,6 @@ const ProductDetailPage = (props) => {
   };
 
   const handleSubmitRating = async () => {
-
     setRatingPopupVisible(false);
 
     const data = {
@@ -75,8 +74,9 @@ const ProductDetailPage = (props) => {
       user_id: userId,
     };
 
-    await axios.post(`${server}/api/product/addRating/${props.item.product_id}`,data,)
-      .then((response) =>{
+    await axios
+      .post(`${server}/api/product/addRating/${props.item.product_id}`, data)
+      .then((response) => {
         toast.success("Rating added successfully");
         window.location.reload();
       })
@@ -179,13 +179,18 @@ const ProductDetailPage = (props) => {
     console.log("Buy Now");
   };
 
+  const quantityUnits = props.item.quantity_unit;
+
   return (
+    <>
+    {quantityUnits !== undefined ?(
     <div className="container mx-auto p-4 bg-[#D9D9D9] relative">
       <div className="grid grid-cols-1 mt-32 md:grid-cols-3 gap-4">
         {/* Left Rectangle: Photos */}
         <div className="md:col-span-1">
           <div className="border rounded p-4 mb-4 bg-white">
-            <div className="carousel-container max-w-2xl relative p-2 sm:p-4">
+            
+              <div className="carousel-container max-w-2xl relative p-2 sm:p-4">
               {slides.map((src, index) => (
                 <div
                   key={index}
@@ -229,6 +234,8 @@ const ProductDetailPage = (props) => {
                 ))}
               </div>
             </div>
+            
+            
           </div>
         </div>
 
@@ -254,27 +261,39 @@ const ProductDetailPage = (props) => {
               {props.item.price_unit}
             </div>
             <div className="mb-2">
-              {/* Quantity buttons */}
-              <button
-                className="border p-1 border-black rounded-full"
-                onClick={decreaseQuantity}
-              >
-                <FaMinus className="text-sm" />
-              </button>
-              <span className="mx-2">{quantity}</span>
-              <button
-                className="border p-1 border-black rounded-full"
-                onClick={increaseQuantity}
-              >
-                <FaPlus className="text-sm" />
-              </button>
+              {console.log(quantityUnits)}
+              {quantityUnits === "units" ? (
+                /* Quantity buttons for 'unit' */
+                <>
+                  <button
+                    className="border p-1 border-black rounded-full"
+                    onClick={decreaseQuantity}
+                  >
+                    <FaMinus className="text-sm" />
+                  </button>
+                  <span className="mx-2">{quantity}</span>
+                  <button
+                    className="border p-1 border-black rounded-full"
+                    onClick={increaseQuantity}
+                  >
+                    <FaPlus className="text-sm" />
+                  </button>
+                </>
+              ) : (
+                /* Selection panel for 'grams' or 'kg' */
+                
+                <select className="rounded-md text-navy focus:outline-none focus:ring-green-500 focus:border-green-500">
+                  {props.item.selling_quantities.map((quantity) => (
+                    <option value={quantity}>{quantity}</option>
+                  ))}
+                </select>
+              )}
             </div>
+
             <div className="mb-2 text-lg font-semibold">
               Description:
               <br />
-              Specification:
-              <br />
-              Stock:
+              Stock: {props.item.quantity} {props.item.quantity_unit}
             </div>
 
             <div className="flex justify-between">
@@ -388,7 +407,13 @@ const ProductDetailPage = (props) => {
         </div>
       )}
     </div>
+    ):(
+      <></>
+
+    )}
+    </>
   );
+  
 };
 
 export default ProductDetailPage;
