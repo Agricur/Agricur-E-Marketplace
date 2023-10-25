@@ -18,6 +18,9 @@ module.exports = {
         "1300px": "1300px",
         "400px":"400px"
       },
+      backgroundColor: {
+        'checkbox-color': '#3da749',
+      }
     },
   },
   plugins: [],
