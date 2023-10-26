@@ -40,7 +40,7 @@ const BuyerAccount = (props) => {
     if (selectedNavItem === "Dashboard") {
       return <BuyerDashboard user_id={ userID } user_type={ userType }/>;
     } else if (selectedNavItem === "Edit Account") {
-      return <EditAccount user_id={ userID }/>;
+      return <EditAccount user_id={ userID } user_type= { userType }/>;
     } else if (selectedNavItem === "Messages") {
       return <Messenger/>;
     } else if (selectedNavItem === "Order History") {
