@@ -19,7 +19,8 @@ import Equipments from "./Screens/Categories/EquipmentsPage.jsx";
 import ErrorPage from "./Component/Layout/PageNotFound.jsx";
 import Help from "./Component/NavBarItems/Help.jsx";
 import Contacts from "./Component/NavBarItems/Contacts.jsx";
-import Tips from "./Component/NavBarItems/Tips.jsx"
+import Tips from "./Component/NavBarItems/Tips.jsx";
+import CourierPage from "./Screens/User/CourierAccount.jsx"
 
 
 export {LoginPage, 
@@ -43,5 +44,6 @@ export {LoginPage,
         ErrorPage,
         Help,
         Contacts,
-        Tips
+        Tips,
+        CourierPage
     };
