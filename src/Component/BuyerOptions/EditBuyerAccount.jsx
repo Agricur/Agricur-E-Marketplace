@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 
 const EditAccount = (props) => {
 
+  const userType = props.user_type
+  const shouldRenderAddressSection = userType === "true";
   const [userID,setuserID] = useState("");
   const userCookie = Cookies.get("jwtToken");
 
@@ -107,6 +109,7 @@ const EditAccount = (props) => {
       district: buyerData.district,
     };
     await axios.put(`${server}/api/user/edit-address/${userID}`, buyerAddress).then((res) => {
+      console.log({buyerAddress})
       toast.success(res.data.message);
       window.location.reload();
   })};
@@ -166,6 +169,8 @@ const EditAccount = (props) => {
         Save Name
       </button>
 
+      { !shouldRenderAddressSection && (
+      <>
       {/* Edit Shop Address */}
       <hr className="my-4" />
       <div className="mb-4 relative">
@@ -224,6 +229,7 @@ const EditAccount = (props) => {
           Save Address
         </button>
       </div>
+      </> )}
 
       {/* Edit Profile Photo */}
       <hr className="my-4" />
