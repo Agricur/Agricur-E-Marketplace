@@ -16,6 +16,7 @@ import {
 } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
+
 const ProductDetailPage = (props) => {
   const [quantity, setQuantity] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -23,6 +24,7 @@ const ProductDetailPage = (props) => {
   const [rating, setRating] = useState(0);
   const [userId, setuserID] = useState("");
   const [stars, setStars] = useState(0);
+  const [sellingWeights, setSellingWeights] = useState("");
 
   const userCookie = Cookies.get("jwtToken");
 
@@ -57,6 +59,25 @@ const ProductDetailPage = (props) => {
         // setRating(1.2)
       });
   }, [stars]);
+
+  const handlePrice = () => {
+
+    if (sellingWeights === "") {
+      return props.item.price;
+    } else {
+      let data = sellingWeights.split("g");
+      data = data[0].split("k");
+      if(props.item.price_unit==="/kg" && data.length === 1){
+        return  (parseFloat(props.item.price *data[0]) / 1000).toFixed(2);
+      }
+      else{
+        return parseFloat(props.item.price * data[0]).toFixed;
+      }
+    }
+  }
+
+  const handleWeightChange = (e) => {
+  }
 
   const handleOpenRatingPopup = () => {
     setRatingPopupVisible(true);
@@ -257,11 +278,9 @@ const ProductDetailPage = (props) => {
 
             <div className="font-semibold">{props.item.category}</div>
             <div className="mb-2 font-bold text-2xl">
-              {props.item.price}
-              {props.item.price_unit}
+              LKR. {handlePrice()} {sellingWeights ==="" ? props.item.price_unit : ""}
             </div>
             <div className="mb-2">
-              {console.log(quantityUnits)}
               {quantityUnits === "units" ? (
                 /* Quantity buttons for 'unit' */
                 <>
@@ -282,11 +301,15 @@ const ProductDetailPage = (props) => {
               ) : (
                 /* Selection panel for 'grams' or 'kg' */
                 
-                <select className="rounded-md text-navy focus:outline-none focus:ring-green-500 focus:border-green-500">
+                <select 
+                onChange={(e) => setSellingWeights(e.target.value)}
+                className="rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500">
+                 <option value="">Quantity</option>
                   {props.item.selling_quantities.map((quantity) => (
                     <option value={quantity}>{quantity}</option>
                   ))}
                 </select>
+                
               )}
             </div>
 
