@@ -6,6 +6,7 @@ import AddNewAdmin from "../AdminOption/AddNewAdmin";
 import EditAccount from "../AdminOption/EditAccount";
 import ViewCouriers from "../AdminOption/ViewCouriers";
 import AddNewCourier from "../AdminOption/AddNewCourier";
+import AddExpertTips from "../AdminOption/AddExpertTips";
 import ViewShops from "../AdminOption/ViewShops";
 import Cookies from "js-cookie";
 import { server } from "../../server";
@@ -42,6 +43,8 @@ const AdminAccountPage = (props) => {
         return <ViewCouriers />;
       case "AddCourierServices":
         return <AddNewCourier />;
+      case "AddExpertTips":
+        return <AddExpertTips/>
       default:
         return <Dashboard />;
     }
