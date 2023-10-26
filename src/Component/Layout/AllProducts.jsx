@@ -4,21 +4,31 @@ import StarRating from "../Rating/StarRating";
 import { server } from "../../server";
 import { Link } from "react-router-dom";
 
+
 export default function AllProducts(user_id) {
 
   const [products,setProducts] = useState([]);
 
   useEffect(() => {
-    // console.log(user_id);
+    const clearLocalStorage = () => {
+      localStorage.removeItem("products");
+    };
+
+    if(localStorage.getItem("products")){
+      setProducts(JSON.parse(localStorage.getItem("products")));
+      setTimeout(clearLocalStorage, 15 * 60 * 1000);
+    }else{
     fetch(`${server}/api/product/getAllProducts`, {
       method: "GET", 
-    })
+    }) 
     .then((response) => response.json())
     .then((data) => {
       // console.log(data.products); 
-      setProducts(data.products);
+      setProducts(data.products); 
+      console.log(data.products);
+      localStorage.setItem("products", JSON.stringify(data.products));
     })
-
+  }
   }, []);
 
     const cardsPerPage = 25;
@@ -71,8 +81,8 @@ export default function AllProducts(user_id) {
                   </p>
                 </div>
                 <div className="flex justify-start items-center mt-2">
-                  <StarRating rating={4.5} />
-                  <p className="text-gray-600 ml-2">{4.5}</p>
+                  <StarRating rating={product.rating} />
+                  <p className="text-gray-600 ml-2">{product.rating}</p>
                 </div>
               </div>
             ))}

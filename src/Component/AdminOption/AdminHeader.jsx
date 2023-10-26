@@ -2,11 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import Logo from "../../Images/Logo.png";
 import profilePhoto from "../../Assets/profilePhoto.png";
-import {
-  BellIcon,
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { BellIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { server } from "../../server";
@@ -19,7 +15,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("Name");
-  const [profileImage, setProfilePhoto] = useState(profilePhoto);
+  const [profileImage, setProfilePhoto] = useState("");
 
   const navigate = useNavigate();
   const adminCookie = Cookies.get("jwtToken-admin");
@@ -37,6 +33,7 @@ export default function Header() {
     setIsLoggedIn(false);
   };
 
+
   useEffect(() => {
     if (adminCookie) {
       fetch(`${server}/api/admin/data`, {
@@ -48,15 +45,18 @@ export default function Header() {
         .then((response) => response.json())
         .then((data) => {
           const first_name = data.first_name;
+          const image = data.profile_photo;
 
           checkLoggedInStatus();
           setUserName(first_name);
+          setProfilePhoto(image);
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
-        });  
-    } 
+        });
+    }
   }, []);
+
 
   return (
     <header className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8">
@@ -99,11 +99,19 @@ export default function Header() {
             <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-[#296b33] focus:ring-offset-2 focus:ring-offset-white">
               <span className="absolute -inset-1.5" />
               <span className="sr-only">Open user menu</span>
-              <img
-                className="h-8 w-8 rounded-full"
-                src={`${profileImage}`}
-                alt=""
-              />
+              {profileImage === null ? (
+                <img
+                  className="h-8 w-8 rounded-full"
+                  src={`${profilePhoto}`}
+                  alt=""
+                />
+              ) : (
+                <img
+                  className="h-8 w-8 rounded-full"
+                  src={`${server}/${profileImage}`}
+                  alt=""
+                />
+              )}
             </Menu.Button>
           </div>
           <Transition

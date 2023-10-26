@@ -1,11 +1,12 @@
 import React from "react";
 import Img from "../../Images/product_1.jpg";
+import { server } from "../../server";
 
 const OrderHistory = () => {
   const orders = [
     {
-      productImage: Img,
-      orderNumber: "Order_1",
+      productImage: `${server}/banana-wallpaper-royalty-free-image-172876004-1564092023-1694333415911-887429097.png`,
+      orderNumber: "Banana",
       quantity: 1,
       orderedDate: "2023-08-01",
       status: "Closed",
@@ -13,41 +14,24 @@ const OrderHistory = () => {
       paymentMethod: "Cash on Delivery",
     },
     {
-      productImage: Img,
-      orderNumber: "Order_2",
-      quantity: 3,
+      productImage: `${server}/full-frame-shot-of-grapes-royalty-free-image-683832755-1564091979-1694355998164-802426651.png`,
+      orderNumber: "Grapes",
+      quantity: '3 Kg',
       orderedDate: "2023-08-06",
       status: "Finished",
       amount: "LKR 599",
       paymentMethod: "PayPal",
     },
     {
-      productImage: Img,
-      orderNumber: "Order_3",
-      quantity: 5,
+      productImage: `${server}/fresh-mushroom-champignon-on-dark-background-sliced-royalty-free-image-882824532-1564523220-1694333340265-217525673.png`,
+      orderNumber: "Mushrooms",
+      quantity: '500g',
       orderedDate: "2023-08-10",
       status: "Closed",
       amount: "LKR 620",
       paymentMethod: "Cash on Delivery",
     },
-    {
-      productImage: Img,
-      orderNumber: "Order_4",
-      quantity: 2,
-      orderedDate: "2023-08-28",
-      status: "Finished",
-      amount: "LKR 649",
-      paymentMethod: "PayPal",
-    },
-    {
-      productImage: Img,
-      orderNumber: "Order_5",
-      quantity: 1,
-      orderedDate: "2023-09-04",
-      status: "Finished",
-      amount: "LKR 700",
-      paymentMethod: "Cash on Delivery",
-    },
+    
   ];
 
   return (

@@ -9,7 +9,7 @@ const AdminDashboard = () => {
             
           },
           xaxis: {
-            categories: ["Shop_A", "Shop_B", "Shop_C", "Shop_D", "Shop_E", "Shop_F", "Shop_G", "Shop_H","Shop_A", "Shop_B", "Shop_C", "Shop_D", "Shop_E", "Shop_F", "Shop_G", "Shop_H"]
+            categories: ["Mango Shop", "Shop Sara", "Ajith's Shop", "Veg Shop", "Nuwan Banana Shop", "Sayu Shop", "Game Kade", "Tish Shop"]
           }
         },
   
@@ -69,12 +69,12 @@ const AdminDashboard = () => {
     <div className="md:w-3/4 pl-4 mr-8">
           {/* Right Upper Rectangle */}
           <div className="max-w-full bg-white rounded-lg p-4 shadow-md mb-4 md:flex md:space-x-4 justify-center items-center">
-            <div className="max-w-sm xl:w-1/4 bg-white rounded-lg shadow dark:bg-gray-700 p-4 md:p-6 md:flex-shrink-0 md:flex-grow-0">
+            <div className="max-w-sm xl:w-1/4 bg-white rounded-lg shadow dark:bg-[#d9eada]  p-4 md:p-6 md:flex-shrink-0 md:flex-grow-0">
               {/* Chart 1 */}
               <div className="flex justify-between">
                 <div>
-                  <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-                  <p className="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
+                  <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-green-700 pb-2">32</h5>
+                  <p className="text-base font-normal text-gray-500 dark:text-gray-500">New buyer </p>
                 </div>
                 <div className="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
                   12%
@@ -91,7 +91,7 @@ const AdminDashboard = () => {
                     id="dropdownDefaultButton"
                     data-dropdown-toggle="lastDaysdropdown"
                     data-dropdown-placement="bottom"
-                    className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+                    className="text-sm font-medium text-gray-500 dark:text-gray-500 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-gray-900"
                     type="button">
                     Last 7 days
                     <svg className="w-2.5 m-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -101,7 +101,7 @@ const AdminDashboard = () => {
                   {/* Add more buttons, labels, or content as needed */}
                   <a
                     href="#"
-                    className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+                    className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-green-500 hover:text-green-900 dark:hover:text-green-900  hover:bg-gray-100 dark:hover:bg-[#b9cfba]  dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
                     Users Report
                     <svg className="w-2.5 h-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
@@ -110,15 +110,15 @@ const AdminDashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="max-w-sm xl:w-1/4 bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 md:flex-shrink-0 md:flex-grow-0">
+            <div className="max-w-sm xl:w-1/4 bg-white rounded-lg shadow dark:bg-[#d9eada]  p-4 md:p-6 md:flex-shrink-0 md:flex-grow-0">
               {/* Chart 2 */}
               <div className="flex justify-between">
                 <div>
-                  <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-                  <p className="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
+                  <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-green-700 pb-2">23</h5>
+                  <p className="text-base font-normal text-gray-500 dark:text-gray-500">New sellers </p>
                 </div>
                 <div className="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-                  12%
+                  2%
                   <svg className="w-3 h-3 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
                   </svg>
@@ -132,7 +132,7 @@ const AdminDashboard = () => {
                     id="dropdownDefaultButton"
                     data-dropdown-toggle="lastDaysdropdown"
                     data-dropdown-placement="bottom"
-                    className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+                    className="text-sm font-medium text-gray-500 dark:text-gray-500 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-gray-900"
                     type="button">
                     Last 7 days
                     <svg className="w-2.5 m-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -142,7 +142,7 @@ const AdminDashboard = () => {
                   {/* Add more buttons, labels, or content as needed */}
                   <a
                     href="#"
-                    className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+                    className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-green-500 hover:text-blue-700 dark:hover:text-green-900  hover:bg-gray-100 dark:hover:bg-[#b9cfba] dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
                     Users Report
                     <svg className="w-2.5 h-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
@@ -151,15 +151,15 @@ const AdminDashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="max-w-sm xl:w-1/4 bg-white rounded-lg shadow dark:bg-gray-600 p-4 md:p-6 md:flex-shrink-0 md:flex-grow-0">
+            <div className="max-w-sm xl:w-1/4 bg-white rounded-lg shadow dark:bg-[#d9eada]  p-4 md:p-6 md:flex-shrink-0 md:flex-grow-0">
               {/* Chart 3 */}
               <div className="flex justify-between">
                 <div>
-                  <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-                  <p className="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
+                  <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-green-700 pb-2">24</h5>
+                  <p className="text-base font-normal text-gray-500 dark:text-gray-500">New products </p>
                 </div>
                 <div className="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-                  12%
+                  1%
                   <svg className="w-3 h-3 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
                   </svg>
@@ -173,7 +173,7 @@ const AdminDashboard = () => {
                     id="dropdownDefaultButton"
                     data-dropdown-toggle="lastDaysdropdown"
                     data-dropdown-placement="bottom"
-                    className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+                    className="text-sm font-medium text-gray-500 dark:text-gray-500 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-gray-900"
                     type="button">
                     Last 7 days
                     <svg className="w-2.5 m-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -183,7 +183,7 @@ const AdminDashboard = () => {
                   {/* Add more buttons, labels, or content as needed */}
                   <a
                     href="#"
-                    className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+                    className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-green-500 hover:text-blue-700 dark:hover:text-green-900  hover:bg-gray-100 dark:hover:bg-[#b9cfba] dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
                     Users Report
                     <svg className="w-2.5 h-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
@@ -214,42 +214,42 @@ const AdminDashboard = () => {
                       <tbody>
                         <tr 
                           className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                          <td className="px-4 py-2">Shop_D</td>
+                          <td className="px-4 py-2">Veg Shop</td>
                           <td className="px-4 py-2 font-bold">84 000 LKR</td>
                           <td className="px-4 py-2">202</td>
                           <td className="px-4 py-2">123</td>
                         </tr>
                         <tr 
                           className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                          <td className="px-4 py-2">Shop_C</td>
+                          <td className="px-4 py-2">Ajith's Shop</td>
                           <td className="px-4 py-2 font-bold">70 000 LKR</td>
                           <td className="px-4 py-2">252</td>
                           <td className="px-4 py-2">183</td>
                         </tr>
                         <tr 
                           className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                          <td className="px-4 py-2">Shop_F</td>
+                          <td className="px-4 py-2">Sayu Shop</td>
                           <td className="px-4 py-2 font-bold">65 000 LKR</td>
                           <td className="px-4 py-2">185</td>
                           <td className="px-4 py-2">103</td>
                         </tr>
                         <tr 
                           className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                          <td className="px-4 py-2">Shop_H</td>
+                          <td className="px-4 py-2">Tish Shop</td>
                           <td className="px-4 py-2 font-bold">60 000 LKR</td>
                           <td className="px-4 py-2">200</td>
                           <td className="px-4 py-2">98</td>
                         </tr>
                         <tr 
                           className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                          <td className="px-4 py-2">Shop_E</td>
+                          <td className="px-4 py-2">Shop Sara</td>
                           <td className="px-4 py-2 font-bold">48 000 LKR</td>
                           <td className="px-4 py-2">172</td>
                           <td className="px-4 py-2">123</td>
                         </tr>
                         <tr 
                           className="border-b border-primary-200 bg-primary-100 text-neutral-800">
-                          <td className="px-4 py-2">Shop_B</td>
+                          <td className="px-4 py-2">Nuwan Banana Shop</td>
                           <td className="px-4 py-2 font-bold">48 000 LKR</td>
                           <td className="px-4 py-2">143</td>
                           <td className="px-4 py-2">76</td>
