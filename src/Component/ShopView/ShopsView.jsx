@@ -45,7 +45,7 @@ const Shopsview = () => {
           <ShopCard
             shop_id={shop.shop_id}
             name={shop.shop_name}
-            image= {Shop}
+            image= {shop.image}
             rating={5}
    
           />

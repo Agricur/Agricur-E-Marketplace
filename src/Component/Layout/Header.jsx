@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Dialog, Menu, Transition } from "@headlessui/react";
 import Logo from "../../Images/Logo.png";
 import profilePhoto from "../../Assets/profilePhoto.png";
+import Notification from "./Notification";
 import SearchBar from "./SearchBar";
 import {
   ChevronDownIcon,
@@ -25,7 +26,7 @@ export default function Header() {
   const [isSeller, setIsSeller] = useState(false);
   const [profileImage, setProfilePhoto] = useState('');
   const [totalItems,setTotalItems] = useState(0);
-
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   
 
   
@@ -50,6 +51,7 @@ export default function Header() {
   const clickCart = () => {
     navigate("/cart");
   };
+
 
   useEffect(() => {
     if (userCookie) {
@@ -104,6 +106,10 @@ export default function Header() {
     }
   }, [userCookie]);
 
+  const toggleNotification = () => {
+    setIsNotificationOpen(!isNotificationOpen);
+  };
+
   return (
     <header data-testid="header" className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8">
       {/* logo */}
@@ -131,9 +137,10 @@ export default function Header() {
         {isLoggedIn ? (
           <>
             {/* notification */}
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div className="notification-button">
               <button
                 type="button"
+                onClick={toggleNotification}
                 className="relative rounded-full bg-[#3da749] p-1 text-white hover:bg-[#296b33] focus:outline-none focus:ring-2 focus:ring-[#296b33] focus:ring-offset-2 focus:ring-offset-white"
               >
                 <span className="absolute -inset-1.5" />
@@ -141,6 +148,7 @@ export default function Header() {
                 <BellIcon className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
+            {isNotificationOpen && <Notification />}
 
             {/* cart */}
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">

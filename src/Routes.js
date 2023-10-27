@@ -21,6 +21,7 @@ import Help from "./Component/NavBarItems/Help.jsx";
 import Contacts from "./Component/NavBarItems/Contacts.jsx";
 import Tips from "./Component/NavBarItems/Tips.jsx";
 import CourierPage from "./Screens/User/CourierAccount.jsx"
+import Notifications from "./Component/Layout/Notification.jsx";
 
 
 export {LoginPage, 
@@ -45,5 +46,6 @@ export {LoginPage,
         Help,
         Contacts,
         Tips,
-        CourierPage
+        CourierPage,
+        Notifications
     };
