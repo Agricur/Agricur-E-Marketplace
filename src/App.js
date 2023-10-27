@@ -24,7 +24,9 @@ import {LoginPage,
         ErrorPage,
         Help,
         Contacts,
-        Tips
+        Tips,
+        CourierPage,
+        Notifications
       } from './Routes.js';
 
 function App() {
@@ -41,7 +43,8 @@ function App() {
       <Route path="/item/:ProductId" element={<OneItemPage />}/>
       <Route path="/shophome/:ShopId" element={<ShopHomePage />}/>
       <Route path="/cart" element={<CartPage />}/>
-      <Route path="/checkout" element={<CheckoutPage />}/>
+      <Route path="/checkout/:productId/:quantitiy/:price" element={<CheckoutPage />}/>
+      <Route path="/checkout/:productId" element={<CheckoutPage />}/>
       <Route path="/userAccount" element={<BuyerAccountPage />}/>
       <Route path="/adminAccount" element={<AdminAccountPage />}/>
       <Route path="/shopAccount" element={<ShopSettingsPage />}/>
@@ -54,6 +57,8 @@ function App() {
       <Route path="/help" element={<Help />}/>
       <Route path="/contacts" element={<Contacts />}/>
       <Route path="/tips" element={<Tips />}/>
+      <Route path="/courier" element={<CourierPage />}/>
+      <Route path="/notifications" element={<Notifications />}/>
       </Routes>
 
       {/* <ToastContainer
