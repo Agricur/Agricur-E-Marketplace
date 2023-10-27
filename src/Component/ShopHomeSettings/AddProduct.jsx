@@ -222,7 +222,6 @@ const AddProductForm = ({ onBack, user_id }) => {
               >
                 <option className=""  value="">-- Unit --</option>
                 <option value="kg">kg</option>
-                <option value="g">g</option>
                 <option value="units">units</option>
               </select>
             </div>
