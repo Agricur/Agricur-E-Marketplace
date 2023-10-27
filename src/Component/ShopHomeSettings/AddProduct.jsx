@@ -71,7 +71,7 @@ const AddProductForm = ({ onBack, user_id }) => {
     let kg = []
     for (let i = 0; i < productData.sellingQuantity.length; i++) {
       
-      const data = productData.sellingQuantity[i].split("-");
+      const data = productData.sellingQuantity[i].split(" ");
       if(data[1] === 'g'){
         grams.push(data[0])
       }
@@ -101,6 +101,7 @@ const AddProductForm = ({ onBack, user_id }) => {
 
       if (response.status === 201) {
         toast.success(response.data.message);
+        localStorage.removeItem("products");
         window.location.reload(<ShopProductHandle />);
       } else {
         toast.error("Product can't be added. Please try again later.");
@@ -192,7 +193,6 @@ const AddProductForm = ({ onBack, user_id }) => {
               >
                 <option value="">-- Unit --</option>
                 <option value="/kg">/kg</option>
-                <option value="/g">/g</option>
                 <option value="1 unit">/1 unit</option>
               </select>
             </div>
@@ -222,7 +222,6 @@ const AddProductForm = ({ onBack, user_id }) => {
               >
                 <option className=""  value="">-- Unit --</option>
                 <option value="kg">kg</option>
-                <option value="g">g</option>
                 <option value="units">units</option>
               </select>
             </div>
@@ -235,7 +234,7 @@ const AddProductForm = ({ onBack, user_id }) => {
            Selling Quantities
          </label>
          <div className="mt-1 flex flex-wrap">
-           {["50-g", "100-g", "250-g", "500-g", "1-kg", "2-kg", "5-kg", "10-kg"].map((quantity) => (
+           {["50 g", "100 g", "250 g", "500 g", "1 kg", "2 kg", "5 kg", "10 kg"].map((quantity) => (
              <div key={quantity} className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/8 mb-2">
                <input
                  type="checkbox"

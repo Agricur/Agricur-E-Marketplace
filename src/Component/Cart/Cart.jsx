@@ -35,7 +35,7 @@ const Cart = () => {
       })  
     } 
       // Update localStorage whenever the cartItems change
-      
+
       localStorage.setItem("cart", JSON.stringify(cartItems));
       if(storageCookie){
         localStorage.clear();
@@ -47,6 +47,7 @@ const Cart = () => {
   const [refresh,setRefresh] = useState(0);
 
   const handleIncreaseQuantity = async (item) => {
+    console.log(item)
     
     if(refresh<4){
       setRefresh(refresh+1)
@@ -61,7 +62,9 @@ const Cart = () => {
       }
       return cartItem;
     });
+    
     if(userCookie){
+      console.log(updatedCartItems)
       await axios.post(`${server}/api/cart/updateCartItems`, {userCookie, cartItems: updatedCartItems}).then((res) =>{
       toast.success(res.data.message);
       
@@ -70,6 +73,7 @@ const Cart = () => {
     }
     
     setCartItems(updatedCartItems);
+  
   };
 
   const handleDecreaseQuantity = async (item) => {
@@ -109,10 +113,16 @@ const Cart = () => {
   };
 
   const calculateTotalPrice = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
+    let total = 0;
+    cartItems.forEach((item) => {
+      if(item.quantity_unit === "units"){
+        total += item.price * item.quantity;
+      }
+      else{
+        total += item.price;
+      }
+    });
+    return total;
   };
 
   const handleCheckout = () => {
