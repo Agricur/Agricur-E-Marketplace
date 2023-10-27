@@ -8,7 +8,7 @@ import { server } from "../../server";
 const ShopHome = (shopID) => {
   const shop_id = shopID.shopID;
   console.log(shop_id);
-  
+
   // Sample shop data
   const shopData = {
     shopName: "Shop Name",
@@ -23,6 +23,8 @@ const ShopHome = (shopID) => {
   const [shopImage,setshopImage] = useState("");
   const [ratings,setratings] = useState("");
   const [shopProduct,setShopProducts] = useState([]);
+  const [shopDescription,setShopDescription] = useState([]);
+
   
 
   useEffect(() => {
@@ -35,18 +37,24 @@ const ShopHome = (shopID) => {
       setshopName(data.shop.shop_name);
       setshopImage(data.shop.image);
       setShopProducts(data.shop.products);
+      setShopDescription(data.shop.description);
+      console.log(data.shop);
     })
+   
 
   }, [shop_id]);
 
+
   return (
-    <div>
+
+    <div> 
       <ShopDetail
         shopName={shopName}
-        shopImage={shopImage}
-        ratings={shopData.ratings}
+        shopImage={`${server}/${shopImage}`}
+        ratings={4}
         // followers={shopData.followers}
-        // motto={shopData.motto}
+        motto={shopDescription}
+        
       />
 
       <ShopItems product={shopProduct}/>

@@ -24,7 +24,9 @@ import {LoginPage,
         ErrorPage,
         Help,
         Contacts,
-        Tips
+        Tips,
+        CourierPage,
+        Notifications
       } from './Routes.js';
 
 function App() {
@@ -55,6 +57,8 @@ function App() {
       <Route path="/help" element={<Help />}/>
       <Route path="/contacts" element={<Contacts />}/>
       <Route path="/tips" element={<Tips />}/>
+      <Route path="/courier" element={<CourierPage />}/>
+      <Route path="/notifications" element={<Notifications />}/>
       </Routes>
 
       {/* <ToastContainer

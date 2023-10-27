@@ -14,6 +14,7 @@ const ShopDetail = ({ shopName, shopImage, ratings, followers, motto }) => {
         </div>
         <div className="flex flex-col justify-between">
           <h2 className="sm:text-3xl text-xl font-bold">{shopName}</h2>
+          <p className="text-gray-600">{motto}</p>
           <div className="flex items-center">
             <StarRating rating={ratings} />
             <p className="text-gray-600 ml-2">{ratings.toFixed(1)}</p>
