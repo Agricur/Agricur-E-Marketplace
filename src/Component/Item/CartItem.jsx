@@ -19,7 +19,7 @@ const CartItem = ({
   const handlePrice = () => {
 
     if (sellingWeight === "" || sellingWeight == item.quantity) {
-      return item.price.toFixed(2);
+      return (item.price/1).toFixed(2);
     }
      else {
       let data = sellingWeight.split("g");
@@ -57,7 +57,7 @@ const CartItem = ({
 
         axios.post(`${server}/api/cart/updateCart`, item).then((response) => {
           if(response.status === 200){
-            toast.success(response.data.message);
+            // toast.success(response.data.message);
           }
           else{
 
