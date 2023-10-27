@@ -1,17 +1,34 @@
 import {React,useState,useEffect} from "react";
-// import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { server } from "../../server";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
-const Checkout = () => {
+
+const Checkout = (props) => {
+  const navigate = useNavigate();
 
   const handlePlaceOrder = () => {
-   console.log("Order Placed");
+   toast.success("Order Placed Successfully");
+    navigate("/");
+  
   }
 
-  const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [userId, setUserId] = useState("");
+  const [userType, setUserType] = useState(false);
+  const [houseNo, setHouseNo] = useState("");
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [district, setDistrict] = useState("");
+  const [productName, setProductName] = useState("");
+  const [unitPrice, setUnitPrice] = useState("");
+  const [quantitiy, setQuantitiy] = useState(props.product.quantitiy);
+  const [courier, setCourier] = useState("");
+  const [shopId,setShopId] = useState("");
+  const [shippingCost,setShippingCost] = useState(0);
   const userCookie = Cookies.get("jwtToken");
 
   useEffect(() => {
@@ -26,20 +43,80 @@ const Checkout = () => {
         .then((data) => {
           const first_name = data.first_name;
           const user_id = data.user_id;
-
-         
-          setUserName(first_name);
-          console.log(userName);
-
+  
+          setFirstName(first_name);
+          setLastName(data.last_name);
           setUserId(user_id);
-          console.log(userId );
-          // setProfilePhoto("https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80");
+          setUserType(data.is_seller)
+          
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
         });
-      }
+      }    
       }, []);
+
+      useEffect(() => {
+        if(!userType){
+          fetch(`${server}/api/user/userData/${userId}`, {
+          method: "GET",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            setHouseNo(data.home_no);
+            setStreet(data.street);
+            setCity(data.city);
+            setDistrict(data.district);
+            
+          })
+          .catch((error) => {
+            console.error("Error fetching user data:", error);
+          });
+        }else{
+          
+          fetch(`${server}/api/seller/sellerData/${userId}`, {
+            method: "GET",
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              setHouseNo(data.home_no);
+              setStreet(data.street);
+              setCity(data.city);
+              setDistrict(data.district);
+              
+            })
+            .catch((error) => {
+              console.error("Error fetching user data:", error);
+            });
+        }
+        
+      }, [userId]);
+
+      useEffect(() => {
+        fetch(`${server}/api/product/getProduct/${props.product.productId}`, {
+          method: "GET", 
+        }).then((response) => response.json())
+        .then((data) => {
+          setProductName(data.product.name);
+          setUnitPrice(data.product.price);
+          setShopId(data.product.shop_id);
+        }).catch((error) => { 
+          console.log(error)
+        })
+      }, [props.product.productId]);
+
+      useEffect(() => {
+        fetch(`${server}/api/seller/getCourier/${shopId}`, {
+          method: "GET", 
+        }).then((response) => response.json())
+        .then((data) => {
+          setCourier(data.courier_service);
+        }).catch((error) => { 
+          console.log(error)
+        })
+      }, [shopId]);
+
+      
 
 
   return (
@@ -51,14 +128,13 @@ const Checkout = () => {
               Shipping Address
             </h1>
             <p className="inline">
-              <b>Ravindu Sayuranga</b>
+              <b>{firstName} {lastName}</b>
             </p>
-            <p className="inline mx-2">0784567883</p>
-            <p>No: 22/9, </p>
-            <p>Kanaththa Road, </p>
-            <p>Weligama</p>
+            <p>No: {houseNo}, </p>
+            <p>{street}, </p>
+            <p>{city}</p>
             <p>
-              <strong>District</strong> - Galle
+              <strong>District</strong> - {district}
             </p>
           </div>
           <div>
@@ -128,52 +204,39 @@ const Checkout = () => {
                     Unit Price(Rs.)
                   </th>
                   <th scope="col" class="py-3">
+                    quantity
+                  </th>
+                  <th scope="col" class="py-3">
                     Total Price(Rs.)
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr class="bg-white border-b text-black  dark:bg-[#d9eada] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-[#89a88b]">
-                  <th
+                  <td
                     scope="row"
                     class="py-4 font-medium text-black whitespace-nowrap dark:text-black"
                   >
-                    Mangos
-                  </th>
-                  <td class="py-4">350.00</td>
-                  <td class="py-4">1050.00</td>
+                    {productName}
+                  </td>
+                  <td class="py-4">{unitPrice}</td>
+                  <td class="py-4">{quantitiy}</td>
+                  <td class="py-4">{(props.product.price)}</td>
                 </tr>
-                {/* <tr class="bg-white border-b dark:bg-[#d9eada] dark:border-gray-700 hover:bg-[#d9eada]  dark:hover:bg-[#89a88b]">
-                  <th
-                    scope="row"
-                    class="py-4 font-medium text-black whitespace-nowrap  "
-                  >
-                    Product_2  x2
-                  </th>
-                  <td class="py-4">30.00</td>
-                  <td class="py-4">60.00</td>
-                </tr> */}
-                {/* <tr class="bg-white dark:bg-[#d9eada] hover:bg-gray-50 dark:hover:bg-[#89a88b]">
-                  <th
-                    scope="row"
-                    class="py-4 font-medium text-black whitespace-nowrap dark:text-black"
-                  >
-                    Product_3  x3
-                  </th>
-                  <td class="py-4">40.00</td>
-                  <td class="py-4">120.00</td>
-                </tr> */}
+                
               </tbody>
             </table>
           </div>
-
+            <p className="text-lg font-medium inline my-4">Courier Service : {courier}</p>
           <div className="my-4 flex justify-between">
+            
             <p className="text-lg font-medium inline">Shipping Cost</p>
             <p className="text-lg font-medium inline">Rs. 200</p>
           </div>
           <div className="my-4 flex justify-between">
             <p className="text-xl font-medium inline">Total</p>
-            <p className="text-xl font-semibold inline">Rs. 1250</p>
+            
+            <p className="text-xl font-semibold inline">LKR. {(parseFloat(props.product.price)+200).toFixed(2)}</p>
           </div>
           <div className="my-4">
               <button

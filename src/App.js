@@ -41,7 +41,8 @@ function App() {
       <Route path="/item/:ProductId" element={<OneItemPage />}/>
       <Route path="/shophome/:ShopId" element={<ShopHomePage />}/>
       <Route path="/cart" element={<CartPage />}/>
-      <Route path="/checkout" element={<CheckoutPage />}/>
+      <Route path="/checkout/:productId/:quantitiy/:price" element={<CheckoutPage />}/>
+      <Route path="/checkout/:productId" element={<CheckoutPage />}/>
       <Route path="/userAccount" element={<BuyerAccountPage />}/>
       <Route path="/adminAccount" element={<AdminAccountPage />}/>
       <Route path="/shopAccount" element={<ShopSettingsPage />}/>

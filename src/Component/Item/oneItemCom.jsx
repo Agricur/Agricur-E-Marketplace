@@ -14,7 +14,7 @@ import {
   FaPlus,
   FaMinus,
 } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const ProductDetailPage = (props) => {
   const [quantity, setQuantity] = useState(1);
@@ -178,7 +178,7 @@ const ProductDetailPage = (props) => {
       if (currentCart[i].product_id === newItem.product_id) {
         if (props.item.price_unit === "/kg") {
           currentCart[i].quantity = newItem.quantity;
-        }else{
+        } else {
           currentCart[i].quantity += newItem.quantity;
         }
         localStorage.setItem("cart", JSON.stringify(currentCart));
@@ -342,11 +342,24 @@ const ProductDetailPage = (props) => {
                 </div>
 
                 <div className="flex justify-between">
-                  <a href="/checkout">
-                    <button className="bg-[#3da749] justify-items-center text-white md:h-12 sm:h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16">
-                      Buy Now
-                    </button>
-                  </a>
+                  {quantityUnits === "units" ? (
+                    <Link
+                      to={`/checkout/${props.item.product_id}/${quantity}/${quantity * props.item.price}`}
+                    >
+                      <button className="bg-[#3da749] justify-items-center text-white md:h-12 sm:h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16">
+                        Buy Now
+                      </button>
+                    </Link>
+                  ) : (
+                    <Link
+                      to={`/checkout/${props.item.product_id}/${sellingWeights}/${handlePrice()}`}
+                    >
+                      <button className="bg-[#3da749] justify-items-center text-white md:h-12 sm:h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16">
+                        Buy Now
+                      </button>
+                    </Link>
+                  )}
+
                   <button
                     onClick={handleAddToCart}
                     className="bg-[#3da749] justify-items-center text-white lg:h-12 md:h-12  sm:h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16"
