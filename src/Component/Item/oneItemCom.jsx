@@ -153,71 +153,76 @@ const ProductDetailPage = (props) => {
     // Retrieve the current cart from localStorage
     var currentCart = JSON.parse(localStorage.getItem("cart")) || [];
     let newItem;
-    // Create a new item for the cart
-    if (props.item.price_unit === "/kg") {
-      newItem = {
-        product_id: props.item.product_id,
-        name: props.item.name,
-        price: handlePrice(),
-        image: props.item.image,
-        quantity: getWeightInKg(),
-        quantity_unit: props.item.quantity_unit,
-      };
-    } else {
-      newItem = {
-        product_id: props.item.product_id,
-        name: props.item.name,
-        price: props.item.price,
-        quantity: quantity,
-        image: props.item.image,
-        quantity_unit: props.item.quantity_unit,
-      };
-    }
+    if(props.item.price_unit === "/kg" && (sellingWeights === "" || sellingWeights === undefined)){
+      toast.error("Please select a quantity");
+    }else{
+      // Create a new item for the cart
+      if (props.item.price_unit === "/kg") {
+        newItem = {
+          product_id: props.item.product_id,
+          name: props.item.name,
+          price: handlePrice(),
+          image: props.item.image,
+          quantity: getWeightInKg(),
+          quantity_unit: props.item.quantity_unit,
+        };
+      } else {
+        newItem = {
+          product_id: props.item.product_id,
+          name: props.item.name,
+          price: props.item.price,
+          quantity: quantity,
+          image: props.item.image,
+          quantity_unit: props.item.quantity_unit,
+        };
+      }
 
-    let items = 0;
-    for (let i = 0; i < currentCart.length; i++) {
-      if (currentCart[i].product_id === newItem.product_id) {
-        if (props.item.price_unit === "/kg") {
-          currentCart[i].quantity = newItem.quantity;
+      let items = 0;
+      for (let i = 0; i < currentCart.length; i++) {
+        if (currentCart[i].product_id === newItem.product_id) {
+          if (props.item.price_unit === "/kg") {
+            currentCart[i].quantity = newItem.quantity;
+          } else {
+            currentCart[i].quantity += newItem.quantity;
+          }
+          localStorage.setItem("cart", JSON.stringify(currentCart));
+          if (!userCookie) {
+            toast.success("Product added to the cart");
+          }
         } else {
-          currentCart[i].quantity += newItem.quantity;
+          items += 1;
         }
+      }
+      if (items === currentCart.length) {
+        currentCart.push(newItem);
         localStorage.setItem("cart", JSON.stringify(currentCart));
         if (!userCookie) {
           toast.success("Product added to the cart");
         }
-      } else {
-        items += 1;
       }
-    }
-    if (items === currentCart.length) {
-      currentCart.push(newItem);
-      localStorage.setItem("cart", JSON.stringify(currentCart));
-      if (!userCookie) {
-        toast.success("Product added to the cart");
-      }
-    }
 
-    if (userCookie) {
-      console.log(currentCart);
-      fetch(`${server}/api/cart/insertProduct`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${userCookie}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          currentCart,
-        }),
-      })
-        .then((response) => response.json())
-        .then((message) => {
-          toast.success(message.message);
+      if (userCookie) {
+        fetch(`${server}/api/cart/insertProduct`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${userCookie}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            currentCart,
+          }),
         })
-        .catch((error) => {
-          console.log(error);
-        });
+          .then((response) => response.json())
+          .then((message) => {
+            toast.success(message.message);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      navigate("/cart");
     }
+    
     // window.location.reload();
   };
 
