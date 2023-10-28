@@ -4,6 +4,7 @@ import Logo from "../../Images/Logo.png";
 import profilePhoto from "../../Assets/profilePhoto.png";
 import Notification from "./Notification";
 import SearchBar from "./SearchBar";
+import { Link } from "react-router-dom";
 import {
   ChevronDownIcon,
   BellIcon,
@@ -114,9 +115,9 @@ export default function Header() {
     <header data-testid="header" className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8">
       {/* logo */}
       <div className="flex lg:flex-1">
-        <a href="/" className="p-1">
+        <Link to="/" className="p-1">
           <img className="h-14 w-14" src={`${Logo}`} alt="" />
-        </a>
+        </Link>
       </div>
 
       {/* search bar */}
@@ -207,30 +208,30 @@ export default function Header() {
                   <hr className="border-gray-500" />
                   <Menu.Item>
                     {({ active }) =>                      
-                        <a
-                          href="/userAccount"
+                        <Link
+                          to="/userAccount"
                           className={classNames(
                             active ? "bg-[#e7eae7]" : "",
                             "block px-4 py-2 text-sm text-gray-700 "
                           )}
                         >
                           Your Profile
-                        </a>
+                        </Link>
                       
                     }
                   </Menu.Item>
                   {isSeller ? (
                     <Menu.Item>
                       {({ active }) => (
-                        <a
-                          href="/shopAccount"
+                        <Link
+                          to="/shopAccount"
                           className={classNames(
                             active ? "bg-[#e7eae7]" : "",
                             "block px-4 py-2 text-sm text-gray-700 justify-center"
                           )}
                         >
                           My Shop
-                        </a>
+                        </Link>
                       )}
                     </Menu.Item>
                   ) : (
@@ -238,16 +239,16 @@ export default function Header() {
                   )}
                   <Menu.Item>
                     {({ active }) => (
-                      <a
+                      <Link
                         onClick={handleLogout}
-                        href="/"
+                        to="/"
                         className={classNames(
                           active ? "bg-[#e7eae7]" : "",
                           "block px-4 py-2 text-sm text-red-700 justify-center"
                         )}
                       >
                         Log out
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                 </Menu.Items>
@@ -293,28 +294,28 @@ export default function Header() {
                 <Menu.Items className="absolute right-0 z-10 text-center font-semibold mt-2 w-28 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        href="/registerSeller"
+                      <Link
+                        to="/registerSeller"
                         className={classNames(
                           active ? "bg-[#e7eae7]" : "",
                           "block px-4 py-2 text-sm text-gray-700 flest justify-center "
                         )}
                       >
                         As a Seller
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        href="/registerBuyer"
+                      <Link
+                        to="/registerBuyer"
                         className={classNames(
                           active ? "bg-[#e7eae7]" : "",
                           "block px-4 py-2 text-sm text-gray-700 justify-center"
                         )}
                       >
                         As a Buyer
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                 </Menu.Items>
@@ -323,14 +324,14 @@ export default function Header() {
 
             {/* login */}
             <div>
-              <a href="/login">
+              <Link to="/login">
                 <button
                   type="submit"
                   className="flex items-center w-20 justify-center h-9 gap-x-1 text-sm font-semibold leading-6 bg-[#3da749] p-1 text-white hover:bg-[#296b33] rounded-full "
                 >
                   Login
                 </button>
-              </a>
+              </Link>
             </div>
           </>
         )}
@@ -347,10 +348,10 @@ export default function Header() {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           {/* logo */}
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Agricur</span>
               <img className="h-8 w-auto" src={`${Logo}`} alt="" />
-            </a>
+            </Link>
             {/* 3-bar button */}
             <button
               type="button"
@@ -372,67 +373,67 @@ export default function Header() {
                     <hr className="border-gray-500" />
                     {/* profile */}
                     
-                      <a
-                        href="userAccount"
+                      <Link
+                        to="userAccount"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                       >
                         Your Profile
-                      </a>
+                      </Link>
 
                     {/* notification */}
-                    <a
-                      href="./"
+                    <Link
+                      to="./"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                     >
                       Notification
-                    </a>
+                    </Link>
 
                     {/* cart */}
-                    <a
-                      href="/cart"
+                    <Link
+                      to="/cart"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                     >
                       Cart <span>({totalItems})</span>
-                    </a>
+                    </Link>
                     {isSeller ? (
-                      <a
-                        href="/shopAccount"
+                      <Link
+                        to="/shopAccount"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                       >
                         My Shop
-                      </a>
+                      </Link>
                     ) : (
                       <></>
                     )}
                     <hr className="border-gray-500" />
                     {/* logout */}
                     <div className="py-6">
-                      <a
+                      <Link
                         onClick={handleLogout}
-                        href="/"
+                        to="/"
                         className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-red-700 hover:bg-[#e7eae7]"
                       >
                         Log Out
-                      </a>
+                      </Link>
                     </div>
                   </>
                 ) : (
                   <>
                     {/* cart */}
-                    <a
-                      href="/cart"
+                    <Link
+                      to="/cart"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                     >
                       Cart <span>({totalItems})</span>
-                    </a>
+                    </Link>
 
                     {/* login */}
-                    <a
-                      href="/login"
+                    <Link
+                      to="/login"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
                     >
                       Login
-                    </a>
+                    </Link>
 
                     {/* register */}
                     <Disclosure as="div" className="-mx-3">

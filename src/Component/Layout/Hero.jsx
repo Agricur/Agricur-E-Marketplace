@@ -37,16 +37,21 @@ const HeroSection = () => {
                       Fruits
                     </div>
                   </div>
+<<<<<<< Updated upstream
                 </a>
                 <a href="/vegetables">
+=======
+                </Link>
+                <Link to="/vegetables">
+>>>>>>> Stashed changes
                   <div className="group w-full sm:w-1/2 md:w-1/3 lg:w-1/5 px-4 py-2 inline-block">
                     <div className="bg-white hover:bg-white bg-opacity-70 rounded-lg shadow-lg p-6">
                       <img src={`${veg}`} alt="" className="mb-4 rounded-lg" />
                       Vegetables
                     </div>
                   </div>
-                </a>
-                <a href="/grains">
+                </Link>
+                <Link to="/grains">
                   <div className="group w-full sm:w-1/2 md:w-1/3 lg:w-1/5 px-4 py-2 inline-block">
                     <div className="bg-white hover:bg-white bg-opacity-70 rounded-lg shadow-lg p-6">
                       <img
@@ -57,16 +62,16 @@ const HeroSection = () => {
                       Grains
                     </div>
                   </div>
-                </a>
-                <a href="/fertilizers">
+                </Link>
+                <Link to="/fertilizers">
                   <div className="group w-full sm:w-1/2 md:w-1/3 lg:w-1/5 px-4 py-2 inline-block">
                     <div className="bg-white hover:bg-white bg-opacity-70 rounded-lg shadow-lg p-6">
                       <img src={`${fert}`} alt="" className="mb-4 rounded-lg" />
                       Fertilizers
                     </div>
                   </div>
-                </a>
-                <a href="/equipments">
+                </Link>
+                <Link to="/equipments">
                   <div className="group w-full sm:w-1/2 md:w-1/3 lg:w-1/5 px-4 py-2 inline-block">
                     <div className="bg-white hover:bg-white bg-opacity-70 rounded-lg shadow-lg p-6">
                       <img
@@ -77,7 +82,7 @@ const HeroSection = () => {
                       Equipments
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
               <div className="text-white text-center absolute left-1/2 transform -translate-x-1/2 lg:hidden">
                 <FontAwesomeIcon
