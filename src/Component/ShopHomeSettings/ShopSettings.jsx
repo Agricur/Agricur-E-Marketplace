@@ -7,6 +7,8 @@ import OrderHistory from "./OrderHistoryShop";
 import { server } from "../../server";
 import Image from "../../Assets/profilePhoto.png"
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 
 const ShopSettings = ({ user_id }) => {
@@ -137,9 +139,9 @@ const ShopSettings = ({ user_id }) => {
               }`}
               onClick={() => setSelectedNavItem("Seller's Acount")}
             >
-              <a href="/userAccount">
+              <Link to="/userAccount">
                 Seller's Account
-              </a>
+              </Link>
               
             </button>
           </div>

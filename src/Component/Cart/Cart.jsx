@@ -166,11 +166,11 @@ const Cart = () => {
       </div>
 
       <div className="mt-8 mr-4 flex justify-center">
-        <a href="/checkout">
+        <Link to ="/checkout">
           <button className="bg-green-600 hover:bg-green-900 text-white px-4 py-2 rounded-full sm:text-base md:text-lg lg:text-xl xl:text-2xl">
             Proceed to Checkout
           </button>
-        </a>
+        </Link>
       </div>
     </div>
   );
