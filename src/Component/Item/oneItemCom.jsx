@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import StarRatings from "react-star-ratings";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import {
   FaMapMarkerAlt,
@@ -30,6 +31,8 @@ const ProductDetailPage = (props) => {
   const productID = useParams().ProductId;
 
   const slides = [props.item.image, props.item.image2, props.item.image];
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (userCookie) {
@@ -171,7 +174,6 @@ const ProductDetailPage = (props) => {
       };
     }
 
-
     let items = 0;
     for (let i = 0; i < currentCart.length; i++) {
       if (currentCart[i].product_id === newItem.product_id) {
@@ -220,7 +222,15 @@ const ProductDetailPage = (props) => {
   };
 
   const handleBuyNow = () => {
-    console.log("Buy Now");
+    if (quantityUnits === "units") {
+      navigate(`/checkout/${props.item.product_id}/${quantity}/${quantity * props.item.price}`);
+    } else {
+      if (sellingWeights === undefined || sellingWeights === "") {
+        toast.error("Please select a quantity");
+      }else{
+      navigate(`/checkout/${props.item.product_id}/${sellingWeights}/${handlePrice()}`);
+      }
+    }
   };
 
   const quantityUnits = props.item.quantity_unit;
@@ -341,23 +351,9 @@ const ProductDetailPage = (props) => {
                 </div>
 
                 <div className="flex justify-between">
-                  {quantityUnits === "units" ? (
-                    <Link
-                      to={`/checkout/${props.item.product_id}/${quantity}/${quantity * props.item.price}`}
-                    >
-                      <button className="bg-[#3da749] justify-items-center text-white md:h-12 sm:h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16">
-                        Buy Now
-                      </button>
-                    </Link>
-                  ) : (
-                    <Link
-                      to={`/checkout/${props.item.product_id}/${sellingWeights}/${handlePrice()}`}
-                    >
-                      <button className="bg-[#3da749] justify-items-center text-white md:h-12 sm:h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16">
-                        Buy Now
-                      </button>
-                    </Link>
-                  )}
+                  <button onClick={handleBuyNow}className="bg-[#3da749] justify-items-center text-white md:h-12 sm:h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16">
+                    Buy Now
+                  </button>
 
                   <button
                     onClick={handleAddToCart}
