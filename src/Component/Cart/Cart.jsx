@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CartItem from "../Item/CartItem";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { server } from "../../server";
 import axios from "axios";
