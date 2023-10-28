@@ -100,7 +100,7 @@ const Cart = () => {
   };
 
   const handleRemoveItem = async (item) => {
-    window.location.reload("/cart")
+    // window.location.reload("/cart")
     const updatedCartItems = cartItems.filter(
       (cartItem) => cartItem.product_id !== item.product_id
     );
