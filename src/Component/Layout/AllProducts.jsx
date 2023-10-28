@@ -23,7 +23,6 @@ export default function AllProducts(user_id) {
     }) 
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data.products); 
       setProducts(data.products); 
       console.log(data.products);
       localStorage.setItem("products", JSON.stringify(data.products));

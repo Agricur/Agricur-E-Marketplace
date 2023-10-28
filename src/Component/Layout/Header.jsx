@@ -25,12 +25,9 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("Name");
   const [isSeller, setIsSeller] = useState(false);
-  const [profileImage, setProfilePhoto] = useState('');
-  const [totalItems,setTotalItems] = useState(0);
+  const [profileImage, setProfilePhoto] = useState("");
+  const [totalItems, setTotalItems] = useState(0);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-  
-
-  
 
   const navigate = useNavigate();
   const userCookie = Cookies.get("jwtToken");
@@ -44,15 +41,16 @@ export default function Header() {
 
   const handleLogout = () => {
     Cookies.remove("jwtToken");
-    setIsLoggedIn(false); 
-    localStorage.clear()
-    Cookies.set("localStorage", "remove", { expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_TIME )});
+    setIsLoggedIn(false);
+    localStorage.clear();
+    Cookies.set("localStorage", "remove", {
+      expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_TIME),
+    });
   };
 
   const clickCart = () => {
     navigate("/cart");
   };
-
 
   useEffect(() => {
     if (userCookie) {
@@ -71,37 +69,33 @@ export default function Header() {
           setUserName(first_name);
           setIsSeller(data.is_seller);
           setProfilePhoto(profile_photo);
-          // setProfilePhoto("https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80");
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
         });
 
-        fetch(`${server}/api/cart/getCart`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${userCookie}`,
-          },
-        })
+      fetch(`${server}/api/cart/getCart`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${userCookie}`,
+        },
+      })
         .then((response) => response.json())
         .then((data) => {
-          if(data.error){
-            setTotalItems(0)
-          }
-          else{
+          if (data.error) {
+            setTotalItems(0);
+          } else {
             setTotalItems(data.cartItems.length);
           }
-          
-        }
-        ).catch((error) => {
-          console.log(error)
-        }
-        )
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
       if (localStorage.getItem("cart")) {
         const cart = JSON.parse(localStorage.getItem("cart"));
         setTotalItems(cart.length);
-      } else {  
+      } else {
         setTotalItems(0);
       }
     }
@@ -112,7 +106,10 @@ export default function Header() {
   };
 
   return (
-    <header data-testid="header" className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8">
+    <header
+      data-testid="header"
+      className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8"
+    >
       {/* logo */}
       <div className="flex lg:flex-1">
         <Link to="/" className="p-1">
@@ -161,13 +158,11 @@ export default function Header() {
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">View cart</span>
                 <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
-              
+
                 <span className="absolute top-[-9px] right-[-9px] bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
                   {totalItems}
                 </span>
-           
               </button>
-              
             </div>
 
             {/* profile */}
@@ -178,7 +173,11 @@ export default function Header() {
                   <span className="sr-only">Open user menu</span>
                   <img
                     className="h-8 w-8 rounded-full"
-                    src={profileImage?`${server}/${profileImage}`:`${profilePhoto}`}
+                    src={
+                      profileImage
+                        ? `${server}/${profileImage}`
+                        : `${profilePhoto}`
+                    }
                     alt=""
                   />
                 </Menu.Button>
@@ -207,18 +206,17 @@ export default function Header() {
                   </Menu.Item>
                   <hr className="border-gray-500" />
                   <Menu.Item>
-                    {({ active }) =>                      
-                        <Link
-                          to="/userAccount"
-                          className={classNames(
-                            active ? "bg-[#e7eae7]" : "",
-                            "block px-4 py-2 text-sm text-gray-700 "
-                          )}
-                        >
-                          Your Profile
-                        </Link>
-                      
-                    }
+                    {({ active }) => (
+                      <Link
+                        to="/userAccount"
+                        className={classNames(
+                          active ? "bg-[#e7eae7]" : "",
+                          "block px-4 py-2 text-sm text-gray-700 "
+                        )}
+                      >
+                        Your Profile
+                      </Link>
+                    )}
                   </Menu.Item>
                   {isSeller ? (
                     <Menu.Item>
@@ -267,11 +265,10 @@ export default function Header() {
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">View cart</span>
                 <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
-                
+
                 <span className="absolute top-[-9px] right-[-9px] bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
                   {totalItems}
                 </span>
-             
               </button>
             </div>
 
@@ -372,13 +369,13 @@ export default function Header() {
                     </span>
                     <hr className="border-gray-500" />
                     {/* profile */}
-                    
-                      <Link
-                        to="userAccount"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
-                      >
-                        Your Profile
-                      </Link>
+
+                    <Link
+                      to="userAccount"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                    >
+                      Your Profile
+                    </Link>
 
                     {/* notification */}
                     <Link
@@ -450,22 +447,24 @@ export default function Header() {
                             />
                           </Disclosure.Button>
                           <Disclosure.Panel className="mt-2 space-y-2">
-                            <Disclosure.Button
-                              key="seller"
-                              as="a"
-                              href="registerSeller"
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
-                            >
-                              As a Seller
-                            </Disclosure.Button>
-                            <Disclosure.Button
-                              key="buyer"
-                              as="a"
-                              href="registerBuyer"
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
-                            >
-                              As a Buyer
-                            </Disclosure.Button>
+                            <Link to="/registerSeller">
+                              <Disclosure.Button
+                                key="seller"
+                                as="a"
+                                className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                              >
+                                As a Seller
+                              </Disclosure.Button>
+                            </Link>
+                            <Link to="/registerBuyer">
+                              <Disclosure.Button
+                                key="buyer"
+                                as="a"
+                                className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-[#e7eae7]"
+                              >
+                                As a Buyer
+                              </Disclosure.Button>
+                            </Link>
                           </Disclosure.Panel>
                         </>
                       )}
