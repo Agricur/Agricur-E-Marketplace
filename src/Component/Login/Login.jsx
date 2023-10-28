@@ -10,6 +10,7 @@ import { server } from "../../server";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -135,12 +136,12 @@ const Login = () => {
               </div>
               <div className={`${styles.noramlFlex} justify-end`}>
                 <div className="text-sm">
-                  <a
-                    href=".forgot-password"
+                  <Link
+                    to=".forgot-password"
                     className="font-medium text-[#3CB44A] hover:text-[#24692d]"
                   >
                     Forgot your password?
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div>
@@ -171,28 +172,28 @@ const Login = () => {
                 <Menu.Items className="absolute right-17 z-10 text-center font-semibold mt-0 w-28 origin-bottom-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        href="/registerSeller"
+                      <Link
+                        to ="/registerSeller"
                         className={classNames(
                           active ? "bg-[#e7eae7]" : "",
                           "block px-4 py-2 text-sm text-gray-700 flest justify-center "
                         )}
                       >
                         As a Seller
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        href="/registerBuyer"
+                      <Link
+                        to="/registerBuyer"
                         className={classNames(
                           active ? "bg-[#e7eae7]" : "",
                           "block px-4 py-2 text-sm text-gray-700 justify-center"
                         )}
                       >
                         As a Buyer
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                 </Menu.Items>

@@ -114,9 +114,9 @@ export default function Header() {
     <header data-testid="header" className="bg-[#d9eada] shadow-2xl mx-auto flex fixed z-50 w-full items-center justify-between p-2 lg:px-8">
       {/* logo */}
       <div className="flex lg:flex-1">
-        <a href="/" className="p-1">
+        <Link to="/" className="p-1">
           <img className="h-14 w-14" src={`${Logo}`} alt="" />
-        </a>
+        </Link>
       </div>
 
       {/* search bar */}
@@ -323,14 +323,14 @@ export default function Header() {
 
             {/* login */}
             <div>
-              <a href="/login">
+              <Link to="/login">
                 <button
                   type="submit"
                   className="flex items-center w-20 justify-center h-9 gap-x-1 text-sm font-semibold leading-6 bg-[#3da749] p-1 text-white hover:bg-[#296b33] rounded-full "
                 >
                   Login
                 </button>
-              </a>
+              </Link>
             </div>
           </>
         )}
@@ -347,10 +347,10 @@ export default function Header() {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           {/* logo */}
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link to="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Agricur</span>
               <img className="h-8 w-auto" src={`${Logo}`} alt="" />
-            </a>
+            </Link>
             {/* 3-bar button */}
             <button
               type="button"

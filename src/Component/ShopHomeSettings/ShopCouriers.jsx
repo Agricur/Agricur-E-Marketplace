@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ShopCourierSection = () => {
   const [currentCourier, setCurrentCourier] = useState({
@@ -29,7 +30,7 @@ const ShopCourierSection = () => {
 
   return (
     <div className="md:w-3/4 pl-4 mr-8 container mx-auto items-center bg-white rounded-lg mt-2 p-4 shadow-md">
-      <a href="#" onClick={handleClick}>
+      <Link to="#" onClick={handleClick}>
         <div className="mb-4">
           {/* Display the current courier card if there is a current courier */}
           {currentCourier.name && (
@@ -54,7 +55,7 @@ const ShopCourierSection = () => {
             </div>
           )}
         </div>
-      </a>
+      </Link>
 
       {/* Add a new courier section */}
       <div className="mb-4">

@@ -419,11 +419,11 @@ const ProductDetailPage = (props) => {
                     </p>
                   </div>
                 </div>
-                <a href="/shophome">
+                <Link to="/shophome">
                   <button className="bg-[#3da749] text-white py-2 px-4 rounded-full mt-2 hover:bg-[#296b33]">
                     Visit Store
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import Logo from "../../Images/Logo.png";
 import Tele from "../../Assets/telephone.svg";
 import Mail from "../../Assets/gmail.svg";
-const currentYear = new Date().getFullYear();
+
 
 export default function Footer() {
   return (

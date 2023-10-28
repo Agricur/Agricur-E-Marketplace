@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function PageNotFound() {
   return (
@@ -13,12 +14,12 @@ function PageNotFound() {
             Sorry we couldn't find the page you're looking for
           </p>
 
-          <a
-            href="/"
+          <Link
+            to="/"
             class="px-5 inline py-3 text-sm font-medium leading-5 shadow-2xl text-white transition-all duration-400 border border-transparent rounded-lg focus:outline-none bg-[#3da749] p-1 hover:bg-[#296b33]"
           >
             Back To Agricur Homepage
-          </a>
+          </Link>
         </div>
         <div className="w-full lg:flex lg:justify-end lg:w-1/2 mx-5 my-12">
           <img
