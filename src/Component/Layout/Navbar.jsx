@@ -4,9 +4,9 @@ import Bag from "../../Assets/bag.svg";
 import Carrot from "../../Assets/carrot.svg";
 import Tractor from "../../Assets/tractor.svg";
 import Wheat from "../../Assets/wheat.svg";
-import { Disclosure, Popover, Transition} from "@headlessui/react";
+import { Disclosure, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   ChevronDownIcon,
   PhoneIcon,
@@ -20,7 +20,7 @@ const navigation = [
   { name: "TIPS", href: "/tips", current: false },
   { name: "CONTACTS", href: "/contacts", current: false },
   { name: "HELP", href: "/help", current: false },
-]
+];
 
 // categories content
 const categories = [
@@ -58,8 +58,12 @@ const categories = [
 
 // calls to action content
 const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contacts", href: "#", icon: PhoneIcon },
+  {
+    name: "Watch demo",
+    href: "https://youtu.be/1dH1I_nsSAc?si=t8eNszGtXS_cXC0k",
+    icon: PlayCircleIcon,
+  },
+  { name: "Contacts", href: "/contacts", icon: PhoneIcon },
 ];
 
 function classNames(...classes) {
@@ -70,7 +74,6 @@ export default function Navbar() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
-
     // Listen for changes in the URL and update currentPath accordingly
     const handlePathChange = () => {
       setCurrentPath(window.location.pathname);
@@ -90,7 +93,11 @@ export default function Navbar() {
     current: item.href === currentPath,
   }));
   return (
-    <Disclosure data-testid="navbar" as="nav" className="bg-[#3da749] fixed z-40 w-full mt-20">
+    <Disclosure
+      data-testid="navbar"
+      as="nav"
+      className="bg-[#3da749] fixed z-40 w-full mt-20"
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-4 shadow-2xl">
@@ -228,38 +235,41 @@ export default function Navbar() {
                   <Disclosure as="div">
                     {({ open }) => (
                       <>
-                        <Disclosure.Button
-                          key={item.name}
-                          as="a"
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? "bg-[#18411e] text-white"
-                              : "text-gray-300 hover:bg-[#296b33] hover:text-white",
-                            "px-3 font-medium flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base leading-7"
-                          )}
-                          aria-current={item.current ? "page" : undefined}
-                        >
-                          {item.name}
-                          {/* dropdown menu */}
-                          <ChevronDownIcon
+                        <Link to={item.href}>
+                          <Disclosure.Button
+                            key={item.name}
+                            as="a"
                             className={classNames(
-                              open ? "rotate-180" : "",
-                              "h-5 w-5 flex-none"
+                              item.current
+                                ? "bg-[#18411e] text-white"
+                                : "text-gray-300 hover:bg-[#296b33] hover:text-white",
+                              "px-3 font-medium flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base leading-7"
                             )}
-                            aria-hidden="true"
-                          />
-                        </Disclosure.Button>
+                            aria-current={item.current ? "page" : undefined}
+                          >
+                            {item.name}
+                            {/* dropdown menu */}
+                            <ChevronDownIcon
+                              className={classNames(
+                                open ? "rotate-180" : "",
+                                "h-5 w-5 flex-none"
+                              )}
+                              aria-hidden="true"
+                            />
+                          </Disclosure.Button>
+                        </Link>
+
                         <Disclosure.Panel className="mt-2 space-y-2">
                           {[...categories, ...callsToAction].map((item) => (
-                            <Disclosure.Button
-                              key={item.name}
-                              as="a"
-                              href={item.href}
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-300 hover:bg-[#296b33]"
-                            >
-                              {item.name}
-                            </Disclosure.Button>
+                            <Link to={item.href}>
+                              <Disclosure.Button
+                                key={item.name}
+                                as="a"
+                                className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-300 hover:bg-[#296b33]"
+                              >
+                                {item.name}
+                              </Disclosure.Button>
+                            </Link>
                           ))}
                         </Disclosure.Panel>
                       </>
@@ -267,20 +277,21 @@ export default function Navbar() {
                   </Disclosure>
                 ) : (
                   // other navigation bar items
-                  <Disclosure.Button
-                    key={item.name}
-                    as="a"
-                    href={item.href}
-                    className={classNames(
-                      item.current
-                        ? "bg-[#18411e] text-white"
-                        : "text-gray-300 hover:bg-[#296b33] hover:text-white",
-                      "block rounded-md px-3 py-2 text-base font-medium"
-                    )}
-                    aria-current={item.current ? "page" : undefined}
-                  >
-                    {item.name}
-                  </Disclosure.Button>
+                  <Link to={item.href}>
+                    <Disclosure.Button
+                      key={item.name}
+                      as="a"
+                      className={classNames(
+                        item.current
+                          ? "bg-[#18411e] text-white"
+                          : "text-gray-300 hover:bg-[#296b33] hover:text-white",
+                        "block rounded-md px-3 py-2 text-base font-medium"
+                      )}
+                      aria-current={item.current ? "page" : undefined}
+                    >
+                      {item.name}
+                    </Disclosure.Button>
+                  </Link>
                 )
               )}
             </div>
