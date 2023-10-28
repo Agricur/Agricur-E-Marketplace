@@ -16,7 +16,6 @@ function classNames(...classes) {
 }
 
 const Login = () => {
- 
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -27,51 +26,56 @@ const Login = () => {
   );
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     const formData = {
-      email:email,
-      password:password,
-    }; 
+      email: email,
+      password: password,
+    };
 
-      // Send the form data to the server using axios or a similar library
-      await axios.post(`${server}/api/user/user-login`, formData).then((res) =>{
-
+    // Send the form data to the server using axios or a similar library
+    await axios
+      .post(`${server}/api/user/user-login`, formData)
+      .then((res) => {
         const token = res.data.token;
         const user_id = res.data.user_id;
         const is_seller = res.data.is_seller;
-        Cookies.set("jwtToken", token, { expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000)});
-        toast.success(res.data.message);
-        if(cartItems.length > 0){
-        axios.post(`${server}/api/cart/createCart`, {user_id: user_id, cartItems: cartItems}).then((res) =>{
-          toast.success(res.data.message);
+        Cookies.set("jwtToken", token, {
+          expires: new Date(
+            Date.now() +
+              process.env.JWT_COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000
+          ),
         });
+        toast.success(res.data.message);
+        if (cartItems.length > 0) {
+          axios
+            .post(`${server}/api/cart/createCart`, {
+              user_id: user_id,
+              cartItems: cartItems,
+            })
+            .then((res) => {
+              toast.success(res.data.message);
+            });
         }
-        if(is_seller){
-          navigate('/shopAccount')
-        }else{
-          navigate('/')
+        if (is_seller) {
+          navigate("/shopAccount");
+        } else {
+          navigate("/");
         }
-        
-      }).catch((error)=>{
-        toast.error(error.response.data.message)
       })
-    
-  
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
   };
 
   return (
     <div className="flex justify-center items-center">
-    <div
-      className="bg-cover bg-center min-h-screen w-full"
-      style={{
-        backgroundImage:
-          `url(${LogImg})`,
-      }}
-    >
-  
-      {/* <div className="min-h-screen bg-white flex flex-col  justify-center py-12 sm:px-6 lg:px-8"> */}
+      <div
+        className="bg-cover bg-center min-h-screen w-full"
+        style={{
+          backgroundImage: `url(${LogImg})`,
+        }}
+      >
         <div className="mt-20 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white bg-opacity-80 py-8 px-4 shadow sm:rounded-lg sm:px-10 justify-self-start">
             <div className="sm:mx-auto sm:w-full sm:max-w-md align-top">
@@ -80,7 +84,13 @@ const Login = () => {
               </h2>
             </div>
             <div className="mb-6">
-              <img src={Design} alt="" height="70" width="70" className="mx-auto" />
+              <img
+                src={Design}
+                alt=""
+                height="70"
+                width="70"
+                className="mx-auto"
+              />
             </div>
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
@@ -89,7 +99,7 @@ const Login = () => {
                   className="block text-sm font-medium text-gray-700"
                 >
                   Email address
-                </label> 
+                </label>
                 <div className="mt-1">
                   <input
                     type="email"
@@ -154,58 +164,57 @@ const Login = () => {
               </div>
               <div className={`${styles.noramlFlex} w-full`}>
                 <h6 className="font-medium">Don’t have an account? </h6>
-                <Menu as="div" className="relative">
-              <div>
-                <Menu.Button className="flex items-center w-30 justify-center h-9 gap-x-0 text-sm font-semibold leading-6 p-1 text-[#3da749] hover:text-[#296b33] ">
-                  Register Now
-                </Menu.Button>
-              </div>
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-17 z-10 text-center font-semibold mt-0 w-28 origin-bottom-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <Link
-                        to ="/registerSeller"
-                        className={classNames(
-                          active ? "bg-[#e7eae7]" : "",
-                          "block px-4 py-2 text-sm text-gray-700 flest justify-center "
+
+                  <div>
+                    <Menu.Button className="flex items-center w-30 justify-center h-9 gap-x-0 text-sm font-semibold leading-6 p-1 text-[#3da749] hover:text-[#296b33] ">
+                      Register Now
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-17 z-10 text-center font-semibold mt-0 w-28 origin-bottom-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to="/registerSeller"
+                            className={classNames(
+                              active ? "bg-[#e7eae7]" : "",
+                              "block px-4 py-2 text-sm text-gray-700 flest justify-center "
+                            )}
+                          >
+                            As a Seller
+                          </Link>
                         )}
-                      >
-                        As a Seller
-                      </Link>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <Link
-                        to="/registerBuyer"
-                        className={classNames(
-                          active ? "bg-[#e7eae7]" : "",
-                          "block px-4 py-2 text-sm text-gray-700 justify-center"
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to="/registerBuyer"
+                            className={classNames(
+                              active ? "bg-[#e7eae7]" : "",
+                              "block px-4 py-2 text-sm text-gray-700 justify-center"
+                            )}
+                          >
+                            As a Buyer
+                          </Link>
                         )}
-                      >
-                        As a Buyer
-                      </Link>
-                    )}
-                  </Menu.Item>
-                </Menu.Items>
-              </Transition>
-            </Menu>
+                      </Menu.Item>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
               </div>
             </form>
           </div>
         </div>
-        </div>
-      {/* </div> */}
       </div>
+    </div>
   );
 };
 

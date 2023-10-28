@@ -2,6 +2,10 @@ import Logo from "../../Images/Logo.png";
 import Tele from "../../Assets/telephone.svg";
 import Mail from "../../Assets/gmail.svg";
 
+import { Link, useNavigate } from "react-router-dom";
+
+const currentYear = new Date().getFullYear();
+
 
 export default function Footer() {
   return (
@@ -10,12 +14,12 @@ export default function Footer() {
         <div class="cs1:flex md:justify-between">
           {/* Logo */}
           <div class="mb-6 md:mb-0">
-            <a href="/" class="flex items-center">
+            <Link tof="/" class="flex items-center">
               <img src={`${Logo}`} class="h-8 mr-3" alt="Agricur Logo" />
               <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 Agricur
               </span>
-            </a>
+            </Link>
           </div>
           {/* footer upper content */}
           <div class="grid grid-cols-2 gap-8 sm:gap-6 cs2:grid-cols-4">
@@ -26,34 +30,34 @@ export default function Footer() {
               </h2>
               <ul class="text-gray-500 dark:text-[#c9d4c9] font-medium">
                 <li class="mb-0.5">
-                  <a href="/" class="hover:underline">
+                  <Link to="/" class="hover:underline">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li class="mb-0.5">
-                  <a href="/" class="hover:underline">
+                  <Link to="/" class="hover:underline">
                     Categories
-                  </a>
+                  </Link>
                 </li>
                 <li class="mb-0.5">
-                  <a href="/shops" class="hover:underline">
+                  <Link to="/shops" class="hover:underline">
                     Shops
-                  </a>
+                  </Link>
                 </li>
                 <li class="mb-0.5">
-                  <a href="#" class="hover:underline">
+                  <Link to="#" class="hover:underline">
                     Tips
-                  </a>
+                  </Link>
                 </li>
                 <li class="mb-0.5">
-                  <a href="#" class="hover:underline">
+                  <Link to="#" class="hover:underline">
                     Contacts
-                  </a>
+                  </Link>
                 </li>
                 <li class="mb-0.5">
-                  <a href="#" class="hover:underline">
+                  <Link to="#" class="hover:underline">
                     Help
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -64,19 +68,19 @@ export default function Footer() {
               </h2>
               <ul class="text-gray-500 dark:text-[#c9d4c9] font-medium">
                 <li class="mb-0.5">
-                  <a href="#" class="hover:underline">
+                  <Link to="#" class="hover:underline">
                     Our Company
-                  </a>
+                  </Link>
                 </li>
                 <li class="mb-0.5">
-                  <a href="#" class="hover:underline">
+                  <Link to="#" class="hover:underline">
                     Our People
-                  </a>
+                  </Link>
                 </li>
                 <li class="mb-0.5">
-                  <a href="#" class="hover:underline">
+                  <Link to="#" class="hover:underline">
                     FAQ's
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -87,14 +91,14 @@ export default function Footer() {
               </h2>
               <ul class="text-gray-500 dark:text-[#c9d4c9] font-medium">
                 <li class="mb-0.5">
-                  <a href="#" class="hover:underline">
+                  <Link to="#" class="hover:underline">
                     Terms &amp; Conditions
-                  </a>
+                  </Link>
                 </li>
                 <li class="mb-0.5">
-                  <a href="#" class="hover:underline">
+                  <Link to="#" class="hover:underline">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -105,16 +109,16 @@ export default function Footer() {
               </h2>
               <ul class="text-gray-500 dark:text-[#c9d4c9] font-medium">
                 <li class="mb-0.5">
-                  <a href="#" class="hover:underline flex items-center">
+                  <Link to="#" class="hover:underline flex items-center">
                     <img src={`${Tele}`} alt="" />
                     <span className="ml-2">(+94) 123 456 789</span>
-                  </a>
+                  </Link>
                 </li>
                 <li class="mb-0.5">
-                  <a href="#" class="hover:underline flex items-center">
+                  <Link to="#" class="hover:underline flex items-center">
                     <img src={`${Mail}`} alt="" />
                     <span className="ml-2">agricur@gmail.com</span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -124,16 +128,15 @@ export default function Footer() {
         {/* footer lower content */}
         <div class="sm:flex sm:items-center sm:justify-between">
           <span class="text-sm font-semibold text-gray-500 sm:text-center dark:text-white">
-            © 2023{" "}
-            <a href="" class="hover:underline">
+            {currentYear}{" "}
+            <Link to="" class="hover:underline">
               Agricur™
-            </a>
+            </Link>
             . All Rights Reserved.
           </span>
           {/* icons */}
           <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
-            <a
-              href="#"
+            <Link to="#"
               class="text-white hover:text-gray-900 dark:hover:text-gray-500"
             >
               <svg
@@ -150,9 +153,8 @@ export default function Footer() {
                 />
               </svg>
               <span class="sr-only">Facebook page</span>
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link to="#"
               class="text-white hover:text-gray-900 dark:hover:text-gray-500"
             >
               <svg
@@ -165,9 +167,8 @@ export default function Footer() {
                 <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
               </svg>
               <span class="sr-only">Discord community</span>
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link to="#"
               class="text-white hover:text-gray-900 dark:hover:text-gray-500"
             >
               <svg
@@ -184,9 +185,8 @@ export default function Footer() {
                 />
               </svg>
               <span class="sr-only">Twitter page</span>
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link to="#"
               class="text-white hover:text-gray-900 dark:hover:text-gray-500"
             >
               <svg
@@ -203,9 +203,8 @@ export default function Footer() {
                 />
               </svg>
               <span class="sr-only">GitHub account</span>
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link to="#"
               class="text-white hover:text-gray-900 dark:hover:text-gray-500"
             >
               <svg
@@ -222,7 +221,7 @@ export default function Footer() {
                 />
               </svg>
               <span class="sr-only">Dribbble account</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
