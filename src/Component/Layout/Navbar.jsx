@@ -6,7 +6,7 @@ import Tractor from "../../Assets/tractor.svg";
 import Wheat from "../../Assets/wheat.svg";
 import { Disclosure, Popover, Transition} from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-
+import {Link} from "react-router-dom";
 import {
   ChevronDownIcon,
   PhoneIcon,
@@ -117,9 +117,9 @@ export default function Navbar() {
                   <div className="flex space-x-4">
                     {updatedNavigation.map((item) =>
                       item.name === "CATEGORIES" ? (
-                        <a
+                        <Link
                           key={item.name}
-                          href={item.href}
+                          to={item.href}
                           className={classNames(
                             item.current
                               ? "bg-[#18411e] text-white"
@@ -163,13 +163,13 @@ export default function Navbar() {
                                         />
                                       </div>
                                       <div className="flex-auto">
-                                        <a
-                                          href={item.href}
+                                        <Link
+                                          to={item.href}
                                           className="block font-semibold text-gray-900"
                                         >
                                           {item.name}
                                           <span className="absolute inset-0" />
-                                        </a>
+                                        </Link>
                                         <p className="mt-1 text-gray-600">
                                           {item.description}
                                         </p>
@@ -179,9 +179,9 @@ export default function Navbar() {
                                 </div>
                                 <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                                   {callsToAction.map((item) => (
-                                    <a
+                                    <Link
                                       key={item.name}
-                                      href={item.href}
+                                      to={item.href}
                                       className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-[#e7eae7]"
                                     >
                                       <item.icon
@@ -189,18 +189,18 @@ export default function Navbar() {
                                         aria-hidden="true"
                                       />
                                       {item.name}
-                                    </a>
+                                    </Link>
                                   ))}
                                 </div>
                               </Popover.Panel>
                             </Transition>
                           </Popover>
-                        </a>
+                        </Link>
                       ) : (
                         // other navigation bar items
-                        <a
+                        <Link
                           key={item.name}
-                          href={item.href}
+                          to={item.href}
                           className={classNames(
                             item.current
                               ? "bg-[#18411e] text-white"
@@ -210,7 +210,7 @@ export default function Navbar() {
                           aria-current={item.current ? "page" : undefined}
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       )
                     )}
                     <div></div>
