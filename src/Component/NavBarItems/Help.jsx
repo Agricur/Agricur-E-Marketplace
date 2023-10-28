@@ -1,6 +1,7 @@
 import Header from "../Layout/Header";
 import Footer from "../Layout/Footer";
 import Navbar from "../Layout/Navbar";
+import { Link } from "react-router-dom";
 
 const Help = () => {
   return (
@@ -135,9 +136,9 @@ const Help = () => {
               </h2>
               <p>
                 If you couldn't find answers to your questions, feel free to{" "}
-                <a href="/contacts" className="text-[#3CB44A] hover:underline">
+                <Link to="/contacts" className="text-[#3CB44A] hover:underline">
                   contact us
-                </a>{" "}
+                </Link>{" "}
                 directly. We're here to help!
               </p>
             </section>

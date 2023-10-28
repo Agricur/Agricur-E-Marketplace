@@ -1,5 +1,6 @@
 import React from "react";
 import profilePhoto from '../../Images/Logo.png';
+import { Link } from "react-router-dom";
 
 const ShopNav = () => {
     return (
@@ -19,25 +20,25 @@ const ShopNav = () => {
           <div className="rounded-lg shadow-md items-center mt-4">
             <ul className="space-y-2">
             <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
-                <a href="/#" className="block">Dashboard</a>
+                <Link to="/#" className="block">Dashboard</Link>
               </li>
               <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
-                <a href="/#" className="block">Edit Shop </a>
+                <Link to="/#" className="block">Edit Shop </Link>
               </li>
               <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
-                <a href="/#" className="block">Products</a>
+                <Link to="/#" className="block">Products</Link>
               </li>
               <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
-                <a href="/#" className="block">Couriers</a>
+                <Link to="/#" className="block">Couriers</Link>
               </li>
               <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
-                <a href="/#" className="block">Messages</a>
+                <Link to="/#" className="block">Messages</Link>
               </li>
               <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
-                <a href="/#" className="block">Order History</a>
+                <Link to="/#" className="block">Order History</Link>
               </li>
               <li className="p-4 bg-[#d9eada] font-bold py-2 px-4 rounded hover:bg-[#3da749]">
-                <a href="/#" className="block">Seller's Acount</a>
+                <Link to="/#" className="block">Seller's Acount</Link>
               </li>
             </ul>
           </div>

@@ -23,8 +23,8 @@ const ShopItemEdit = ({
   };
 
   return (
-    <a
-      href="/#"
+    <Link
+      to="/#"
       onClick={handleClick}
       className="rounded-lg p-4 shadow-lg border hover:opacity-80 "
       style={{ width: "100%", height: "100%", display: "block" }}
@@ -71,7 +71,7 @@ const ShopItemEdit = ({
         </button>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 

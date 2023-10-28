@@ -10,6 +10,7 @@ import { server } from "../../server";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -145,12 +146,12 @@ const Login = () => {
               </div>
               <div className={`${styles.noramlFlex} justify-end`}>
                 <div className="text-sm">
-                  <a
-                    href=".forgot-password"
+                  <Link
+                    to=".forgot-password"
                     className="font-medium text-[#3CB44A] hover:text-[#24692d]"
                   >
                     Forgot your password?
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div>
@@ -163,7 +164,7 @@ const Login = () => {
               </div>
               <div className={`${styles.noramlFlex} w-full`}>
                 <h6 className="font-medium">Don’t have an account? </h6>
-                <Menu as="div" className="relative">
+
                   <div>
                     <Menu.Button className="flex items-center w-30 justify-center h-9 gap-x-0 text-sm font-semibold leading-6 p-1 text-[#3da749] hover:text-[#296b33] ">
                       Register Now

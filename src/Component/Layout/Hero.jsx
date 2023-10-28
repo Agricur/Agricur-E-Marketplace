@@ -38,7 +38,6 @@ const HeroSection = () => {
                       Fruits
                     </div>
                   </div>
-             
                 </Link>
                 <Link to="/vegetables">
                   <div className="group w-full sm:w-1/2 md:w-1/3 lg:w-1/5 px-4 py-2 inline-block">
