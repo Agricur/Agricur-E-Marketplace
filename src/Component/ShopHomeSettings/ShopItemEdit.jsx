@@ -1,6 +1,7 @@
 import React from "react";
 import StarRating from "../Rating/StarRating"; // Reusable star rating component
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const ShopItemEdit = ({
   key,
