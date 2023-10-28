@@ -216,7 +216,7 @@ const ProductDetailPage = (props) => {
           console.log(error);
         });
     }
-    window.location.reload();
+    // window.location.reload();
   };
 
   const handleBuyNow = () => {
