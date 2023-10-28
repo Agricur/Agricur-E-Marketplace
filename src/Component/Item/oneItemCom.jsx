@@ -171,7 +171,6 @@ const ProductDetailPage = (props) => {
       };
     }
 
-    console.log(newItem);
 
     let items = 0;
     for (let i = 0; i < currentCart.length; i++) {
@@ -217,7 +216,7 @@ const ProductDetailPage = (props) => {
           console.log(error);
         });
     }
-    // window.location.reload();
+    window.location.reload();
   };
 
   const handleBuyNow = () => {
