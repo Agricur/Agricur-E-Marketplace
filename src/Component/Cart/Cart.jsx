@@ -121,6 +121,7 @@ const Cart = () => {
       return cartItem;
     });
     setCartItems(updatedCartItems);
+    calculateTotalPrice();
   };
 
 
