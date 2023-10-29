@@ -34,6 +34,13 @@ const ProductDetailPage = (props) => {
 
   const navigate = useNavigate();
 
+
+  const currentDate = new Date();
+
+  currentDate.setDate(currentDate.getDate() + 2);
+
+  const formattedDate = `${currentDate.getFullYear()}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${currentDate.getDate().toString().padStart(2, '0')}`;
+
   useEffect(() => {
     if (userCookie) {
       fetch(`${server}/api/user/data`, {
@@ -153,9 +160,12 @@ const ProductDetailPage = (props) => {
     // Retrieve the current cart from localStorage
     var currentCart = JSON.parse(localStorage.getItem("cart")) || [];
     let newItem;
-    if(props.item.price_unit === "/kg" && (sellingWeights === "" || sellingWeights === undefined)){
+    if (
+      props.item.price_unit === "/kg" &&
+      (sellingWeights === "" || sellingWeights === undefined)
+    ) {
       toast.error("Please select a quantity");
-    }else{
+    } else {
       // Create a new item for the cart
       if (props.item.price_unit === "/kg") {
         newItem = {
@@ -195,7 +205,9 @@ const ProductDetailPage = (props) => {
       }
       if (items === currentCart.length) {
         currentCart.push(newItem);
-        currentCart[currentCart.length - 1].selling_weight = JSON.stringify(props.item.selling_quantities);
+        currentCart[currentCart.length - 1].selling_weight = JSON.stringify(
+          props.item.selling_quantities
+        );
         currentCart[currentCart.length - 1].price_unit = props.item.price_unit;
         currentCart[currentCart.length - 1].unit_price = props.item.price;
         localStorage.setItem("cart", JSON.stringify(currentCart));
@@ -224,19 +236,43 @@ const ProductDetailPage = (props) => {
       }
       navigate("/cart");
     }
-    
+
     // window.location.reload();
   };
 
   const handleBuyNow = () => {
     if (quantityUnits === "units") {
-      navigate(`/checkout/${props.item.product_id}/${quantity}/${quantity * props.item.price}`);
+      navigate(
+        `/checkout/${props.item.product_id}/${quantity}/${
+          quantity * props.item.price
+        }`
+      );
     } else {
       if (sellingWeights === undefined || sellingWeights === "") {
         toast.error("Please select a quantity");
-      }else{
-      navigate(`/checkout/${props.item.product_id}/${sellingWeights}/${handlePrice()}`);
+      } else {
+        navigate(
+          `/checkout/${
+            props.item.product_id
+          }/${sellingWeights}/${handlePrice()}`
+        );
       }
+    }
+  };
+
+  const sendMessage = () => {
+    if (userCookie) {
+      navigate(`/userAccount`);
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const handleChangeAddress = () => {
+    if (userCookie) {
+      navigate(`/userAccount`);
+    } else {
+      navigate("/login");
     }
   };
 
@@ -245,11 +281,11 @@ const ProductDetailPage = (props) => {
   return (
     <>
       {quantityUnits !== undefined ? (
-        <div className="container mx-auto p-4 bg-[#D9D9D9] relative">
+        <div className="container max-w-full p-4 bg-[#D9D9D9] relative">
           <div className="grid grid-cols-1 mt-32 md:grid-cols-3 gap-4">
             {/* Left Rectangle: Photos */}
             <div className="md:col-span-1">
-              <div className="border rounded p-4 mb-4 bg-white">
+              <div className="border rounded p-4 h-auto mb-4 bg-white">
                 <div className="carousel-container max-w-2xl relative p-2 sm:p-4">
                   {slides.map((src, index) => (
                     <div
@@ -343,7 +379,7 @@ const ProductDetailPage = (props) => {
                       onChange={(e) => setSellingWeights(e.target.value)}
                       className="rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
                     >
-                      <option value="">Quantity</option>
+                      <option value="">Select the Quantity</option>
                       {props.item.selling_quantities.map((quantity) => (
                         <option value={quantity}>{quantity}</option>
                       ))}
@@ -352,19 +388,22 @@ const ProductDetailPage = (props) => {
                 </div>
 
                 <div className="mb-2 text-lg font-semibold">
-                  Description:
+                  Description: 
                   <br />
                   Stock: {props.item.quantity} {props.item.quantity_unit}
                 </div>
 
-                <div className="flex justify-between">
-                  <button onClick={handleBuyNow}className="bg-[#3da749] justify-items-center text-white md:h-12 sm:h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16">
+                <div className="flex flex-col md:flex-row md:justify-between">
+                  <button
+                    onClick={handleBuyNow}
+                    className="bg-[#3da749] text-white h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16"
+                  >
                     Buy Now
                   </button>
 
                   <button
                     onClick={handleAddToCart}
-                    className="bg-[#3da749] justify-items-center text-white lg:h-12 md:h-12  sm:h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16"
+                    className="bg-[#3da749] text-white h-12 m-2 rounded-full hover:bg-[#296b33] px-16 sm:px-12 md:px-8 lg:px-12 xl:px-16"
                   >
                     Add to Cart
                   </button>
@@ -382,21 +421,21 @@ const ProductDetailPage = (props) => {
                     <FaMapMarkerAlt />
                   </div>
                   <div>Delivery Address</div>
-                  <button className="ml-auto text-blue-500">Change</button>
+                  <button onClick={()=>handleChangeAddress()} className="ml-auto text-[#3da749] hover:text-[#296b33]">Change</button>
                 </div>
                 <div className="flex items-center mb-2">
                   <div className="mr-2">
                     <FaTruck />
                   </div>
                   <div>Estimated Delivery Date</div>
-                  <div className="ml-auto">Delivery Cost</div>
+                  <div className="ml-auto">{formattedDate}</div>
                 </div>
                 <div className="flex items-center">
                   <div className="mr-2">
                     <FaMoneyBillWave />
                   </div>
-                  <div>Payment Method</div>
-                  <button className="ml-auto text-blue-500">Change</button>
+                  <div>Delivery Cost</div>
+                  <div className="ml-auto">LKR. 200.00</div>
                 </div>
               </div>
 
@@ -407,7 +446,10 @@ const ProductDetailPage = (props) => {
                     {props.item.shop_name}
                   </h2>
                 </div>
-                <button class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-[#3da749] rounded-full focus:shadow-outline hover:bg-[#296b33]">
+                <button
+                  onClick={() => sendMessage()}
+                  class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-[#3da749] rounded-full focus:shadow-outline hover:bg-[#296b33]"
+                >
                   <div>
                     <FaComments />
                   </div>
@@ -421,7 +463,7 @@ const ProductDetailPage = (props) => {
                     </p>
                   </div>
                 </div>
-                <Link to="/shophome">
+                <Link to={`/shophome/${props.item.shop_id}`}>
                   <button className="bg-[#3da749] text-white py-2 px-4 rounded-full mt-2 hover:bg-[#296b33]">
                     Visit Store
                   </button>
