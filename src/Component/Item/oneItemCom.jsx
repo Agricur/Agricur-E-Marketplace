@@ -195,12 +195,14 @@ const ProductDetailPage = (props) => {
       }
       if (items === currentCart.length) {
         currentCart.push(newItem);
+        currentCart[currentCart.length - 1].selling_weight = JSON.stringify(props.item.selling_quantities);
+        currentCart[currentCart.length - 1].price_unit = props.item.price_unit;
+        currentCart[currentCart.length - 1].unit_price = props.item.price;
         localStorage.setItem("cart", JSON.stringify(currentCart));
         if (!userCookie) {
           toast.success("Product added to the cart");
         }
       }
-
       if (userCookie) {
         fetch(`${server}/api/cart/insertProduct`, {
           method: "POST",
