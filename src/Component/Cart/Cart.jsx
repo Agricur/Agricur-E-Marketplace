@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { server } from "../../server";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { waitFor } from "@testing-library/react";
 
 const Cart = () => {
   // Initialize the cart from localStorage or with an empty array
@@ -155,9 +156,12 @@ const Cart = () => {
 
   const handleCheckout = () => {
     if (userCookie) {
-      navigate("/checkout");
+      // navigate("/checkout");
     } else {
-      navigate("/login");
+      toast.error("Must be logged before place the order")
+      setTimeout(() => {
+        navigate("/login"); 
+      }, 3000);
     }
   };
 
