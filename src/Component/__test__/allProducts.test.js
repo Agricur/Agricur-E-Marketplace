@@ -13,3 +13,13 @@ test('should render All products', () => {
 });
 
 
+  test('should render a pagination component', () => {
+    render(<AllProducts />);
+    const paginationElement = screen.getByTestId('pagination');
+    expect(paginationElement).toBeInTheDocument();
+  });
+  
+ 
+  
+  
+
