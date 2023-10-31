@@ -32,7 +32,6 @@ const Login = () => {
       password: password,
     };
 
-    // Send the form data to the server using axios or a similar library
     await axios
       .post(`${server}/api/user/user-login`, formData)
       .then((res) => {

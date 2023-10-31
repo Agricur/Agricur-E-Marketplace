@@ -18,7 +18,7 @@ describe('Home Page', () => {
   
     it('should display user-specific content when logged in', () => {
       // Visit the home page
-      cy.visit('http://localhost:3000'); // Replace with the actual URL of your home page
+      cy.visit('http://localhost:3000');
   
       // Set a JWT token in the browser's localStorage to simulate a logged-in state
       cy.window().then((win) => {

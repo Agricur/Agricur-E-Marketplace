@@ -98,11 +98,8 @@ const Help = () => {
                 using:
               </p>
               <ul className="list-disc ml-6 my-4">
-                {/* <li>Credit or Debit Cards</li> */}
                 <li>PayPal</li>
                 <li>Cash On Delivery</li>
-                {/* <li>Bank Transfer</li>
-                <li>Mobile Wallets</li> */}
               </ul>
               <p>
                 Choose the payment method that suits you best during the

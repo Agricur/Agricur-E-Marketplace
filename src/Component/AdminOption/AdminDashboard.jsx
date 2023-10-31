@@ -87,7 +87,6 @@ const AdminDashboard = () => {
               <div id="area-chart"></div>
               <div className="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
                 <div className="flex justify-between items-center pt-5">
-                  {/* Add your additional content here */}
                   <button
                     id="dropdownDefaultButton"
                     data-dropdown-toggle="lastDaysdropdown"
@@ -99,7 +98,6 @@ const AdminDashboard = () => {
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                     </svg>
                   </button>
-                  {/* Add more buttons, labels, or content as needed */}
                   <Link
                     to="#"
                     className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-green-500 hover:text-green-900 dark:hover:text-green-900  hover:bg-gray-100 dark:hover:bg-[#b9cfba]  dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
@@ -128,7 +126,6 @@ const AdminDashboard = () => {
               <div id="area-chart"></div>
               <div className="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
                 <div className="flex justify-between items-center pt-5">
-                  {/* Add your additional content here */}
                   <button
                     id="dropdownDefaultButton"
                     data-dropdown-toggle="lastDaysdropdown"
@@ -140,7 +137,6 @@ const AdminDashboard = () => {
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                     </svg>
                   </button>
-                  {/* Add more buttons, labels, or content as needed */}
                   <Link
                     to="#"
                     className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-green-500 hover:text-blue-700 dark:hover:text-green-900  hover:bg-gray-100 dark:hover:bg-[#b9cfba] dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
@@ -169,7 +165,6 @@ const AdminDashboard = () => {
               <div id="area-chart"></div>
               <div className="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
                 <div className="flex justify-between items-center pt-5">
-                  {/* Add your additional content here */}
                   <button
                     id="dropdownDefaultButton"
                     data-dropdown-toggle="lastDaysdropdown"
@@ -181,7 +176,6 @@ const AdminDashboard = () => {
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                     </svg>
                   </button>
-                  {/* Add more buttons, labels, or content as needed */}
                   <Link
                     to="#"
                     className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-green-500 hover:text-blue-700 dark:hover:text-green-900  hover:bg-gray-100 dark:hover:bg-[#b9cfba] dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">

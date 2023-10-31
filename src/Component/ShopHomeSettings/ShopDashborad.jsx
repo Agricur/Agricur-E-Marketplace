@@ -18,11 +18,6 @@ const ShopDashborad = () => {
           Phone: (123) 456-7890
         </p>
       </div>
-
-      {/* Right Down Rectangle */}
-      {/* <div className="my-4 py-2 items-center bg-white rounded-lg shadow-md border border-green-700">
-        <ShopSettingItems />
-      </div> */}
     </div>
   );
 };

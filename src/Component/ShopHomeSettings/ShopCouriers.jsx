@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 const ShopCourierSection = () => {
   const [currentCourier, setCurrentCourier] = useState({
     name: "Courier Name",
-    // Add more courier details here
   });
 
   const removeCurrentCourier = () => {
     setCurrentCourier({});
   };
 
-  // Sample data for all couriers in the system
   const allCouriers = [
     {
       name: "Courier 1",
@@ -21,7 +19,6 @@ const ShopCourierSection = () => {
       name: "Courier 2",
       logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfIPFwQgaGGCj37FXKA6qkmXL7z8N7aYPLkw&usqp=CAU",
     },
-    // Add more couriers here
   ];
 
   const handleClick = () => {};

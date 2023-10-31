@@ -118,10 +118,6 @@ const BuyerAccount = (props) => {
 
         {renderComponent()}
 
-        {/* <ShopDashborad /> */}
-        {/* <ShopProducts user_id = {user_id} /> */}
-        {/* <EditShop user_id = {user_id} /> */}
-        {/* <ShopCourierSection /> */}
       </div>
     </div>
   );

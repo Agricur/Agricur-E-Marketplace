@@ -23,12 +23,10 @@ const AddExpertTips = () => {
 
       // Check the response from the server and handle success or errors accordingly
       if (response.status === 201) {
-        // Handle success
         toast.success("Expert Tip added successfully!");
         setHeader("");
         setContent("");
       } else {
-        // Handle server errors
         toast.error("Failed to add Expert Tip. Please try again later.");
       }
     } catch (error) {

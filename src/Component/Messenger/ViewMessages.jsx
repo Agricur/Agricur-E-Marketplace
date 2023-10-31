@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import UserImg from "../../Images/userImage.png";
 
 const Messages = () => {
-  // Initialize conversations state
   const [conversations, setConversations] = useState([
     {
       id: 1,
@@ -42,7 +41,6 @@ const Messages = () => {
         },
       ],
     },
-    // Add more conversations here
   ]);
 
   conversations.sort((a, b) => {

@@ -456,7 +456,6 @@ const ProductDetailPage = (props) => {
                 </button>
                 <div className="mt-2">
                   <div class="flex items-center">
-                    {/* Add more stars here based on your shop rating */}
                     <StarRating rating={3} />
                     <p class="ml-2 text-sm font-medium text-black-500 dark:text-black-400">
                       3 out of 5

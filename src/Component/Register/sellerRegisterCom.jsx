@@ -91,12 +91,10 @@ const SellerRegister = () => {
     }
 
     try {
-      // Send the form data to the server using axios or a similar library
       const response = await axios.post(`${server}/api/seller/seller-register`, formData);
       
       // Check the response from the server and handle success or errors accordingly
       if (response.status === 201) {
-        // Handle success
         toast.success(response.data);
         navigate('/login');
       } 

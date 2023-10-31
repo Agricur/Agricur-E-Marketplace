@@ -4,8 +4,8 @@ import { FaStar, FaStarHalf, FaRegStar } from "react-icons/fa";
 const StarRating = ({ rating }) => {
   const maxRating = 5;
   const starIcons = [];
-  const integerRating = Math.floor(rating); // Extract the integer part of the rating
-  const decimalRating = rating - integerRating; // Extract the decimal part of the rating
+  const integerRating = Math.floor(rating); 
+  const decimalRating = rating - integerRating; 
 
   for (let i = 1; i <= maxRating; i++) {
     if (i <= integerRating) {

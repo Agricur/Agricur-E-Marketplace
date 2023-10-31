@@ -57,7 +57,6 @@ const AddNewCourier = () => {
 
       // Check the response from the server and handle success or errors accordingly
       if (response.status === 201) {
-        // Handle success
         toast.success(response.data);
         setEmail("");
         setUsername("");

@@ -61,7 +61,6 @@ const EditAccount = () => {
       await axios.put(`/api/shops/${sellerID}/name`, {
         sellerName: sellerData.sellerName,
       });
-      // Handle success
     } catch (error) {
       // Handle error
     }

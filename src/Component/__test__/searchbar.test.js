@@ -30,14 +30,12 @@ test('should render a search input field', () => {
     const searchInput = screen.getByPlaceholderText('Search here ...');
     fireEvent.change(searchInput, { target: { value: 'example' } });
   
-    // You may want to wait for the debounce or API call to complete before checking for the results.
-    // Use `waitFor` or an appropriate delay mechanism.
   
      waitFor(() => {
-        const searchResults = screen.getByRole('list'); // Use role "list" for the container
+        const searchResults = screen.getByRole('list'); 
         expect(searchResults).toBeInTheDocument();
       });
   });
   
-  // Add more test cases as needed for different interactions and conditions.
+
   

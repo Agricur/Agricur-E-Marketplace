@@ -134,7 +134,6 @@ const ProductHandle = ({user_id}) => {
       rating: 4.5,
       price: 18.49,
     },
-    // Add more items here
   ]);
 
   // console.log(user_id);

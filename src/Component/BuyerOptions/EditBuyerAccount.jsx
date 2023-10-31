@@ -127,7 +127,6 @@ const EditAccount = (props) => {
         toast.success(res.data.message); 
         window.location.reload();
       });
-      // // Handle success
     } catch (error) {
       // Handle error
       console.error("An error occurred:", error);

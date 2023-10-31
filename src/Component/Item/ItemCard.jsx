@@ -1,9 +1,8 @@
 import React from "react";
-import StarRating from "../Rating/StarRating"; // Reusable star rating component
+import StarRating from "../Rating/StarRating";
 
 const ItemCard = ({ itemName, itemImage, soldItems, itemRating, price, onItemClick }) => {
     const handleClick = () => {
-      // Handle the click action, e.g., navigate to the item's details page
       if (onItemClick) {
         onItemClick();
       }
