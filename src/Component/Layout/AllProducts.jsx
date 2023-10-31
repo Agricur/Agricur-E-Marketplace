@@ -85,7 +85,7 @@ export default function AllProducts(user_id) {
             ))}
           </div>
         </div>
-        <div className="py-2">
+        <div className="py-2" data-testid="pagination">
           <Pagination
             totalPages={totalPages}
             currentPage={currentPage}

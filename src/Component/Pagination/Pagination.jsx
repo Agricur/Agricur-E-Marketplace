@@ -16,7 +16,7 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
   };
 
   return (
-    <div className="flex items-center justify-center my-8">
+    <div className="flex items-center justify-center my-8" data-testid="pagination-component">
       <button
         onClick={handlePrevious}
         className={`${
