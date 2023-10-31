@@ -1,9 +1,11 @@
 import Logo from "../../Images/Logo.png";
 import Tele from "../../Assets/telephone.svg";
 import Mail from "../../Assets/gmail.svg";
+
 import { Link, useNavigate } from "react-router-dom";
 
 const currentYear = new Date().getFullYear();
+
 
 export default function Footer() {
   return (

@@ -4,9 +4,9 @@ import Bag from "../../Assets/bag.svg";
 import Carrot from "../../Assets/carrot.svg";
 import Tractor from "../../Assets/tractor.svg";
 import Wheat from "../../Assets/wheat.svg";
-import { Disclosure, Popover, Transition} from "@headlessui/react";
+import { Disclosure, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-
+import { Link } from "react-router-dom";
 import {
   ChevronDownIcon,
   PhoneIcon,
@@ -20,7 +20,7 @@ const navigation = [
   { name: "TIPS", href: "/tips", current: false },
   { name: "CONTACTS", href: "/contacts", current: false },
   { name: "HELP", href: "/help", current: false },
-]
+];
 
 // categories content
 const categories = [
@@ -58,8 +58,12 @@ const categories = [
 
 // calls to action content
 const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contacts", href: "#", icon: PhoneIcon },
+  {
+    name: "Watch demo",
+    href: "https://youtu.be/1dH1I_nsSAc?si=t8eNszGtXS_cXC0k",
+    icon: PlayCircleIcon,
+  },
+  { name: "Contacts", href: "/contacts", icon: PhoneIcon },
 ];
 
 function classNames(...classes) {
@@ -70,7 +74,6 @@ export default function Navbar() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
-
     // Listen for changes in the URL and update currentPath accordingly
     const handlePathChange = () => {
       setCurrentPath(window.location.pathname);
@@ -90,7 +93,11 @@ export default function Navbar() {
     current: item.href === currentPath,
   }));
   return (
-    <Disclosure data-testid="navbar" as="nav" className="bg-[#3da749] fixed z-40 w-full mt-20">
+    <Disclosure
+      data-testid="navbar"
+      as="nav"
+      className="bg-[#3da749] fixed z-40 w-full mt-20"
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-4 shadow-2xl">
@@ -117,9 +124,9 @@ export default function Navbar() {
                   <div className="flex space-x-4">
                     {updatedNavigation.map((item) =>
                       item.name === "CATEGORIES" ? (
-                        <a
+                        <Link
                           key={item.name}
-                          href={item.href}
+                          to={item.href}
                           className={classNames(
                             item.current
                               ? "bg-[#18411e] text-white"
@@ -163,13 +170,13 @@ export default function Navbar() {
                                         />
                                       </div>
                                       <div className="flex-auto">
-                                        <a
-                                          href={item.href}
+                                        <Link
+                                          to={item.href}
                                           className="block font-semibold text-gray-900"
                                         >
                                           {item.name}
                                           <span className="absolute inset-0" />
-                                        </a>
+                                        </Link>
                                         <p className="mt-1 text-gray-600">
                                           {item.description}
                                         </p>
@@ -179,9 +186,9 @@ export default function Navbar() {
                                 </div>
                                 <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                                   {callsToAction.map((item) => (
-                                    <a
+                                    <Link
                                       key={item.name}
-                                      href={item.href}
+                                      to={item.href}
                                       className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-[#e7eae7]"
                                     >
                                       <item.icon
@@ -189,18 +196,18 @@ export default function Navbar() {
                                         aria-hidden="true"
                                       />
                                       {item.name}
-                                    </a>
+                                    </Link>
                                   ))}
                                 </div>
                               </Popover.Panel>
                             </Transition>
                           </Popover>
-                        </a>
+                        </Link>
                       ) : (
                         // other navigation bar items
-                        <a
+                        <Link
                           key={item.name}
-                          href={item.href}
+                          to={item.href}
                           className={classNames(
                             item.current
                               ? "bg-[#18411e] text-white"
@@ -210,7 +217,7 @@ export default function Navbar() {
                           aria-current={item.current ? "page" : undefined}
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       )
                     )}
                     <div></div>
@@ -228,38 +235,41 @@ export default function Navbar() {
                   <Disclosure as="div">
                     {({ open }) => (
                       <>
-                        <Disclosure.Button
-                          key={item.name}
-                          as="a"
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? "bg-[#18411e] text-white"
-                              : "text-gray-300 hover:bg-[#296b33] hover:text-white",
-                            "px-3 font-medium flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base leading-7"
-                          )}
-                          aria-current={item.current ? "page" : undefined}
-                        >
-                          {item.name}
-                          {/* dropdown menu */}
-                          <ChevronDownIcon
+                        <Link to={item.href}>
+                          <Disclosure.Button
+                            key={item.name}
+                            as="a"
                             className={classNames(
-                              open ? "rotate-180" : "",
-                              "h-5 w-5 flex-none"
+                              item.current
+                                ? "bg-[#18411e] text-white"
+                                : "text-gray-300 hover:bg-[#296b33] hover:text-white",
+                              "px-3 font-medium flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base leading-7"
                             )}
-                            aria-hidden="true"
-                          />
-                        </Disclosure.Button>
+                            aria-current={item.current ? "page" : undefined}
+                          >
+                            {item.name}
+                            {/* dropdown menu */}
+                            <ChevronDownIcon
+                              className={classNames(
+                                open ? "rotate-180" : "",
+                                "h-5 w-5 flex-none"
+                              )}
+                              aria-hidden="true"
+                            />
+                          </Disclosure.Button>
+                        </Link>
+
                         <Disclosure.Panel className="mt-2 space-y-2">
                           {[...categories, ...callsToAction].map((item) => (
-                            <Disclosure.Button
-                              key={item.name}
-                              as="a"
-                              href={item.href}
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-300 hover:bg-[#296b33]"
-                            >
-                              {item.name}
-                            </Disclosure.Button>
+                            <Link to={item.href}>
+                              <Disclosure.Button
+                                key={item.name}
+                                as="a"
+                                className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-300 hover:bg-[#296b33]"
+                              >
+                                {item.name}
+                              </Disclosure.Button>
+                            </Link>
                           ))}
                         </Disclosure.Panel>
                       </>
@@ -267,20 +277,21 @@ export default function Navbar() {
                   </Disclosure>
                 ) : (
                   // other navigation bar items
-                  <Disclosure.Button
-                    key={item.name}
-                    as="a"
-                    href={item.href}
-                    className={classNames(
-                      item.current
-                        ? "bg-[#18411e] text-white"
-                        : "text-gray-300 hover:bg-[#296b33] hover:text-white",
-                      "block rounded-md px-3 py-2 text-base font-medium"
-                    )}
-                    aria-current={item.current ? "page" : undefined}
-                  >
-                    {item.name}
-                  </Disclosure.Button>
+                  <Link to={item.href}>
+                    <Disclosure.Button
+                      key={item.name}
+                      as="a"
+                      className={classNames(
+                        item.current
+                          ? "bg-[#18411e] text-white"
+                          : "text-gray-300 hover:bg-[#296b33] hover:text-white",
+                        "block rounded-md px-3 py-2 text-base font-medium"
+                      )}
+                      aria-current={item.current ? "page" : undefined}
+                    >
+                      {item.name}
+                    </Disclosure.Button>
+                  </Link>
                 )
               )}
             </div>

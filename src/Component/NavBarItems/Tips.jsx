@@ -2,6 +2,7 @@ import React from 'react';
 import Header from "../Layout/Header";
 import Footer from "../Layout/Footer";
 import Navbar from "../Layout/Navbar";
+import { Link } from 'react-router-dom';
 
 
 const Tips = () => {
@@ -49,14 +50,14 @@ const Tips = () => {
               ))}
 
             <div className="text-right">
-              <a
-                href="https://agrounik.com/agronomy-tips/"
+              <Link
+                to ="https://agrounik.com/agronomy-tips/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-600 text-white py-2 px-6 rounded-full hover:bg-green-700"
               >
                 More Tips...
-              </a>
+              </Link>
             </div>
           </div>
         <Footer />

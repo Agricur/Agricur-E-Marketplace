@@ -11,6 +11,7 @@ const CartItem = ({
   onIncreaseQuantity,
   onDecreaseQuantity,
   onRemoveItem,
+  onChangeWeight,
 }) => {
 
   const userCookie = Cookies.get("jwtToken");
@@ -92,11 +93,12 @@ const CartItem = ({
       </td>
       <td className="px-4 py-3">
       <div className="flex justify-center sm:justify-start items-center">
-          {item.price_unit === "/kg" ? (
+          {item.quantity_unit == "kg"? (
             <>
             
               <select
                 onChange={(e) => setSellingWeights(e.target.value)}
+                onClick={()=>onChangeWeight(item)}
                 className="rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
               >
                 <option value={item.quantity}>{item.quantity < 1 ?(item.quantity*1000 + 'g'):(item.quantity+'kg')}</option>

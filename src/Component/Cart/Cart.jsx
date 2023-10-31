@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CartItem from "../Item/CartItem";
-import { Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { server } from "../../server";
 import axios from "axios";
@@ -15,6 +15,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (userCookie) {
+      setCartItems(JSON.parse(localStorage.getItem("cart"))||[]);
       fetch(`${server}/api/cart/getCart`, {
         method: "GET", 
         headers: {
@@ -38,16 +39,28 @@ const Cart = () => {
 
       localStorage.setItem("cart", JSON.stringify(cartItems));
       if(storageCookie){
-        localStorage.clear();
+        // localStorage.clear();
       }
     
-  }, [cartItems]);
+  }, []);
+
+  if(!userCookie){
+    window.addEventListener('beforeunload', function (event) {
+    // Check if the event type is 'beforeunload' and not 'refresh'
+      if (event.type === 'beforeunload') {
+        // Clear the local storage
+        localStorage.clear();
+      }
+    });
+  }
+  
+  
+
 
   
   const [refresh,setRefresh] = useState(0);
 
   const handleIncreaseQuantity = async (item) => {
-    console.log(item)
     
     if(refresh<4){
       setRefresh(refresh+1)
@@ -64,7 +77,7 @@ const Cart = () => {
     });
     
     if(userCookie){
-      console.log(updatedCartItems)
+      setCartItems(updatedCartItems);
       await axios.post(`${server}/api/cart/updateCartItems`, {userCookie, cartItems: updatedCartItems}).then((res) =>{
       toast.success(res.data.message);
       
@@ -92,6 +105,7 @@ const Cart = () => {
       return cartItem;
     });
     if(userCookie){
+      setCartItems(updatedCartItems);
       await axios.post(`${server}/api/cart/updateCartItems`, {userCookie, cartItems: updatedCartItems}).then((res) =>{
       toast.success(res.data.message);
     });
@@ -99,12 +113,24 @@ const Cart = () => {
     setCartItems(updatedCartItems);
   };
 
+  const onChangeWeight = async (item) => {
+    const updatedCartItems = cartItems.map((cartItem) => {
+      if (cartItem.product_id === item.product_id) {
+        return { ...cartItem, quantity: item.quantity, price: item.price };
+      }
+      return cartItem;
+    });
+    setCartItems(updatedCartItems);
+    calculateTotalPrice();
+  };
+
+
   const handleRemoveItem = async (item) => {
-    window.location.reload("/cart")
     const updatedCartItems = cartItems.filter(
       (cartItem) => cartItem.product_id !== item.product_id
     );
     if(userCookie){
+      setCartItems(updatedCartItems);
       await axios.post(`${server}/api/cart/removeItems`, {userCookie, cartItems: updatedCartItems}).then((res) =>{
       toast.success(res.data.message);
     });
@@ -119,14 +145,20 @@ const Cart = () => {
         total += item.price * item.quantity;
       }
       else{
-        total += item.price;
+        total += parseFloat(item.price);
       }
     });
-    return total;
+    return total.toFixed(2);
   };
 
+  const navigate = useNavigate();
+
   const handleCheckout = () => {
-    Navigate("/checkout");
+    if (userCookie) {
+      navigate("/checkout");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -152,6 +184,7 @@ const Cart = () => {
                     onIncreaseQuantity={handleIncreaseQuantity}
                     onDecreaseQuantity={handleDecreaseQuantity}
                     onRemoveItem={handleRemoveItem}
+                    onChangeWeight={onChangeWeight}
                   />
                 ))}
               </tbody>
@@ -166,11 +199,9 @@ const Cart = () => {
       </div>
 
       <div className="mt-8 mr-4 flex justify-center">
-        <a href="/checkout">
-          <button className="bg-green-600 hover:bg-green-900 text-white px-4 py-2 rounded-full sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+          <button onClick={handleCheckout} className="bg-green-600 hover:bg-green-900 text-white px-4 py-2 rounded-full sm:text-base md:text-lg lg:text-xl xl:text-2xl">
             Proceed to Checkout
           </button>
-        </a>
       </div>
     </div>
   );

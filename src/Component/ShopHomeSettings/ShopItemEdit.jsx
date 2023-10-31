@@ -1,6 +1,7 @@
 import React from "react";
 import StarRating from "../Rating/StarRating"; // Reusable star rating component
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const ShopItemEdit = ({
   key,
@@ -23,8 +24,8 @@ const ShopItemEdit = ({
   };
 
   return (
-    <a
-      href="/#"
+    <Link
+      to="/#"
       onClick={handleClick}
       className="rounded-lg p-4 shadow-lg border hover:opacity-80 "
       style={{ width: "100%", height: "100%", display: "block" }}
@@ -71,7 +72,7 @@ const ShopItemEdit = ({
         </button>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 

@@ -10,7 +10,7 @@ const ItemCard = ({ itemName, itemImage, soldItems, itemRating, price, onItemCli
     };
   
     return (
-      <a href="#" onClick={handleClick} className="rounded-lg bg-slate-100 p-4 shadow border border-green-700 hover:bg-white 
+      <Link to="#" onClick={handleClick} className="rounded-lg bg-slate-100 p-4 shadow border border-green-700 hover:bg-white 
       opacity-90 hover:opacity-100 dark:bg-slate-100 dark:border-green-700">
         <img src={itemImage} alt={itemName} className="w-full h-50 object-cover mb-2 rounded-lg border border-green-700" />
         <h3 className="sm:text-2xl text-lg font-semibold text-center mt-2">{itemName}</h3>
@@ -20,7 +20,7 @@ const ItemCard = ({ itemName, itemImage, soldItems, itemRating, price, onItemCli
         </div>
         <p className="text-gray-600 text-center mt-2">Sold: {soldItems}</p>
         <p className="text-green-500 font-semibold text-center text-xl mt-2">Rs.{price.toFixed(2)} /KG</p>
-      </a>
+      </Link>
     );
   };
   

@@ -23,15 +23,13 @@ export default function AllProducts(user_id) {
     }) 
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data.products); 
       setProducts(data.products); 
-      console.log(data.products);
       localStorage.setItem("products", JSON.stringify(data.products));
     })
   }
   }, []);
 
-    const cardsPerPage = 25;
+    const cardsPerPage = 30;
     const [currentPage, setCurrentPage] = useState(1);
   
     const startIndex = (currentPage - 1) * cardsPerPage;
@@ -50,8 +48,7 @@ export default function AllProducts(user_id) {
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             All Products
           </h2>
-  
-          <div className="mt-6 grid grid-cols-2 gap-x-2 gap-y-10 sm:grid-cols-4 lg:grid-cols-5 xl:gap-x-8">
+          <div className="mt-6 grid grid-cols-2 gap-x-2 gap-y-10 sm:grid-cols-3 lg:grid-cols-5 xl:gap-x-8">
             {displayedProducts.map((product) => (
               <div key={product.product_id} className="group relative bg-white bg-opacity-50 p-1 rounded-xl"
               >
