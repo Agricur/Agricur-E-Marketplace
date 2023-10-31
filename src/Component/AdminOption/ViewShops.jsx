@@ -33,7 +33,6 @@ const ViewShops = () => {
     logoUrl: 'https://img.freepik.com/free-vector/cartoon-style-cafe-front-shop-view_134830-697.jpg',
     rating: 4.3,
     },
-    // Add more shops here
   ]);
   const [selectedShop, setSelectedShop] = useState(null);
 

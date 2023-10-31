@@ -11,10 +11,10 @@ const AddProductForm = ({ onBack, user_id }) => {
   const [productData, setProductData] = useState({
     name: "",
     category: "-- Select --",
-    price: "", // Price input
+    price: "", 
     priceUnit: "-- Unit --",
-    image: null, // For image upload
-    quantity: "", // Quantity input
+    image: null, 
+    quantity: "", 
     quantityUnit: "-- Unit --",
     sellingQuantity: [],
   });
@@ -119,7 +119,7 @@ const AddProductForm = ({ onBack, user_id }) => {
       image: null,
       quantity: "",
       quantityUnit: "",
-      sellingQuantity: [], // Clear the sellingQuantity array
+      sellingQuantity: [], 
     });
 
     

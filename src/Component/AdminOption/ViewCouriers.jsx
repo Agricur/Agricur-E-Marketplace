@@ -34,7 +34,6 @@ const ViewCouriers = () => {
       name: 'Courier 8',
       logoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfIPFwQgaGGCj37FXKA6qkmXL7z8N7aYPLkw&usqp=CAU',
     },
-    // Add more couriers here
   ]);
   const [selectedCourier, setSelectedCourier] = useState(null);
 

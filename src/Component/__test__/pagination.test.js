@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Pagination from '../Pagination/Pagination';
 
 test('should render the Pagination component', () => {
-  // Define props
+
   const totalPages = 5;
   const currentPage = 3;
   const onPageChange = jest.fn();
@@ -19,7 +19,7 @@ test('should render the Pagination component', () => {
 });
 
 test('should call onPageChange with the correct page number when a button is clicked', () => {
-  // Define props
+
   const totalPages = 5;
   const currentPage = 3;
   const onPageChange = jest.fn();

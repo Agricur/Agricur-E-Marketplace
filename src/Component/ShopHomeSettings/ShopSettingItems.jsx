@@ -1,4 +1,3 @@
-// ShopItems.js
 import React, { useState} from "react";
 import ShopItemEdit from "./ShopItemEdit";
 import Pagination from "../Pagination/Pagination";
@@ -22,7 +21,6 @@ const ShopItems = () => {
         { id: 12, name: "Item 12", image: ProductImg, sold: 50, rating: 4.5, price: 18.49 },
         { id: 13, name: "Item 13", image: ProductImg, sold: 50, rating: 4.5, price: 18.49 },
         { id: 14, name: "Item 14", image: ProductImg, sold: 50, rating: 4.5, price: 18.49 },       
-        // Add more items here
 
       ]);
 

@@ -56,7 +56,6 @@ const categories = [
   },
 ];
 
-// calls to action content
 const callsToAction = [
   {
     name: "Watch demo",
@@ -74,7 +73,6 @@ export default function Navbar() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
-    // Listen for changes in the URL and update currentPath accordingly
     const handlePathChange = () => {
       setCurrentPath(window.location.pathname);
     };
@@ -82,7 +80,6 @@ export default function Navbar() {
     window.addEventListener("popstate", handlePathChange);
 
     return () => {
-      // Clean up the event listener when the component unmounts
       window.removeEventListener("popstate", handlePathChange);
     };
   }, []);

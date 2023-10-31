@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Checkout from '../Checkout/Checkout'; // Adjust the import path
+import Checkout from '../Checkout/Checkout';
 import { MemoryRouter } from 'react-router-dom'
 
 // Mock the react-toastify module to prevent issues

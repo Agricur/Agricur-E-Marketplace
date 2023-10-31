@@ -1,27 +1,14 @@
-// ShopPage.js
 import { React, useState, useEffect } from "react";
 import ShopDetail from "./ShopDetail";
 import ShopItems from "./ShopItems";
-import ShopImg from '../../Images/shop.jpg'
 import { server } from "../../server";
 
 const ShopHome = (shopID) => {
   const shop_id = shopID.shopID;
   console.log(shop_id);
 
-  // Sample shop data
-  const shopData = {
-    shopName: "Shop Name",
-    shopImage: ShopImg,
-    ratings: 4.8,
-    // followers: 1000,
-    // motto: "Your shop's motto goes here...",
-    
-  };
-
   const [shopName,setshopName] = useState("");
   const [shopImage,setshopImage] = useState("");
-  const [ratings,setratings] = useState("");
   const [shopProduct,setShopProducts] = useState([]);
   const [shopDescription,setShopDescription] = useState([]);
 

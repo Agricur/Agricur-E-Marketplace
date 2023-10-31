@@ -74,11 +74,6 @@ const ShopSettings = ({ user_id }) => {
             {shopData.shop_name}
           </h2>
 
-          {/* Email Address */}
-          {/* <p className="text-gray-600 text-center text-sm mt-2">
-            shopname@example.com
-          </p> */}
-
           {/* Navigation Bar */}
           <div className="rounded-lg shadow-md mt-4">
             <button

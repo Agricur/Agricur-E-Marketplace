@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Chart from "react-apexcharts";
 import adminPhoto from "../../Images/adminImage.png";
 import Dashboard from "../AdminOption/AdminDashboard";
 import AddNewAdmin from "../AdminOption/AddNewAdmin";
@@ -50,25 +49,6 @@ const AdminAccountPage = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (adminCookie) {
-  //     fetch(`${server}/api/admin/data`, {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${adminCookie}`,
-  //       },
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         const first_name = data.first_name;
-  //         const email = data.email;
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching user data:", error);
-  //       });
-  //   }
-
-  // }, []);
 
   const [state, setState] = React.useState({
     options: {

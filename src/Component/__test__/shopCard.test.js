@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter as Router
+import { BrowserRouter as Router } from 'react-router-dom'; 
 import ShopCard from '../ShopView/ShopCard';
 
 test('should render the ShopCard component with correct data', () => {
