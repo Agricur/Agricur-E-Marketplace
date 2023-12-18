@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7eeffef0.css",
+    "main.js": "/static/js/main.b9a74c0d.js",
+    "static/js/787.658aabc1.chunk.js": "/static/js/787.658aabc1.chunk.js",
+    "static/media/adminBG.jpg": "/static/media/adminBG.229fe62c41e6c38b001e.jpg",
+    "static/media/herob.jpg": "/static/media/herob.e6582c4f8acb0c1da483.jpg",
+    "static/media/fruitCat.png": "/static/media/fruitCat.bf6363477621783d0ecf.png",
+    "static/media/vegCat.png": "/static/media/vegCat.7861bbe8c4be89da0dc5.png",
+    "static/media/grainCat.png": "/static/media/grainCat.17b2ee6156d0834ea37d.png",
+    "static/media/LogImg.jpg": "/static/media/LogImg.27601f310c0840d50859.jpg",
+    "static/media/shop.jpg": "/static/media/shop.3855bae3c88c067aa540.jpg",
+    "static/media/fertiCat.png": "/static/media/fertiCat.7263a8cf474dff2df1a1.png",
+    "static/media/eqCat.png": "/static/media/eqCat.138f13210e559bc91720.png",
+    "static/media/Design.png": "/static/media/Design.8b39e56355f598f23811.png",
+    "static/media/hero.jpg": "/static/media/hero.913a4fa8e3c8caa36b2b.jpg",
+    "static/media/userImage.png": "/static/media/userImage.aa0e87225482e982804e.png",
+    "static/media/Logo.png": "/static/media/Logo.80fdaa9989bc381f6ab1.png",
+    "static/media/regBackground.png": "/static/media/regBackground.a634ac29cb2e123f2672.png",
+    "static/media/product_1.jpg": "/static/media/product_1.4119b5b6fcd40b006c2d.jpg",
+    "static/media/profilePhoto.png": "/static/media/profilePhoto.8d49e377c7c342895ec2.png",
+    "static/media/telephone.svg": "/static/media/telephone.f48983c28652a2d72a275beadf622987.svg",
+    "static/media/tractor.svg": "/static/media/tractor.a918d5f16d97bfb7e14f32f019a9489f.svg",
+    "static/media/wheat.svg": "/static/media/wheat.12cfcbfd7b75bc0e90b5ba539b39ec2b.svg",
+    "static/media/carrot.svg": "/static/media/carrot.f79df8e9a0f543d3803a72fbab61af6e.svg",
+    "static/media/gmail.svg": "/static/media/gmail.9e0a6060146bc1009a82539c1a241dfa.svg",
+    "static/media/apple.svg": "/static/media/apple.5bafdfccdc13bb75795d48e2951876e3.svg",
+    "index.html": "/index.html",
+    "static/media/bag.svg": "/static/media/bag.a7baea2914320ae3bab27b16cb77109d.svg",
+    "main.7eeffef0.css.map": "/static/css/main.7eeffef0.css.map",
+    "main.b9a74c0d.js.map": "/static/js/main.b9a74c0d.js.map",
+    "787.658aabc1.chunk.js.map": "/static/js/787.658aabc1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7eeffef0.css",
+    "static/js/main.b9a74c0d.js"
+  ]
+}
