@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, HashRouter as Routes,  Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
@@ -31,9 +31,8 @@ import {LoginPage,
 
 function App() {
   return (
-    // <BrowserRouter>
 
-    <Routes >
+    <Router >
       <Route path="/" element={<HomePage />}/>
       <Route path="/login" element={<LoginPage />}/>
       <Route path="/adminLogin" element={<AdminLoginPage />}/>
@@ -73,8 +72,7 @@ function App() {
         pauseOnHover
         theme="dark"
       />
-      </Routes>
-    // </BrowserRouter>
+      </Router>
   );
 }
 
